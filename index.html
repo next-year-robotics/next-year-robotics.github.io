@@ -114,6 +114,8 @@ h1 .line>span{display:block}
 .body{margin:18px 0 0;max-width:56ch;font-size:clamp(17px,1.4vw,19px)}
 
 /* ---------- Maknae ---------- */
+.mk-story{display:inline-flex;align-items:center;gap:.6em;padding:.55em .8em;border:1px solid currentColor;color:var(--navy);font-weight:700;text-decoration:none}
+.mk-story:hover{background:var(--navy);color:var(--white)}
 .maknae{background:var(--white);padding-block:clamp(64px,8vw,120px);font-family:var(--mk-body);color:var(--navy)}
 .mk-kicker{font:700 14px/1 var(--mk-body);letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin:0 0 20px}
 .sunrise{display:block;width:100%;height:clamp(180px,27vw,320px);border-radius:4px}
@@ -238,6 +240,7 @@ h1 .line>span{display:block}
         <h2 id="mk-h">Maknae</h2>
         <p class="mk-sub">Mobile Assistant for Kin’s Needs And Errands</p>
         <p class="mk-desc">A small mobile robot for older adults who have trouble getting around. It brings things like a water bottle or glasses at home, walks along with the person outside, and lets family know when something goes wrong.</p>
+        <p><a class="mk-story" href="./maknae/" lang="ko">막내 제작기 읽기 <span aria-hidden="true">↗</span></a></p>
       </div>
       <ul class="repos">
         <li><a href="https://github.com/next-year-robotics/mobile-robot"><span class="rn">mobile-robot</span><span class="rd">The robot: frame CAD, base interface board, STM32 firmware, and ROS 2 on a Raspberry Pi 5</span><span class="ar" aria-hidden="true">↗</span></a></li>
