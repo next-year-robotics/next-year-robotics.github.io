@@ -523,10 +523,6 @@
         [
           "좌표 즉시 삭제",
           ""
-        ],
-        [
-          "위치 정보 가림",
-          ""
         ]
       ]
     },
@@ -672,13 +668,13 @@
         "items": [
           [
             "assets/clips/booth_follow.mp4",
-            "① 전시장 ArUco 사람 추종 주행",
+            "① 실시간 디지털 트윈 · 전시장 ArUco 사람 추종 주행",
             "shot"
           ],
           [
-            "proto/assets/app/sos_sent.png",
-            "② 어르신 앱의 SOS 전송 확인 화면",
-            "contain"
+            "assets/clips/booth_sos.mp4",
+            "② 추적 유실 → 어르신 폰 · 보호자 태블릿 실시간 SOS 푸시",
+            "shot"
           ]
         ]
       }
@@ -1098,9 +1094,9 @@
         "grid": "2v",
         "items": [
           [
-            "assets/inventory/home/trolley.png",
-            "① 정면에 단안 카메라를 장착한 2단 철망 트롤리 PoC",
-            "contain"
+            "assets/clips/poc_aruco.mp4",
+            "① 2단 철망 트롤리 PoC — 종이 ArUco 마커 실시간 추종 주행",
+            "shot"
           ],
           [
             "screens/142.png",
@@ -2192,7 +2188,7 @@
         "items": [
           [
             "assets/clips/lidar_slam.mp4",
-            "① RPLIDAR C1을 장착한 막내의 실내 주행",
+            "① RPLIDAR C1 + EKF 2D SLAM 실내 지도 작성 및 URDF 확인",
             "shot"
           ],
           [
