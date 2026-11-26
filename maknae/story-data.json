@@ -142,16 +142,22 @@
       "q": "안부가 마음먹고 거는 숙제가 아니라,<br>어르신의 일상에서 저절로 전해지는 신호라면?",
       "frames": [
         {
-          "step": "알림",
-          "cap": "부모님이 안마의자를 켜면 자녀의 휴대폰에 알림이 온다."
+          "pair": [
+            "assets/bodyfriend/01_run.jpg",
+            "assets/bodyfriend/02_notify.jpg"
+          ],
+          "step": "SCENE 01",
+          "cap": "달리기 중 울린 알림 — <b>“어머니께서 바디프랜드를 시작하셨습니다.”</b>"
         },
         {
-          "step": "전화",
-          "cap": "알림을 본 자녀가 부모님께 먼저 전화를 건다."
+          "img": "assets/bodyfriend/03_call.jpg",
+          "step": "SCENE 02",
+          "cap": "<span class=\"sp-m\">엄마</span>“어 큰아들~ 이 시간에 어쩐 일이실까?”<span class=\"sp-s\">아들</span><b>“어 엄마, 바디프랜드 하시나 보네~?”</b>"
         },
         {
-          "step": "안부",
-          "cap": "기기를 쓰는 일상이 대화와 안부를 나누는 계기가 된다."
+          "img": "assets/bodyfriend/04_mom.jpg",
+          "step": "SCENE 03",
+          "cap": "<span class=\"sp-m\">엄마</span><b>“얘 이거 너무 신기해…”</b> — 그렇게 자연스럽게 소식과 안부를 나눈다"
         }
       ]
     },

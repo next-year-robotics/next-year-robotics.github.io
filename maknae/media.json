@@ -1,4 +1,8 @@
 {
+  "assets/bodyfriend/01_run.jpg": "./media/001-bf_01_run.jpg",
+  "assets/bodyfriend/02_notify.jpg": "./media/002-bf_02_notify.jpg",
+  "assets/bodyfriend/03_call.jpg": "./media/003-bf_03_call.jpg",
+  "assets/bodyfriend/04_mom.jpg": "./media/004-bf_04_mom.jpg",
   "assets/brand/last_calendar_page.svg": "./media/005-last_calendar_page.svg",
   "assets/cad/frame5_under.png": "./media/006-frame5_under.png",
   "assets/cad/frame6_under.png": "./media/007-frame6_under.png",
