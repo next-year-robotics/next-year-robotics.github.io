@@ -633,6 +633,8 @@ body:not(.rail) #rail{transform:translateX(460px);opacity:0}
 .bot .acc b{color:var(--red)}
 .bf-imgs:has(.bf-word){display:flex;align-items:center;justify-content:center;background:var(--sheet)}
 .bf-word{font:800 64px Paperlogy,sans-serif;color:var(--ink);letter-spacing:-.02em}
+/* 사이트용: 1920px 무대가 휴대폰 레이아웃 폭을 늘리지 않게 화면에 고정 */
+html,body{position:fixed;inset:0;width:100%;height:100%;overflow:hidden}
 /* 사이트용: 전체 화면·글 보기 단추, 손가락으로 넘기기 */
 #chrome{position:fixed;right:14px;bottom:14px;z-index:9;display:flex;gap:8px;opacity:0;transition:opacity .3s;pointer-events:none}
 body.chrome #chrome{opacity:1;pointer-events:auto}
@@ -1707,7 +1709,7 @@ function go(i){
   if(s.d)renderRail(idx);
   history.replaceState(null,'',location.search+'#'+(idx+1));
 }
-function fit(){$('stage').style.setProperty('--s',Math.min(innerWidth/1920,innerHeight/1080))}
+function fit(){const w=document.documentElement.clientWidth,h=document.documentElement.clientHeight;$('stage').style.setProperty('--s',Math.min(w/1920,h/1080))}
 addEventListener('resize',fit);
 addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1));if(n&&n-1!==idx)go(n-1)});
 addEventListener('keydown',e=>{
