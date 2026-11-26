@@ -143,5 +143,16 @@
   "screens/143.jpg": "./media/143-build.jpg",
   "외주도면/profile2020_drawing.png": "./media/144-profile2020_drawing.png",
   "photos/145.jpg": "./media/145-build.jpg",
-  "photos/146.jpg": "./media/146-build.jpg"
+  "photos/146.jpg": "./media/146-build.jpg",
+  "assets/gen/cap_follow-256.webp": "./media/gen/cap_follow-256.webp",
+  "assets/gen/cap_follow-512.webp": "./media/gen/cap_follow-512.webp",
+  "assets/gen/cap_errand-256.webp": "./media/gen/cap_errand-256.webp",
+  "assets/gen/cap_errand-512.webp": "./media/gen/cap_errand-512.webp",
+  "assets/gen/cap_sos-256.webp": "./media/gen/cap_sos-256.webp",
+  "assets/gen/cap_sos-512.webp": "./media/gen/cap_sos-512.webp",
+  "assets/gen/cap_nav-256.webp": "./media/gen/cap_nav-256.webp",
+  "assets/gen/cap_nav-512.webp": "./media/gen/cap_nav-512.webp",
+  "assets/gen/cap_ui-256.webp": "./media/gen/cap_ui-256.webp",
+  "assets/gen/cap_ui-512.webp": "./media/gen/cap_ui-512.webp",
+  "assets/diagrams/silver_cart_maknae.svg": "./media/gen/silver_cart_maknae.svg"
 }

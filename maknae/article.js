@@ -102,7 +102,7 @@
   const dot = color => { const e = mk('g', { class: 'dot' }); mk('circle', { r: 3.4, fill: color, stroke: '#fff', 'stroke-width': 1.5 }, e); return e; };
   const dotBal = dot('#1F1C19'), dotLv = dot('#D93A24');
 
-  $('rCaps').innerHTML = data.caps.map(n => `<li><span>${n}</span><i><b></b></i></li>`).join('');
+  $('rCaps').innerHTML = data.caps.map((n, i) => `<li>${data.capIcons?.[i] ? `<img src="${data.capIcons[i]}" alt="">` : '<span></span>'}<span>${n}</span><i><b></b></i></li>`).join('');
   const capBars = [...$('rCaps').querySelectorAll('b')];
   const imgs = [$('rImgA'), $('rImgB')];
   let front = 0, shownImg = null;
