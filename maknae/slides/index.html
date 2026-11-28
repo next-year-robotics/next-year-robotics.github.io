@@ -47,7 +47,7 @@ body.bare #kick,body.bare #foot{visibility:hidden}
 
 h1.t{margin:0;font:800 58px/1.12 Paperlogy,sans-serif;letter-spacing:-.02em}
 body:not(.rail) h1.t{font-size:62px}
-h1.t em,.cv-t em,.end em{font-style:normal;color:var(--red)}
+h1.t em,.cv-t em{font-style:normal;color:var(--red)}
 .lead{margin:0;font-size:25px;line-height:1.48;color:var(--ink2);max-width:1340px}
 .lead b{color:var(--ink)}
 .row{flex:1;min-height:0;display:flex;gap:42px}
@@ -85,9 +85,10 @@ h1.t em,.cv-t em,.end em{font-style:normal;color:var(--red)}
 .mc .mf{flex:1;min-height:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#ece6d9}
 .mc.contain .mf{background:#fff}
 .mc.dark .mf{background:#141820}
+.mc.fea .mf{background:var(--sheet)}
 .mc .mf img,.mc .mf video{width:100%;height:100%;object-fit:cover;display:block}
 .mc.contain .mf img,.mc.contain .mf video{object-fit:contain;padding:6px;filter:contrast(1.12)}
-.mc.dark .mf img,.mc.dark .mf video{object-fit:contain;padding:0}
+.mc.dark .mf img,.mc.dark .mf video,.mc.fea .mf img,.mc.fea .mf video{object-fit:contain;padding:0}
 .mc.stack .mf{flex-direction:column;justify-content:center;gap:5px;padding:6px;background:#141820}
 .mc.stack .mf img{width:100%;height:auto;flex:1 1 auto;min-height:0;object-fit:contain}
 .mc.print .mf img,.mc.print .mf video{filter:var(--print)}
@@ -143,14 +144,8 @@ h1.t em,.cv-t em,.end em{font-style:normal;color:var(--red)}
 .pts dd{margin:0;font-size:21.5px;line-height:1.45;color:var(--ink2)}
 .pts dd b{color:var(--ink);font-weight:700}
 
-/* ── 오디오 활성 영상 최소 토글 배지 (재생바 없음) ── */
-.vid-wrap{position:relative;display:inline-flex;max-width:calc(100% - 14px);max-height:calc(100% - 42px)}
-.vid-wrap>video,.vid-wrap>img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
-.aud-btn{position:absolute;right:12px;bottom:12px;z-index:5;border:1.5px solid rgba(255,255,255,.35);
-  background:rgba(20,24,32,.84);color:#FBF8F1;font:700 13.5px/1 Pretendard,sans-serif;
-  padding:7px 12px;border-radius:4px;cursor:pointer;backdrop-filter:blur(4px);transition:background .2s}
-.aud-btn.warn{background:var(--red);border-color:#FFD6CE}
-.aud-btn:hover{background:var(--ink)}
+video[data-sound]{cursor:pointer}
+video::cue{font-family:Pretendard,sans-serif;background-color:rgba(31,28,25,.9);color:#FBF8F1}
 
 /* ── PoC 목표 달성 → 본체 전환 게이트 (verdict) ── */
 .verdict-wrap{flex:1;min-height:0;display:flex;flex-direction:column;gap:20px}
@@ -193,6 +188,173 @@ h1.t em,.cv-t em,.end em{font-style:normal;color:var(--red)}
 .mrow .mn small{display:block;font-weight:400;font-size:15.5px;color:var(--ink2);margin-top:2px}
 .mrow .mr{justify-self:end;text-align:right;background:#fff5f3;border:1.5px solid var(--red);color:var(--red);
   font:800 16px/1.25 Paperlogy,sans-serif;padding:7px 12px;border-radius:4px;white-space:nowrap}
+
+/* ── STM32 실행 타임라인 + STM32 고유 하드웨어 장점 (mcu_why) ── */
+.mcu-why{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;padding:0 8px 8px 0}
+.mw-tl{flex:1.12;min-height:0;background:var(--sheet);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--red);
+  padding:12px 18px 10px;display:flex;flex-direction:column;gap:6px}
+.mw-tlhead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.mw-tlhead b{font:800 17px Paperlogy,sans-serif;color:var(--ink);display:flex;align-items:center;gap:8px}
+.mw-tlhead b i{width:10px;height:10px;background:var(--red);display:inline-block}
+.mw-tlhead span{font:700 13.5px var(--mono);color:var(--ink2)}
+.mw-tl svg{flex:1;min-height:0;width:100%;display:block}
+.mw-bar{flex:0 0 auto;background:var(--ink);color:var(--sheet);padding:11px 18px;border-left:7px solid var(--red);
+  display:flex;align-items:center;gap:16px}
+.mw-bar .k{font:800 13.5px/1 Paperlogy,sans-serif;color:#FFD6CE;letter-spacing:.08em;white-space:nowrap;
+  border:1.5px solid rgba(255,214,206,.45);padding:4px 8px}
+.mw-bar p{margin:0;font-size:17.5px;line-height:1.38;font-weight:600}
+.mw-bar p em{font-style:normal;color:#FF9C8A;font-weight:800}
+.mw-hw{flex:0.84;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mw-card{background:var(--sheet);border:1.5px solid var(--ink);border-top:4px solid var(--red);
+  padding:12px 15px 11px;display:flex;flex-direction:column;gap:5px;min-height:0}
+.mw-card .mw-k{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.mw-card .mw-n{font:800 13px/1 Paperlogy,sans-serif;background:var(--red);color:var(--sheet);padding:3px 7px}
+.mw-card .mw-ip{font:700 12.5px/1 var(--mono);color:var(--ink3)}
+.mw-card h4{margin:2px 0 0;font:800 18px/1.22 Paperlogy,sans-serif;color:var(--ink)}
+.mw-card p{margin:0;font-size:14.5px;line-height:1.42;color:var(--ink2)}
+.mw-card p b{color:var(--ink)}
+.mw-card .mw-stat{margin-top:auto;border-top:1.5px dotted var(--rule);padding-top:6px;font:700 13.5px/1.25 var(--mono);color:var(--red)}
+.mw-gloss{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;font-size:13.5px;color:var(--ink2);line-height:1.35}
+.mw-gloss>div{background:var(--paper);border-top:2px dotted var(--ink3);padding:6px 4px 0}
+.mw-gloss b{color:var(--ink);font-weight:800;margin-right:5px}
+
+/* ── 엔코더 + IMU 센서 융합 (ekf_fusion · 방향 B 3열) ── */
+.ekf-wrap{flex:1;min-height:0;display:grid;grid-template-columns:366px 496px 1fr;gap:20px;padding:0 8px 8px 0}
+.ekf-col{display:flex;flex-direction:column;gap:14px;min-height:0}
+.ekf-card{position:relative;background:var(--sheet);border:2px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
+  display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.ekf-card.red{box-shadow:7px 7px 0 var(--red)}
+.ekf-hd{flex:0 0 auto;padding:7px 13px;background:var(--ink);color:var(--sheet);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ekf-hd b{font:800 14.5px Paperlogy,sans-serif;letter-spacing:.03em}
+.ekf-hd span{font:700 12px var(--mono);color:#FFD6CE}
+.ekf-body{flex:1;min-height:0;padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.ekf-fig1 .ekf-body{padding:0;background:var(--paper)}
+.ekf-fig1 svg{width:100%;height:100%;display:block}
+.ekf-defs{display:flex;flex-direction:column;gap:10px;flex:0 0 auto}
+.ekf-def{background:var(--sheet);border:1.5px solid var(--ink);border-left:5px solid var(--red);padding:10px 13px;display:flex;flex-direction:column;gap:4px}
+.ekf-def .dh{display:flex;align-items:center;gap:8px;font:800 17px/1.2 Paperlogy,sans-serif;color:var(--ink)}
+.ekf-def .dh i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font:800 13px Paperlogy,sans-serif;flex:none}
+.ekf-def .dh small{margin-left:auto;font:700 12px var(--mono);color:var(--ink3)}
+.ekf-def p{margin:0;font-size:14.5px;line-height:1.42;color:var(--ink2)}
+.ekf-def p b{color:var(--ink)}
+.ekf-bias{border-top:2px dotted var(--rule);padding-top:8px;font-size:14.5px;line-height:1.42;color:var(--ink2)}
+.ekf-bias b{color:var(--ink)}
+.ekf-bias em{font-style:normal;color:var(--red);font-weight:700}
+.ekf-kf{justify-content:space-between}
+.ekf-eq{font-family:"Latin Modern Roman","LM Roman 10","DejaVu Serif",Georgia,serif;font-size:23px;line-height:1.48;
+  text-align:center;padding:8px 6px;border-top:2px dotted var(--ink3);border-bottom:2px dotted var(--ink3);color:var(--ink);background:var(--paper)}
+.ekf-eq i{font-style:italic}
+.ekf-eq sup{font-size:.64em}
+.ekf-lg{margin:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px;color:var(--ink2)}
+.ekf-lg div{display:grid;grid-template-columns:68px 1fr;gap:8px;align-items:baseline}
+.ekf-lg dt{font-family:"Latin Modern Roman","LM Roman 10","DejaVu Serif",Georgia,serif;font-style:italic;font-size:18px;font-weight:700;color:var(--ink)}
+.ekf-lg dd{margin:0;line-height:1.38}
+.ekf-ours{background:var(--ink);color:var(--sheet);border-left:5px solid var(--red);padding:10px 13px;font-size:14.5px;line-height:1.45}
+.ekf-ours small{display:block;font:700 12px var(--mono);color:#d8cfbf;margin-bottom:3px}
+.ekf-ours b{color:#FF9C8A;font-family:var(--mono);font-size:14.5px}
+.ekf-ext{font-size:14px;line-height:1.42;color:var(--ink2);background:var(--paper);border:1px solid var(--rule);padding:8px 11px}
+.ekf-ext b{color:var(--red)}
+
+/* ── ROS 2 구조 — 권한 분리와 4겹 안전망 (ros_safety · 방향 B · 04 와이드 1736px) ── */
+.rs-wrap{flex:1;min-height:0;display:grid;grid-template-columns:1100px 1fr;gap:28px;padding:0 10px 10px 0}
+.rs-l{display:flex;flex-direction:column;gap:16px;min-height:0}
+.rs-card{background:var(--sheet);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--red);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.rs-card.ink{box-shadow:8px 8px 0 var(--ink)}
+.rs-hd{flex:0 0 auto;padding:9px 16px;background:var(--ink);color:var(--sheet);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.rs-hd b{font:800 16.5px Paperlogy,sans-serif;letter-spacing:.02em}
+.rs-hd span{font:700 13px var(--mono);color:#FFD6CE}
+.rs-gph{flex:1;min-height:0;padding:12px 18px;display:flex;align-items:center;justify-content:center}
+.rs-gph svg{width:100%;height:100%;display:block}
+.rs-split{flex:0 0 auto;display:grid;grid-template-columns:1fr 1.65fr;gap:16px}
+.rs-box{background:var(--sheet);border:1.5px solid var(--ink);border-top:5px solid var(--ink);padding:12px 18px}
+.rs-box.me{border-top-color:var(--red)}
+.rs-box b{display:block;font:800 18px/1.25 Paperlogy,sans-serif;color:var(--ink)}
+.rs-box.me b{color:var(--red)}
+.rs-box span{display:block;margin-top:5px;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.rs-sflist{flex:1;min-height:0;padding:18px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.rs-sf{border-top:2px dotted var(--rule);padding-top:14px}
+.rs-sf:first-child{border-top:none;padding-top:0}
+.rs-sf h4{margin:0 0 8px;font:800 22px/1.2 Paperlogy,sans-serif;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.rs-sf h4 i{font-style:normal;width:27px;height:27px;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center;font:800 15.5px Paperlogy,sans-serif;flex:none}
+.rs-sf h4 small{margin-left:auto;font:700 13.5px var(--mono);color:var(--ink3)}
+.rs-sf p{margin:0;font-size:17.5px;line-height:1.52;color:var(--ink2)}
+.rs-sf p b{color:var(--ink);font-weight:700}
+.rs-prio{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.rs-prio>div{display:grid;grid-template-columns:144px 1fr 44px;align-items:center;gap:12px;font-size:16px;color:var(--ink2)}
+.rs-prio>div.top{color:var(--ink);font-weight:700}
+.rs-prio .bar{height:14px;background:var(--ink3)}
+.rs-prio>div.top .bar{background:var(--red)}
+.rs-prio em{font-style:normal;font:800 18px Paperlogy,sans-serif;color:var(--ink);text-align:right}
+
+/* ── 손 · 파운데이션 모델 + 하네스 (hand_vlm · 방향 B) ── */
+.hv-wrap{flex:1;min-height:0;display:grid;grid-template-columns:1fr 446px;gap:24px;padding:0 8px 8px 0}
+.hv-tblcard{background:var(--sheet);border:2px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.hv-tbl{width:100%;border-collapse:collapse;font-size:18px;flex:1}
+.hv-tbl th,.hv-tbl td{text-align:left;padding:15px 15px;border-bottom:2px dotted var(--rule);vertical-align:middle;line-height:1.42}
+.hv-tbl thead th{font:800 20px/1.2 Paperlogy,sans-serif;border-bottom:3px solid var(--ink);padding:16px 15px 14px;background:var(--paper)}
+.hv-tbl thead th small{display:block;font:500 13.5px Pretendard,sans-serif;color:var(--ink3);margin-top:3px}
+.hv-tbl tbody th{font:800 16.5px Paperlogy,sans-serif;color:var(--ink2);width:132px;background:var(--sheet)}
+.hv-tbl td{color:var(--ink2)}
+.hv-tbl .me{background:#fff5f3;color:var(--ink);font-weight:700;border-left:2px solid var(--red)}
+.hv-tbl thead th.me{color:var(--red);border-bottom-color:var(--red);background:#fff5f3}
+.hv-tbl tbody tr:last-child th,.hv-tbl tbody tr:last-child td{border-bottom:none}
+.hv-foot{flex:0 0 auto;background:var(--ink);color:var(--sheet);border-left:6px solid var(--red);padding:12px 18px;font-size:16.5px;line-height:1.4;font-weight:600}
+.hv-foot em{font-style:normal;color:#FF9C8A;font-weight:800}
+.hv-side{display:flex;flex-direction:column;gap:16px;min-height:0}
+.hv-side .mc{flex:1.12;min-height:0}
+.hv-code{flex:0 0 auto;background:var(--sheet);border:2px solid var(--ink);border-top:5px solid var(--red);box-shadow:7px 7px 0 var(--ink);padding:12px 16px 12px;display:flex;flex-direction:column;gap:6px}
+.hv-code .ck{font:800 13.5px Paperlogy,sans-serif;color:var(--red);letter-spacing:.03em}
+.hv-code pre{margin:0;font:600 15px/1.52 var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--rule);padding:10px 12px}
+.hv-code .cn{margin:0;font:700 13px var(--mono);color:var(--ink3)}
+
+/* ── 손 · 말 → 도구 → 상태머신 (hand_fsm · 방향 B) ── */
+.hf-wrap{flex:1;min-height:0;display:grid;grid-template-columns:528px 1fr;gap:22px;padding:0 8px 8px 0}
+.hf-col{display:flex;flex-direction:column;gap:14px;min-height:0}
+.hf-tools{flex:0 0 auto;background:var(--sheet);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;flex-direction:column;overflow:hidden}
+.hf-tbody{padding:10px 14px 12px;display:flex;flex-direction:column;gap:7px}
+.hf-tg{display:flex;flex-wrap:wrap;gap:4.5px;align-items:center}
+.hf-tg b{width:50px;font:800 14px Paperlogy,sans-serif;color:var(--ink);flex:none}
+.hf-tg code,.hf-say code{font:600 12px var(--mono);background:var(--paper);border:1px solid var(--ink3);padding:2px 5px;color:var(--ink2)}
+.hf-tg code.on,.hf-say code.on{border-color:var(--red);color:var(--red);background:#fff5f3;font-weight:700}
+.hf-say{margin-top:4px;border-top:2px dotted var(--rule);padding-top:8px;font-size:14.5px;line-height:1.58;color:var(--ink2)}
+.hf-say b{color:var(--ink)}
+.hf-vid{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;background:var(--sheet);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--red);overflow:hidden}
+.hf-vf{flex:1;min-height:0;position:relative;background:#0e1218;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hf-vf video,.hf-vf img{width:100%;height:100%;object-fit:cover;display:block}
+.hf-vtag{position:absolute;left:10px;top:10px;z-index:4;background:rgba(31,28,25,.88);color:var(--sheet);font:700 13.5px Pretendard,sans-serif;padding:4px 10px;border:1px solid rgba(255,255,255,.22)}
+.hf-vcap{flex:0 0 auto;padding:7px 12px;background:var(--ink);color:var(--sheet);font-size:14px;line-height:1.35;display:flex;align-items:center;gap:8px}
+.hf-vcap b{background:var(--red);color:#fff;font:800 12px Paperlogy,sans-serif;padding:2px 7px;flex:none}
+.hf-sm{flex:0 0 auto;background:var(--sheet);border:2px solid var(--ink);box-shadow:7px 7px 0 var(--red);display:flex;flex-direction:column;overflow:hidden}
+.hf-smbody{padding:10px 14px 8px}
+.hf-smbody svg{width:100%;height:auto;display:block}
+.hf-refs{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.hf-ref{flex:1;background:var(--sheet);border:1.5px solid var(--ink);border-left:5px solid var(--red);padding:11px 16px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+.hf-ref small{font-size:13.5px;color:var(--ink3);font-weight:700}
+.hf-ref p{margin:0;font:700 19px/1.35 Pretendard,sans-serif;color:var(--ink)}
+.hf-note{margin:0;font-size:14.5px;color:var(--ink2);border-top:2px dotted var(--ink3);padding-top:8px}
+
+/* ── 손 · 사진 속 점 → 팔 좌표 (hand_geo · 방향 B) ── */
+.hg-wrap{flex:1;min-height:0;display:grid;grid-template-columns:418px 1fr 376px;gap:20px;padding:0 8px 8px 0}
+.hg-wrap>.mc{height:100%}
+.hg-wrap>.mc .mf img{object-position:66% center}
+.hg-steps{display:flex;flex-direction:column;justify-content:space-between;border-top:3px solid var(--ink);min-height:0}
+.hg-st{flex:1;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:2px dotted var(--rule)}
+.hg-st:last-child{border-bottom:2px solid var(--ink)}
+.hg-st>i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font:800 16px Paperlogy,sans-serif}
+.hg-st b{display:block;font:800 19px/1.25 Paperlogy,sans-serif;color:var(--ink)}
+.hg-st span{display:block;font-size:15.5px;color:var(--ink2);line-height:1.44;margin-top:3px}
+.hg-side{display:flex;flex-direction:column;gap:14px;min-height:0}
+.hg-fig{flex:1;min-height:0;background:var(--sheet);border:2px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:flex;flex-direction:column;overflow:hidden}
+.hg-figb{flex:1;min-height:0;padding:8px 10px;display:flex;align-items:center;justify-content:center}
+.hg-figb svg{width:100%;height:100%;display:block}
+.hg-kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:0 0 auto}
+.hg-kpi{background:var(--sheet);border:1.5px solid var(--ink);border-top:5px solid var(--red);padding:12px 14px}
+.hg-kpi b{display:block;font:800 34px/1 Paperlogy,sans-serif;color:var(--ink)}
+.hg-kpi b small{font:800 17px Paperlogy,sans-serif;color:var(--red);margin-left:3px}
+.hg-kpi span{display:block;font-size:14.5px;color:var(--ink2);line-height:1.38;margin-top:5px}
+.hg-cost{flex:0 0 auto;background:var(--ink);color:var(--sheet);border-left:5px solid var(--red);padding:11px 14px;font-size:14.5px;line-height:1.42}
+.hg-cost b{color:#FF9C8A}
 
 /* ── 도장 ── */
 .stamp{position:absolute;right:24px;bottom:28px;transform:rotate(-6deg);border:4px solid var(--red);color:var(--red);
@@ -277,28 +439,45 @@ ul.plain{margin:0;padding:0;list-style:none}
 ul.plain li{font-size:22px;padding:10px 0;border-top:2px dotted var(--ink3)}
 ul.plain li:first-child{border-top:none}
 
-/* ── 자연스러운 문제 정의 흐름 (5 Whys 대체) ── */
-.pdef{flex:1;min-height:0;display:flex;flex-direction:column;gap:24px}
-.pdef-top{flex:1;min-height:0;display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch;gap:14px}
-.pbox{background:var(--sheet);border:2px solid var(--ink);padding:26px 30px;display:flex;flex-direction:column;justify-content:center;gap:20px}
-.pbox.wall{border-style:dashed;background:var(--paper)}
-.pbox h3{margin:0;font:800 26px Paperlogy,sans-serif;display:flex;align-items:center;gap:10px}
-.pbox h3 i{font-style:normal;font-size:15px;padding:3px 9px;background:var(--ink);color:var(--sheet)}
-.pbox.wall h3 i{background:var(--red)}
-.plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
-.plist li{border-top:2px dotted var(--rule);padding-top:18px;display:grid;grid-template-columns:144px 1fr;gap:14px;align-items:baseline}
+.stats a.so{text-decoration:none}
+.stats a.so:hover,.stats a.so:focus-visible{text-decoration:underline}
+
+/* ── 문제 정의 ── */
+.pdef{flex:1;min-height:0;display:flex;flex-direction:column;gap:30px;padding:2px 10px 12px 0}
+.pdef-top{flex:1;min-height:0;display:grid;grid-template-columns:1fr 54px 1fr;align-items:stretch;gap:16px}
+.pbox{background:var(--sheet);border:2px solid var(--ink);padding:26px 36px;display:flex;flex-direction:column;gap:20px}
+.pbox.wall{border-color:var(--red);box-shadow:7px 7px 0 var(--red)}
+.pbox h2{margin:0;padding-bottom:16px;border-bottom:3px solid var(--ink);font:800 30px Paperlogy,sans-serif}
+.pbox.wall h2{border-color:var(--red)}
+.plist{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(3,1fr);flex:1;gap:16px}
+.plist li{border-top:2px dotted var(--rule);padding-top:18px;display:grid;grid-template-columns:172px 1fr;gap:16px;align-items:baseline;align-content:center}
 .plist li:first-child{border-top:none;padding-top:0}
-.plist b{font-size:21px;color:var(--ink)}
-.plist span{font-size:20.5px;line-height:1.5;color:var(--ink2)}
-.pdef-arr{display:flex;align-items:center;justify-content:center;font:800 40px Paperlogy,sans-serif;color:var(--red)}
-.pdef-core{background:var(--sheet);border:3px solid var(--red);box-shadow:10px 10px 0 var(--ink);padding:24px 32px;display:flex;flex-direction:column;gap:16px}
-.pdef-core .ck{font:800 17px Paperlogy,sans-serif;color:var(--red);letter-spacing:.06em}
-.pdef-core p{margin:0;font:700 30px/1.42 Pretendard,sans-serif;color:var(--ink)}
-.pdef-core p em{font-style:normal;color:var(--red)}
-.ppill-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;border-top:2px dotted var(--rule);padding-top:14px}
-.ppill{font-size:17px;line-height:1.35;color:var(--ink2)}
-.ppill b{display:block;font:800 19px Paperlogy,sans-serif;color:var(--ink);margin-bottom:2px}
-.ppill b::before{content:"→ ";color:var(--red)}
+.plist b{font-size:23px;color:var(--ink)}
+.plist span{font-size:23px;line-height:1.5;color:var(--ink2)}
+.pdef-arr{display:grid;place-items:center;font:800 40px Paperlogy,sans-serif;color:var(--red)}
+.pdef-core{margin:0;padding:30px 36px;border-left:8px solid var(--red);background:var(--ink);color:var(--sheet);
+  font:800 31px/1.45 Paperlogy,sans-serif}
+
+/* ── 제작 과정의 보조 영상과 원리 그림 ── */
+.beat-side{flex:1;min-width:0;max-width:460px;display:flex;flex-direction:column;gap:17px}
+.beat-side .pts{flex:none;width:100%}
+.beat-side .mgrid{flex:none;display:block;width:365px;max-width:100%;padding:0 7px 7px 0}
+.beat-side .mf{flex:none;aspect-ratio:16/9}
+.principle{gap:30px;padding-bottom:8px}
+.principle .mgrid{flex:1;min-width:0}
+.principle-side{flex:1.04;min-width:0;min-height:0;display:flex;flex-direction:column;gap:18px;padding:0 7px 0 0}
+.principle.wide .principle-side{flex:1.34}
+.principle-fig{margin:0;display:flex;flex-direction:column;padding:12px 16px 14px;gap:8px;min-height:0;
+  background:var(--sheet);border:1.5px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
+.principle-fig h2{margin:0 0 3px;padding:0 0 7px;border-bottom:2px solid var(--ink);font:800 19px Paperlogy,sans-serif}
+.principle-fig img{display:block;min-height:0;width:100%;max-height:395px;object-fit:contain}
+.principle.wide .principle-fig img{max-height:260px}
+.principle-fig figcaption{display:flex;gap:16px;align-items:center;border-top:2px dotted var(--rule);padding-top:8px;
+  font-size:17px;line-height:1.35;color:var(--ink2)}
+.principle-fig figcaption b{white-space:nowrap;color:var(--red);font:800 21px var(--mono)}
+.principle-side .pts{flex:0 0 auto;max-width:none;width:100%}
+.principle-side .pts>div{padding:8px 0}
+.principle-side .pts dd{font-size:19px;line-height:1.36}
 
 /* ── 02 막내: 16:9 리빌 영상 (1회 재생 후 완성 컷 정지) ── */
 .reveal-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:4px 12px 12px 0}
@@ -330,25 +509,17 @@ ul.plain li:first-child{border-top:none}
 .sc-stage{min-width:0;min-height:0;height:100%;display:flex;align-items:center;justify-content:center}
 .sc-frame{position:relative;width:100%;max-height:100%;aspect-ratio:16/9;background:#0e1218;
   border:2px solid var(--ink);box-shadow:11px 11px 0 var(--red);overflow:hidden}
-.sc-frame .vid-wrap{width:100%;height:100%;max-width:none;max-height:none;display:block}
 .sc-frame video,.sc-frame img{width:100%;height:100%;object-fit:contain;display:block}
-.sc-frame .aud-btn{right:14px;bottom:16px}
 .sc-prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.16);z-index:6;pointer-events:none}
 .sc-prog i{display:block;height:100%;width:0%;background:var(--red);transition:width .18s linear}
-.sc-side{height:min(100%,701px);min-height:0;display:flex;flex-direction:column;background:var(--sheet);
+.sc-side{height:auto;min-height:0;display:flex;flex-direction:column;background:var(--sheet);
   border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:20px 24px 18px;gap:14px}
-.sc-head{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--ink);padding-bottom:11px;gap:10px}
-.sc-no{font:800 14px Paperlogy,sans-serif;letter-spacing:.08em;padding:4px 10px;background:var(--red);color:var(--sheet);flex:0 0 auto}
-.sc-cat{font:800 16px Paperlogy,sans-serif;color:var(--ink2);text-align:right}
-.sc-pts{margin:0;flex:1;display:flex;flex-direction:column;justify-content:space-evenly;min-height:0}
-.sc-pts>div{border-top:2px dotted var(--rule);padding:12px 0}
-.sc-pts>div:first-child{border-top:none;padding-top:2px}
-.sc-pts dt{font:800 16.5px/1.25 Paperlogy,sans-serif;color:var(--red);margin-bottom:5px}
-.sc-pts dd{margin:0;font-size:19.5px;line-height:1.46;color:var(--ink2)}
-.sc-pts dd b{color:var(--ink);font-weight:700}
-.sc-tags{display:flex;flex-wrap:wrap;gap:7px;border-top:2px solid var(--ink);padding-top:12px;margin-top:auto}
-.sc-tags span{font:700 13px/1 var(--mono);padding:5px 9px;background:var(--paper);border:1.5px solid var(--ink);color:var(--ink)}
-.sc-tags span.red{background:#fff5f3;border-color:var(--red);color:var(--red)}
+.sc-pts{margin:0;display:flex;flex-direction:column}
+.sc-pts>div{border-top:2px dotted var(--rule);padding:18px 0}
+.sc-pts>div:first-child{border-top:3px solid var(--ink)}
+.sc-pts dt{font:800 19px/1.25 Paperlogy,sans-serif;color:var(--red);margin-bottom:7px}
+.sc-pts dd{margin:0;font-size:23px;line-height:1.48;color:var(--ink2)}
+.sc-note{margin:0;padding-top:12px;border-top:2px solid var(--ink);font-size:17px;color:var(--ink2)}
 
 /* ── 02 막내: 실물 시연 ① (방안2: 100% 자율 + Teleop 시나리오 2단 + 실시간 싱크 백엔드 상태머신) ── */
 .ds-wrap{flex:1;min-height:0;display:grid;grid-template-columns:574px 1fr;gap:28px;align-items:stretch;padding:2px 10px 10px 0}
@@ -361,9 +532,7 @@ ul.plain li:first-child{border-top:none}
 .ds-vcard.active .ds-vh{background:var(--red)}
 .ds-vh .ds-b{font:800 11.5px/1 var(--mono);padding:3px 7px;background:rgba(255,255,255,.18);color:#fff;letter-spacing:.04em}
 .ds-vf{flex:1;min-height:0;position:relative;background:#0e1218;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.ds-vf .vid-wrap{width:100%;height:100%;max-width:none;max-height:none;display:block}
 .ds-vf video,.ds-vf img{width:100%;height:100%;object-fit:contain;display:block}
-.ds-vf .aud-btn{right:10px;bottom:10px;padding:5px 10px;font-size:12.5px}
 .ds-vf .sc-prog{height:3px}
 
 .ds-panel{min-height:0;display:flex;flex-direction:column;background:var(--sheet);
@@ -552,30 +721,82 @@ table.cmp{border-collapse:collapse;width:100%;font-size:21px;line-height:1.4}
 .nums .l{font-size:24px;font-weight:600;margin-top:8px}
 .nums .d{font-size:19px;color:var(--ink3);margin-top:6px;line-height:1.45}
 
-/* ── 정산 ── */
-table.led{border-collapse:collapse;width:100%;font-size:19px}
-.led th{text-align:left;font-size:15px;color:var(--ink3);font-weight:600;padding:0 14px 8px 0;border-bottom:3px solid var(--ink)}
-.led td{padding:0 14px 0 0;height:40px;border-bottom:2px dotted var(--rule);white-space:nowrap}
-.led td.a{text-align:right;font-weight:700;width:120px}
-.led td.d{color:var(--ink3);width:70px} .led td.w{width:170px;color:var(--ink2)}
-.led td.i{width:150px} .led td.i img{width:32px;height:32px;object-fit:contain;vertical-align:middle;margin-right:4px;mix-blend-mode:multiply}
-.led td.b{width:360px;padding-right:0}
+/* ── 정산 (+ 상용 비교 Stretch 4) ── */
+.led-wrap{flex:1;min-height:0;display:grid;grid-template-columns:1fr 312px;gap:34px;padding:0 10px 10px 0}
+.led-l{display:flex;flex-direction:column;min-height:0}
+table.led{border-collapse:collapse;width:100%;font-size:18.5px}
+.led th{text-align:left;font-size:14.5px;color:var(--ink3);font-weight:600;padding:0 12px 8px 0;border-bottom:3px solid var(--ink)}
+.led td{padding:0 12px 0 0;height:39px;border-bottom:2px dotted var(--rule);white-space:nowrap}
+.led td.a{text-align:right;font-weight:700;width:116px}
+.led td.d{color:var(--ink3);width:66px} .led td.w{width:154px;color:var(--ink2)}
+.led td.i{width:142px} .led td.i img{width:30px;height:30px;object-fit:contain;vertical-align:middle;margin-right:3px;mix-blend-mode:multiply}
+.led td.b{width:220px;padding-right:0}
 .led .bar{height:12px;background:var(--ink)}
 .led tr.acc td.a,.led tr.acc td.x{color:var(--red)} .led tr.acc .bar{background:var(--red)}
 .led tr.in .bar{background:none;box-shadow:inset 0 0 0 2px var(--ink)}
 .led tr.home td{color:var(--ink3)} .led tr.home td.i img{filter:grayscale(1);opacity:.8}
-.sum{display:flex;align-items:flex-end;gap:40px;margin-top:4px}
-.sum>div{font-size:16px;color:var(--ink3);font-weight:600}
-.sum b{display:block;font:800 42px/1.15 Paperlogy,sans-serif;color:var(--ink);margin-top:4px}
-.sum .op{font:400 38px Paperlogy;color:var(--ink3);padding-bottom:4px}
+.sum{display:flex;align-items:flex-end;gap:36px;margin-top:auto;padding-top:12px}
+.sum>div{font-size:15.5px;color:var(--ink3);font-weight:600}
+.sum b{display:block;font:800 40px/1.15 Paperlogy,sans-serif;color:var(--ink);margin-top:4px}
+.sum .op{font:400 36px Paperlogy;color:var(--ink3);padding-bottom:4px}
 .sum .neg b{color:var(--red)}
+.led-ref{background:var(--sheet);border:2px solid var(--ink);border-top:6px solid var(--red);box-shadow:9px 9px 0 var(--red);
+  padding:16px 18px 12px;display:flex;flex-direction:column;min-height:0}
+.led-ref .rk{font-size:14px;font-weight:700;color:var(--ink2)}
+.led-ref .rname{font:800 24px/1.18 Paperlogy,sans-serif;color:var(--ink);margin-top:5px}
+.led-ref .rusd{font:800 44px/1 Paperlogy,sans-serif;color:var(--red);margin-top:8px;letter-spacing:-.02em}
+.led-ref .rkrw{font:800 24px/1.2 Paperlogy,sans-serif;color:var(--ink);margin-top:4px}
+.led-ref .rrate{font-size:13px;color:var(--ink3);line-height:1.38;margin-top:4px}
+.led-ref .rratio{margin-top:10px;background:var(--ink);color:var(--sheet);border-left:5px solid var(--red);padding:8px 11px;font:800 15px/1.3 Paperlogy,sans-serif}
+.led-ref .rratio em{font-style:normal;color:#FF9C8A}
+.led-ref .rim{flex:1;min-height:0;position:relative;margin-top:10px}
+.led-ref .rim img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.led-ref .rsrc{margin-top:4px;text-align:right;font-size:12.5px;color:var(--ink3)}
 
 /* ── 끝 ── */
-.end{flex:1;display:grid;grid-template-columns:1fr 520px;gap:80px;align-items:center}
-.end .brand{font:800 22px Paperlogy,sans-serif;letter-spacing:.18em}
-.end h1{font:800 136px/1.1 Paperlogy,sans-serif;margin:30px 0 40px;letter-spacing:-.03em}
-.end p{font-size:32px;color:var(--ink2);margin:0}
-.end img{width:100%;max-height:600px;object-fit:contain}
+.live-wrap{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 480px;align-items:center;gap:38px;padding:0 10px 12px 0}
+.live-screen .mf{flex:none;aspect-ratio:16/9}
+.live-screen figcaption{font-size:18px}
+.live-side{display:flex;flex-direction:column;gap:16px}
+.live-side .pts{flex:none;width:100%;max-width:none}
+.live-prompt{margin:0;padding:15px 16px;border-left:4px solid var(--red);background:var(--sheet);font-size:20px;line-height:1.6}
+.live-wrap kbd{font:700 15px var(--mono);padding:3px 7px;border:1px solid currentColor}
+.live-actions{display:flex;align-items:center;gap:25px;font-size:18px;color:var(--ink2)}
+.live-actions button{display:flex;align-items:center;gap:19px;border:2px solid var(--red);padding:12px 20px;
+  background:var(--red);color:var(--sheet);box-shadow:5px 5px 0 var(--ink);font:800 22px Paperlogy,sans-serif;cursor:pointer}
+.live-actions button:hover{background:var(--ink)}
+.live-actions button:disabled{opacity:.64;cursor:wait}
+.live-status{margin:0;min-height:2.8em;font-size:17px;line-height:1.4;color:var(--ink2)}
+
+.release{flex:1;min-height:0;display:grid;grid-template-columns:1fr 524px;align-items:center;gap:88px;padding:0 12px 18px 0}
+.release-brand{font:800 21px Paperlogy,sans-serif;letter-spacing:.16em}
+.release-brand i{display:inline-block;width:13px;height:13px;margin-right:13px;background:var(--red)}
+.release h1{margin:24px 0 12px;font:800 112px/1.08 Paperlogy,sans-serif;letter-spacing:-.03em}
+.release h1 em{font:800 62px Paperlogy,sans-serif;font-style:normal;color:var(--red);letter-spacing:.01em}
+.release-desc{margin:0;color:var(--ink2);font-size:29px;line-height:1.48}
+.release-licenses{margin:58px 0 0;padding-top:20px;border-top:3px solid var(--ink)}
+.release-licenses h2{margin:0 0 10px;font:800 25px Paperlogy,sans-serif}
+.release-licenses dl{margin:0}
+.release-licenses dl>div{display:grid;grid-template-columns:1fr 1fr;align-items:baseline;
+  gap:20px;padding:12px 0;border-bottom:2px dotted var(--rule);font-size:22px}
+.release-licenses code{font:700 20px var(--mono)}
+.release-licenses dd{margin:0}
+.release-licenses a{color:var(--ink);text-underline-offset:4px}
+.release-quote{margin:54px 0 0 0;border-left:4px solid var(--red);padding:3px 0 3px 18px;
+  color:var(--ink2);font-size:20px;line-height:1.5}
+.release-qr{margin:0;align-self:center;padding:22px 26px;display:block;border:2px solid var(--ink);
+  box-shadow:10px 10px 0 var(--red);background:var(--sheet);color:var(--ink);text-decoration:none}
+.release-qr strong{display:block;padding-bottom:12px;border-bottom:3px solid var(--ink);font:800 26px Paperlogy,sans-serif}
+.release-qr img{display:block;margin:18px auto;width:100%;max-width:420px;aspect-ratio:1;image-rendering:pixelated}
+.release-qr small{display:block;border-top:2px dotted var(--rule);padding-top:13px;font:700 18px var(--mono)}
+.release-qr:hover small,.release-qr:focus-visible small{color:var(--red)}
+
+body #apanel{width:min(560px,calc(100vw - 36px));background:var(--sheet);color:var(--ink);
+  border:2px solid var(--ink);border-radius:0;box-shadow:7px 7px 0 var(--red)}
+body #apanel,body #apanel :is(.cap,.x,label,select,button,.note){font-family:Pretendard,sans-serif}
+body #apanel :is(select,button){border-radius:0}
+body #apanel button.pri{background:var(--red);border-color:var(--red)}
+
 
 /* ── 오른쪽 레일 = 일력 한 장 ── */
 #rail{position:absolute;top:34px;right:44px;bottom:34px;width:380px;transition:transform .55s var(--ease),opacity .45s var(--ease)}
@@ -634,20 +855,18 @@ body:not(.rail) #rail{transform:translateX(460px);opacity:0}
 .bot b{font:800 19px Paperlogy,sans-serif;color:var(--ink);margin:0 1px 0 4px}
 .bot .acc b{color:var(--red)}
 /* 11-26 ChatGPT 아이콘(assets/gen/cap_*) */
-.ppill{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}
-.ppill .pi{width:52px;height:52px;object-fit:contain}
 .mods li{grid-template-columns:62px 210px 1fr;align-items:center}
 .mods .n{line-height:0}
 .mods .ic{width:48px;height:48px;object-fit:contain}
 #caps{grid-template-columns:22px 1fr auto}
 #caps img{width:22px;height:22px;object-fit:contain}
-.bf-imgs:has(.bf-word){display:flex;align-items:center;justify-content:center;background:var(--sheet)}
-.bf-word{font:800 64px Paperlogy,sans-serif;color:var(--ink);letter-spacing:-.02em}
+.live-actions a{font-weight:700;color:var(--red);text-underline-offset:4px}
+.live-screen video{display:block;width:100%;height:100%;object-fit:contain}
 /* 사이트용: 1920px 무대가 휴대폰 레이아웃 폭을 늘리지 않게 화면에 고정 */
 html,body{position:fixed;inset:0;width:100%;height:100%;overflow:hidden}
 /* 사이트용: 전체 화면·글 보기 단추, 손가락으로 넘기기 */
-#chrome{position:fixed;right:14px;bottom:14px;z-index:9;display:flex;gap:8px;opacity:0;transition:opacity .3s;pointer-events:none}
-body.chrome #chrome{opacity:1;pointer-events:auto}
+#chrome{position:fixed;right:14px;bottom:14px;z-index:9;display:flex;justify-content:flex-end;flex-wrap:wrap;max-width:calc(100vw - 28px);gap:8px;opacity:0;transition:opacity .3s;pointer-events:none}
+body.chrome #chrome,#chrome:focus-within{opacity:1;pointer-events:auto}
 #chrome a,#chrome button{font:600 13px/1 Pretendard,sans-serif;color:#FBF8F1;background:rgba(31,28,25,.82);border:0;border-radius:4px;padding:9px 12px;text-decoration:none;cursor:pointer}
 #chrome a:hover,#chrome button:hover{background:#D93A24}
 @media (hover:none){body #chrome{opacity:1;pointer-events:auto}}
@@ -682,7 +901,7 @@ body.chrome #chrome{opacity:1;pointer-events:auto}
 <script type="module">
 /* 데이터와 에셋 경로는 /maknae/story-data.json · media.json 공개본을 쓴다 */
 const loadJSON = async p => { const r = await fetch(p); if (!r.ok) throw new Error(p + ' ' + r.status); return r.json(); };
-const [STORY, ASSETS] = await Promise.all([loadJSON('../story-data.json?v=50eb207b3e'), loadJSON('../media.json?v=99d8758652')]);
+const [STORY, ASSETS] = await Promise.all([loadJSON('../story-data.json?v=0666ae03f2'), loadJSON('../media.json?v=6e2ae7ce2e')]);
 const SEED_WON = STORY.seedAmount, SEED = STORY.seedDate;
 const AX0 = STORY.chartFrom, AX1 = STORY.chartTo;
 const MONEY = STORY.balanceRange;
@@ -761,11 +980,12 @@ function stampHTML(st){
 }
 
 function vidHTML(src,opts={}){
-  const {once=false, sound=false} = typeof opts==='boolean' ? {once:opts} : opts;
+  const {once=false, sound=false, subtitles=false} = typeof opts==='boolean' ? {once:opts} : opts;
   const poster = src.replace(/\.mp4$/i,'.jpg');
   if(STATIC) return `<img src="${u(poster)}" alt="">`;
   if(sound){
-    return `<div class="vid-wrap"><video src="${u(src)}" poster="${u(poster)}" playsinline preload="auto" data-sound="1"></video><button type="button" class="aud-btn" data-aud-btn>🔊 소리 ON</button></div>`;
+    const track = subtitles ? `<track kind="subtitles" srclang="ko" label="한국어" src="${u(src.replace(/\.mp4$/i,'.ko.vtt'))}" default>` : '';
+    return `<video src="${u(src)}" poster="${u(poster)}" playsinline preload="auto" data-sound="1">${track}</video>`;
   }
   return `<video src="${u(src)}"${once?'':` poster="${u(poster)}"`} muted ${once?'data-once="1"':'loop'} autoplay playsinline preload="auto"></video>`;
 }
@@ -775,8 +995,8 @@ function gridHTML(cfg, stamp){
   const cells = cfg.items.map(([src,cap,mode,win])=>{
     const isArr = Array.isArray(src);
     const isVid = !isArr && /\.mp4$/i.test(src);
-    const pr = isArr||mode==='shot'||mode==='contain'||mode==='dark'||mode==='stack' ? '' : (isPhoto(src)?'print':'');
-    const ct = mode==='contain' ? 'contain' : (mode==='dark' ? 'dark' : (mode==='stack' ? 'dark stack' : ''));
+    const pr = isArr||mode==='shot'||mode==='contain'||mode==='dark'||mode==='stack'||mode==='fea' ? '' : (isPhoto(src)?'print':'');
+    const ct = mode==='contain' ? 'contain' : (mode==='dark' ? 'dark' : (mode==='stack' ? 'dark stack' : (mode==='fea' ? 'fea' : '')));
     const wAttr = win ? ` data-win="${win}"` : '';
     const body = isArr ? src.map(s=>`<img src="${u(s)}" alt="">`).join('') : (isVid ? vidHTML(src) : `<img src="${u(src)}"${wAttr} alt="">`);
     const m = cap && cap.match(/^([①②③④])\s*(.*)$/);
@@ -794,7 +1014,7 @@ function mediaHTML(m,stamp,cls=''){
   else if(!src) return `<figure class="media empty ${cls}"><div class="box">${cap}${st}</div></figure>`;
   else{
     if(isPhoto(src))kind='print';
-    if(/\.mp4$/i.test(src)) inner=vidHTML(src,{sound:flag==='sound',once:flag==='once'});
+    if(/\.mp4$/i.test(src)) inner=vidHTML(src,{sound:flag==='sound'||flag==='sound-subtitles',subtitles:flag==='sound-subtitles',once:flag==='once'});
     else inner=`<img src="${u(src)}" alt="">`;
   }
   return `<figure class="media ${kind} ${cls}"><div class="box">${inner}${cap?`<figcaption>${cap}</figcaption>`:''}${st}</div></figure>`;
@@ -1317,6 +1537,336 @@ function svgErrandFsm(){
   </svg>`;
 }
 
+/* ═════════ STM32 실행 타임라인 + EKF 센서 융합 인라인 SVG (방향 B) ═════════ */
+function svgMcuTimeline(){
+  /* 0 ~ 50 ms 실제 스케일: x = 180 (0 ms) ~ 1210 (50 ms), 1 ms = 20.6 px */
+  const x = ms => (180 + ms * 20.6).toFixed(1);
+  return `<svg viewBox="0 0 1240 298" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <!-- 상단: ESP32 PoC 슈퍼루프 (실측 tuning_logs/step_loaded... 169360→169387 ms 재현) -->
+    <text x="0" y="20" font-size="17" font-weight="800" fill="#1F1C19" font-family="Paperlogy">ESP32-S3 PoC — 단일 loop() 실측 (50 Hz · HUD 4 Hz)</text>
+    <text x="1210" y="20" font-size="13.5" fill="#58524a" text-anchor="end">pollSerial → 20 ms 제어 → NeoPixel(40 ms) → drawHud(250 ms · 동기 SPI)</text>
+    <line x1="180" y1="78" x2="1210" y2="78" stroke="#d8cfbf" stroke-width="1.5"/>
+    <!-- 예정 20 ms 데드라인 표시 -->
+    <line x1="${x(20)}" y1="30" x2="${x(20)}" y2="112" stroke="#D93A24" stroke-width="1.6" stroke-dasharray="4 3"/>
+    <text x="${x(20)}" y="34" font-size="11.5" font-weight="800" fill="#D93A24" text-anchor="middle" dy="-5">예정 20 ms</text>
+    <g font-size="12.5" font-weight="700" text-anchor="middle">
+      <rect x="${x(0)}" y="38" width="${(1.6*20.6).toFixed(1)}" height="40" fill="#8d8579"/><text x="${x(0.8)}" y="63" fill="#FBF8F1">통신</text>
+      <rect x="${x(1.6)}" y="38" width="${(1.8*20.6).toFixed(1)}" height="40" fill="#D93A24"/><text x="${x(2.5)}" y="63" fill="#FBF8F1">제어</text>
+      <rect x="${x(3.4)}" y="38" width="${(23.6*20.6).toFixed(1)}" height="40" fill="#1F1C19"/><text x="${x(15.2)}" y="63" fill="#FBF8F1">drawHud() — 배너 + 7×RGBBitmap 동기 SPI (~24 ms 블로킹)</text>
+      <rect x="${x(27.0)}" y="38" width="${(1.6*20.6).toFixed(1)}" height="40" fill="#8d8579"/><text x="${x(27.8)}" y="63" fill="#FBF8F1">통신</text>
+      <rect x="${x(28.6)}" y="38" width="${(1.8*20.6).toFixed(1)}" height="40" fill="#D93A24"/><text x="${x(29.5)}" y="63" fill="#FBF8F1">제어</text>
+      <rect x="${x(30.4)}" y="38" width="${(2.2*20.6).toFixed(1)}" height="40" fill="#d8cfbf"/><text x="${x(31.5)}" y="63" fill="#1F1C19">LED</text>
+      <rect x="${x(47.0)}" y="38" width="${(1.6*20.6).toFixed(1)}" height="40" fill="#8d8579"/><text x="${x(47.8)}" y="63" fill="#FBF8F1">통신</text>
+      <rect x="${x(48.6)}" y="38" width="${(1.4*20.6).toFixed(1)}" height="40" fill="#D93A24"/><text x="${x(49.3)}" y="63" fill="#FBF8F1">제어</text>
+    </g>
+    <!-- +7 ms 밀림 구간 강조 -->
+    <path d="M${x(20)},86 V93 H${x(27)} V86" fill="none" stroke="#D93A24" stroke-width="2.4"/>
+    <rect x="${x(20)}" y="78" width="${(7*20.6).toFixed(1)}" height="7" fill="rgba(217,58,36,.22)"/>
+    <text x="${x(20)}" y="109" font-size="13.5" font-weight="800" fill="#D93A24">↑ 실측 24,342틱 중 119회 밀림: 20 → 23~27 ms (+35%) · HUD OFF(rescue_no_hud) 시 0회</text>
+    <g font-size="12.5" fill="#8d8579" font-family="monospace">
+      <text x="${x(0)}" y="128">0</text><text x="${x(10)}" y="128">10</text><text x="${x(20)}" y="128" fill="#D93A24" font-weight="700">20</text>
+      <text x="${x(27)}" y="128" fill="#D93A24" font-weight="700">27</text><text x="${x(40)}" y="128">40</text><text x="${x(50)}" y="128" text-anchor="end">50 ms</text>
+    </g>
+
+    <line x1="0" y1="143" x2="1240" y2="143" stroke="#d8cfbf" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+    <!-- 하단: STM32 타이머 인터럽트 + 정적 FreeRTOS (같은 0 ~ 50 ms 스케일) -->
+    <text x="0" y="167" font-size="17" font-weight="800" fill="#D93A24" font-family="Paperlogy">STM32F446RE 본체 — TIM6 100 Hz ISR + 정적 FreeRTOS</text>
+    <text x="1210" y="167" font-size="13.5" fill="#58524a" text-anchor="end">10.0 ms마다 하드웨어 타이머가 제어를 최우선 선점 · 통신은 Circular DMA 분리</text>
+    <g font-size="13.5" font-weight="700">
+      <text x="0" y="209" fill="#D93A24">ControlTask (P5 · 최우선)</text>
+      <text x="0" y="239" fill="#1F1C19">ImuTask (P4 · SPI2)</text>
+      <text x="0" y="269" fill="#58524a">MicroRosTask (P3 · DMA)</text>
+    </g>
+    <g stroke="#d8cfbf" stroke-width="1.5">
+      <line x1="180" y1="213" x2="1210" y2="213"/><line x1="180" y1="243" x2="1210" y2="243"/><line x1="180" y1="273" x2="1210" y2="273"/>
+    </g>
+    <g stroke="#D93A24" stroke-width="1.5" stroke-dasharray="4 4">
+      <line x1="${x(0)}" y1="183" x2="${x(0)}" y2="277"/><line x1="${x(10)}" y1="183" x2="${x(10)}" y2="277"/>
+      <line x1="${x(20)}" y1="183" x2="${x(20)}" y2="277"/><line x1="${x(30)}" y1="183" x2="${x(30)}" y2="277"/>
+      <line x1="${x(40)}" y1="183" x2="${x(40)}" y2="277"/><line x1="${x(50)}" y1="183" x2="${x(50)}" y2="277"/>
+    </g>
+    <g fill="#D93A24">
+      <rect x="${x(0)}" y="192" width="6" height="21"/><rect x="${x(10)}" y="192" width="6" height="21"/>
+      <rect x="${x(20)}" y="192" width="6" height="21"/><rect x="${x(30)}" y="192" width="6" height="21"/>
+      <rect x="${x(40)}" y="192" width="6" height="21"/>
+    </g>
+    <g fill="#58524a">
+      <rect x="${x(2.2)}" y="223" width="18" height="20"/><rect x="${x(12.2)}" y="223" width="18" height="20"/>
+      <rect x="${x(22.2)}" y="223" width="18" height="20"/><rect x="${x(32.2)}" y="223" width="18" height="20"/>
+      <rect x="${x(42.2)}" y="223" width="18" height="20"/>
+    </g>
+    <g fill="#8d8579">
+      <rect x="${x(4.4)}" y="253" width="66" height="20"/><rect x="${x(14.5)}" y="253" width="76" height="20"/>
+      <rect x="${x(24.4)}" y="253" width="62" height="20"/><rect x="${x(34.5)}" y="253" width="72" height="20"/>
+      <rect x="${x(44.4)}" y="253" width="64" height="20"/>
+    </g>
+    <rect x="${x(10.6)}" y="181" width="424" height="22" fill="#FBF8F1" stroke="#D93A24" stroke-width="1.2"/>
+    <text x="${x(11.0)}" y="197" font-size="13.5" font-weight="800" fill="#D93A24">← 제어 1회 최대 46.7 µs (주기의 0.47% · 21분 오버런 0회)</text>
+    <g font-size="12.5" fill="#8d8579" font-family="monospace">
+      <text x="${x(0)}" y="294">0</text><text x="${x(10)}" y="294">10</text><text x="${x(20)}" y="294">20</text>
+      <text x="${x(30)}" y="294">30</text><text x="${x(40)}" y="294">40</text><text x="${x(50)}" y="294" text-anchor="end">50 ms</text>
+    </g>
+  </svg>`;
+}
+
+function svgEkfSensors(){
+  return `<svg viewBox="0 0 420 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <image href="${u('assets/maknae/robot_iso.png')}" x="-148" y="-480" width="816" height="952"/>
+    <g stroke="#1F1C19" stroke-width="2.4" fill="none">
+      <path d="M182,367 L138,404"/>
+      <path d="M175,314 L124,250"/>
+    </g>
+    <g fill="#D93A24" stroke="#FBF8F1" stroke-width="2.5">
+      <circle cx="182" cy="367" r="7.5"/><circle cx="175" cy="314" r="7.5"/>
+    </g>
+    <rect x="48" y="214" width="182" height="36" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <rect x="48" y="404" width="194" height="36" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <g font-family="Paperlogy" font-weight="800" font-size="19" fill="#FBF8F1" text-anchor="middle">
+      <circle cx="32" cy="232" r="16" fill="#D93A24" stroke="#1F1C19" stroke-width="2"/><text x="32" y="239">2</text>
+      <circle cx="32" cy="422" r="16" fill="#D93A24" stroke="#1F1C19" stroke-width="2"/><text x="32" y="429">1</text>
+    </g>
+    <text x="58" y="238" font-size="16.5" font-weight="800" fill="#1F1C19">IMU 자이로 (SPI2)</text>
+    <text x="58" y="428" font-size="16.5" font-weight="800" fill="#1F1C19">구동 바퀴 + 엔코더</text>
+  </svg>`;
+}
+
+function svgEkfFlow(){
+  return `<svg viewBox="0 0 470 184" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <defs>
+      <marker id="ek-k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"/></marker>
+      <marker id="ek-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"/></marker>
+    </defs>
+    <g font-family="Paperlogy" font-weight="800" font-size="16" fill="#FBF8F1" text-anchor="middle">
+      <circle cx="16" cy="40" r="13" fill="#D93A24"/><text x="16" y="46">1</text>
+      <circle cx="16" cy="142" r="13" fill="#D93A24"/><text x="16" y="148">2</text>
+    </g>
+    <text x="36" y="38" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy">엔코더</text>
+    <text x="36" y="57" font-size="12.5" fill="#58524a" font-family="monospace">50 Hz</text>
+    <text x="36" y="140" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy">자이로</text>
+    <text x="36" y="159" font-size="12.5" fill="#58524a" font-family="monospace">100 Hz</text>
+
+    <path d="M104,40 H234 V76 H256" fill="none" stroke="#1F1C19" stroke-width="2.4" marker-end="url(#ek-k)"/>
+    <text x="112" y="27" font-size="13.5" font-weight="700" fill="#1F1C19">거리 v · 회전 ω (분산 큼)</text>
+
+    <path d="M104,142 H234 V108 H256" fill="none" stroke="#D93A24" stroke-width="3" marker-end="url(#ek-r)"/>
+    <text x="112" y="166" font-size="13.5" font-weight="800" fill="#D93A24">회전 ω (분산 매우 작음)</text>
+
+    <rect x="262" y="48" width="114" height="88" rx="3" fill="#1F1C19" stroke="#D93A24" stroke-width="2.5"/>
+    <text x="319" y="84" text-anchor="middle" font-size="22" font-weight="800" fill="#FBF8F1" font-family="Paperlogy">EKF</text>
+    <text x="319" y="109" text-anchor="middle" font-size="10.5" fill="#FFD6CE" font-family="monospace">robot_localization</text>
+
+    <path d="M376,92 H398" fill="none" stroke="#1F1C19" stroke-width="2.5" marker-end="url(#ek-k)"/>
+    <text x="404" y="87" font-size="15.5" font-weight="800" fill="#1F1C19" font-family="Paperlogy">위치·방향</text>
+    <text x="404" y="107" font-size="12.5" fill="#58524a" font-family="monospace">30 Hz</text>
+  </svg>`;
+}
+
+function svgEkfBar(){
+  const w = v => (v / 720 * 308).toFixed(1);
+  return `<svg viewBox="0 0 470 236" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <line x1="394" y1="8" x2="394" y2="188" stroke="#1F1C19" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="458" y="201" font-size="12.5" font-weight="700" fill="#1F1C19" text-anchor="end">실제 720°</text>
+
+    <text x="2" y="40" font-size="15.5" font-weight="700" fill="#58524a">엔코더만</text>
+    <rect x="86" y="16" width="${w(629.7)}" height="36" fill="#d8cfbf" stroke="#1F1C19" stroke-width="1.5"/>
+    <text x="${86 + parseFloat(w(629.7)) - 10}" y="41" font-family="Paperlogy" font-weight="800" font-size="19" fill="#1F1C19" text-anchor="end">629.7°</text>
+    <text x="404" y="39" font-size="13" font-weight="800" fill="#D93A24">−90.3°</text>
+
+    <text x="2" y="102" font-size="15.5" font-weight="700" fill="#58524a">자이로만</text>
+    <rect x="86" y="78" width="${w(715.8)}" height="36" fill="#58524a"/>
+    <text x="${86 + parseFloat(w(715.8)) - 10}" y="103" font-family="Paperlogy" font-weight="800" font-size="19" fill="#FBF8F1" text-anchor="end">715.8°</text>
+    <text x="404" y="101" font-size="13" font-weight="700" fill="#58524a">−4.2°</text>
+
+    <text x="2" y="164" font-size="16" font-weight="800" fill="#D93A24" font-family="Paperlogy">EKF 융합</text>
+    <rect x="86" y="140" width="${w(716.3)}" height="36" fill="#D93A24" stroke="#1F1C19" stroke-width="1.5"/>
+    <text x="${86 + parseFloat(w(716.3)) - 10}" y="165" font-family="Paperlogy" font-weight="800" font-size="19" fill="#FBF8F1" text-anchor="end">716.3°</text>
+    <text x="404" y="163" font-size="13" font-weight="800" fill="#1F1C19">−3.7°</text>
+
+    <rect x="2" y="206" width="464" height="27" fill="#fff5f3" stroke="#D93A24" stroke-width="1.4"/>
+    <text x="234" y="224" font-size="13.5" font-weight="700" fill="#1F1C19" text-anchor="middle">엔코더 87.5% → <tspan fill="#D93A24" font-weight="800">EKF 99.5%</tspan> · 회전 오차 24배 개선 + 거리 통합</text>
+  </svg>`;
+}
+
+function svgEkfGauss(){
+  const gp = (mu, s, h) => {
+    let d = '';
+    for (let x = 10; x <= 376; x += 2) {
+      const y = 156 - h * Math.exp(-0.5 * ((x - mu) / s) ** 2);
+      d += (x === 10 ? 'M' : 'L') + x + ',' + y.toFixed(1);
+    }
+    return d;
+  };
+  return `<svg viewBox="0 0 386 180" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <line x1="10" y1="156" x2="376" y2="156" stroke="#1F1C19" stroke-width="1.8"/>
+    <path d="${gp(126, 48, 56)} L376,156 L10,156 Z" fill="rgba(141,133,121,.22)" stroke="none"/>
+    <path d="${gp(126, 48, 56)}" fill="none" stroke="#8d8579" stroke-width="2.4"/>
+    <path d="${gp(256, 12, 114)} L376,156 L10,156 Z" fill="rgba(217,58,36,.16)" stroke="none"/>
+    <path d="${gp(256, 12, 114)}" fill="none" stroke="#D93A24" stroke-width="2.6"/>
+    <path d="${gp(255, 11.2, 132)}" fill="none" stroke="#1F1C19" stroke-width="2.2" stroke-dasharray="5 3"/>
+    <text x="126" y="89" font-size="14" font-weight="700" fill="#58524a" text-anchor="middle">엔코더 추정 (넓은 분산)</text>
+    <text x="276" y="72" font-size="14" font-weight="800" fill="#D93A24">자이로 측정</text>
+    <text x="276" y="28" font-size="14.5" font-weight="800" fill="#1F1C19">합친 값 (EKF)</text>
+    <text x="376" y="174" font-size="13" fill="#8d8579" text-anchor="end">회전 속도 ω →</text>
+  </svg>`;
+}
+
+function svgRosSafety(){
+  return `<svg viewBox="0 0 1040 492" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <defs>
+      <marker id="rsk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.8" markerHeight="6.8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"/></marker>
+      <marker id="rsr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.8" markerHeight="6.8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"/></marker>
+    </defs>
+
+    <!-- 1층: 상위 입력 (권한 제한) -->
+    <rect x="0" y="10" width="1040" height="90" fill="#FBF8F1" stroke="#1F1C19" stroke-width="1.8"/>
+    <rect x="0" y="10" width="118" height="90" fill="#F3EEE3"/>
+    <line x1="118" y1="10" x2="118" y2="100" stroke="#d8cfbf" stroke-width="1.5"/>
+    <text x="59" y="48" text-anchor="middle" font-family="Paperlogy" font-size="14.5" font-weight="800" fill="#8d8579">USER · AI</text>
+    <text x="59" y="75" text-anchor="middle" font-family="Paperlogy" font-size="17.5" font-weight="800" fill="#1F1C19">상위 입력</text>
+
+    <g font-size="16" font-weight="800" fill="#1F1C19">
+      <rect x="134" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="148" y="50">어르신 앱</text><text x="148" y="73" font-size="13.5" font-weight="500" fill="#58524a">외출 출발 · 멈춤 · SOS</text>
+
+      <rect x="336" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="350" y="50">보호자 웹</text><text x="350" y="73" font-size="13.5" font-weight="500" fill="#58524a">읽기 전용 · 안부 · 위치</text>
+
+      <rect x="538" y="23" width="208" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="552" y="50">음성 · VLM (Gemini)</text><text x="552" y="73" font-size="13.5" font-weight="500" fill="#58524a">심부름 도구 호출</text>
+    </g>
+
+    <rect x="764" y="23" width="258" height="64" fill="#1F1C19"/>
+    <text x="893" y="49" text-anchor="middle" font-size="15.5" font-weight="800" fill="#FF8C7A" font-family="monospace">/cmd_vel 발행 금지</text>
+    <text x="893" y="73" text-anchor="middle" font-size="13.5" fill="#F3EEE3">목적지 · 멈춤 의도만 전달</text>
+
+    <!-- 화살표 1→2 -->
+    <path d="M520,100 V132" fill="none" stroke="#1F1C19" stroke-width="2.2" marker-end="url(#rsk)"/>
+    <text x="534" y="122" font-size="14" font-weight="700" fill="#58524a">의도 · 상태 요청 (바퀴 속도 직접 제어 불가)</text>
+
+    <!-- 2층: 공통 ROS 2 노드 -->
+    <rect x="0" y="138" width="1040" height="162" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2.2"/>
+    <rect x="0" y="138" width="1040" height="34" fill="#1F1C19"/>
+    <text x="16" y="161" font-size="15.5" font-weight="800" fill="#FBF8F1" font-family="Paperlogy">공통 ROS 2 노드 — 실물 주행과 시뮬레이션이 같은 코드 사용</text>
+    <g font-size="13.5" fill="#F3EEE3">
+      <rect x="752" y="149" width="12" height="12" fill="#D93A24"/><text x="771" y="160">직접 구현</text>
+      <rect x="854" y="149" width="12" height="12" fill="#8d8579"/><text x="873" y="160">표준 ROS 2 패키지</text>
+    </g>
+
+    <g font-size="16" font-weight="800" fill="#1F1C19">
+      <rect x="18" y="198" width="176" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="18" y="198" width="176" height="6" fill="#D93A24"/>
+      <text x="30" y="231" font-family="monospace">mr_mission</text><text x="30" y="255" font-size="13.5" font-weight="500" fill="#58524a">외출 · SOS 상태머신</text>
+
+      <rect x="216" y="198" width="178" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="216" y="198" width="178" height="6" fill="#D93A24"/>
+      <text x="228" y="231" font-family="monospace">mr_aruco</text><text x="228" y="255" font-size="13.5" font-weight="500" fill="#58524a">추종 · 정면 정렬</text>
+
+      <rect x="418" y="198" width="172" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="418" y="198" width="172" height="6" fill="#8d8579"/>
+      <text x="430" y="231">EKF · SLAM</text><text x="430" y="255" font-size="13.5" font-weight="500" fill="#58524a">위치 · 2D 지도</text>
+
+      <rect x="614" y="198" width="184" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="614" y="198" width="184" height="6" fill="#8d8579"/>
+      <text x="626" y="231">Nav2</text><text x="626" y="255" font-size="13.5" font-weight="500" fill="#58524a">A* 경로 · 충돌 감시</text>
+
+      <rect x="844" y="198" width="178" height="74" fill="#D93A24"/>
+      <text x="860" y="231" fill="#FBF8F1" font-family="monospace">twist_mux</text><text x="860" y="255" font-size="13.5" font-weight="700" fill="#FFD6CE">우선순위 1개 통과</text>
+    </g>
+
+    <g fill="none" stroke="#1F1C19" stroke-width="1.8" marker-end="url(#rsk)">
+      <path d="M194,235 H211"/><path d="M590,235 H609"/>
+    </g>
+    <g fill="none" stroke="#D93A24" stroke-width="2.2" marker-end="url(#rsr)">
+      <path d="M798,235 H838"/>
+      <path d="M305,198 V184 H933 V193"/>
+    </g>
+    <path d="M106,272 V288 H933 V278" fill="none" stroke="#1F1C19" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#rsk)"/>
+    <text x="520" y="291" text-anchor="middle" font-size="12.5" fill="#58524a" font-weight="700" style="paint-order:stroke;stroke:#FBF8F1;stroke-width:6px">비상정지 잠금 (/safety/lock)</text>
+
+    <!-- 토픽 교체 경계선 -->
+    <line x1="0" y1="336" x2="1040" y2="336" stroke="#D93A24" stroke-width="2.5" stroke-dasharray="9 6"/>
+    <rect x="304" y="319" width="432" height="34" fill="#FBF8F1" stroke="#D93A24" stroke-width="2"/>
+    <text x="520" y="342" text-anchor="middle" font-size="15.5" font-weight="800" fill="#D93A24" font-family="monospace">토픽 경계 · /scan · /odom · /imu · /cmd_vel</text>
+
+    <!-- 양방향 분기 화살표 -->
+    <g fill="none" stroke-width="2.2">
+      <path d="M248,306 V372" stroke="#1F1C19" marker-start="url(#rsk)" marker-end="url(#rsk)"/>
+      <path d="M792,306 V372" stroke="#D93A24" marker-start="url(#rsr)" marker-end="url(#rsr)"/>
+    </g>
+
+    <!-- 3층 좌: 실물 -->
+    <rect x="0" y="378" width="474" height="106" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <rect x="16" y="394" width="88" height="26" fill="#1F1C19"/>
+    <text x="60" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">실물 주행</text>
+    <text x="116" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy">실제 로봇 하드웨어</text>
+    <text x="16" y="444" font-size="15" fill="#58524a">STM32(100 Hz) · RPLIDAR C1 · 앞 카메라 C920 · IMU</text>
+    <text x="16" y="468" font-size="14" fill="#8d8579" font-family="monospace">UART 921,600 bps 직결 · 9.8 kg 본체 차체</text>
+
+    <!-- 가운데 교체 표시 -->
+    <text x="520" y="428" text-anchor="middle" font-size="30" font-weight="800" fill="#D93A24">⇄</text>
+    <text x="520" y="452" text-anchor="middle" font-size="13.5" font-weight="700" fill="#58524a">아래만 교체</text>
+
+    <!-- 3층 우: 시뮬레이터 -->
+    <rect x="566" y="378" width="474" height="106" fill="#fff5f3" stroke="#D93A24" stroke-width="2" stroke-dasharray="7 5"/>
+    <rect x="582" y="394" width="114" height="26" fill="#D93A24"/>
+    <text x="639" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">시뮬 · 검증</text>
+    <text x="708" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy">시뮬레이터 (SIL)</text>
+    <text x="582" y="444" font-size="15" fill="#58524a">가상 센서 · 바퀴(nav2_sim_robot · Gazebo)가 같은 토픽 발행</text>
+    <text x="582" y="468" font-size="14" fill="#8d8579" font-family="monospace">소프트웨어 루프 검증 · 자동 테스트 344개 통과</text>
+  </svg>`;
+}
+
+function svgHandFsm(){
+  return `<svg viewBox="0 0 760 226" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <defs>
+      <marker id="hfk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"/></marker>
+      <marker id="hfg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L9,5 L1,9 z" fill="#8d8579"/></marker>
+    </defs>
+    <g stroke-width="2.2">
+      <rect x="8" y="56" width="122" height="74" fill="#F3EEE3" stroke="#1F1C19"/>
+      <rect x="164" y="56" width="122" height="74" fill="#F3EEE3" stroke="#1F1C19"/>
+      <rect x="320" y="56" width="122" height="74" fill="#F3EEE3" stroke="#1F1C19"/>
+      <rect x="476" y="56" width="122" height="74" fill="#D93A24" stroke="#D93A24"/>
+      <rect x="632" y="56" width="120" height="74" fill="#F3EEE3" stroke="#1F1C19"/>
+    </g>
+    <g font-family="Paperlogy" font-size="17" font-weight="800" text-anchor="middle" fill="#1F1C19">
+      <text x="69" y="88">IDLE</text><text x="225" y="88">LOOKING</text><text x="381" y="88">PICKING</text>
+      <text x="537" y="88" fill="#FBF8F1">HOLDING</text><text x="692" y="88">RELEASING</text>
+    </g>
+    <g font-size="12.5" fill="#58524a" text-anchor="middle">
+      <text x="69" y="113">팔을 접고 대기</text><text x="225" y="113">탑뷰 사진 → 모델</text><text x="381" y="113">IK로 내려가 집기</text>
+      <text x="537" y="113" fill="#FFD6CE" font-weight="700">접은 채 들고 대기</text><text x="692" y="113">손 앞에서 집게 열기</text>
+    </g>
+    <g stroke="#1F1C19" stroke-width="2.2" marker-end="url(#hfk)">
+      <line x1="130" y1="93" x2="159" y2="93"/><line x1="286" y1="93" x2="315" y2="93"/>
+      <line x1="442" y1="93" x2="471" y2="93"/><line x1="598" y1="93" x2="627" y2="93"/>
+    </g>
+    <path d="M692,130 C692,198 69,198 69,136" fill="none" stroke="#1F1C19" stroke-width="2" marker-end="url(#hfk)"/>
+    <text x="380" y="214" font-size="13.5" font-weight="700" fill="#58524a" text-anchor="middle">건넨 뒤 IDLE 복귀</text>
+    <path d="M225,56 C225,18 69,18 69,50" fill="none" stroke="#8d8579" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#hfg)"/>
+    <text x="192" y="16" font-size="13" font-weight="700" fill="#58524a" text-anchor="middle">못 찾음 · 손 겹침 · 범위 밖 → 이유를 말하고 대기</text>
+    <text x="615" y="47" font-size="15" font-weight="800" fill="#D93A24" text-anchor="middle" font-family="Paperlogy">“줘”</text>
+  </svg>`;
+}
+
+function svgHandRay(){
+  return `<svg viewBox="0 0 388 324" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, sans-serif">
+    <rect x="130" y="14" width="102" height="36" rx="4" fill="#1F1C19"/>
+    <text x="181" y="38" font-size="14.5" font-weight="800" fill="#FBF8F1" text-anchor="middle" font-family="Paperlogy">탑뷰 웹캠</text>
+    <line x1="108" y1="86" x2="254" y2="86" stroke="#1F1C19" stroke-width="3"/>
+    <circle cx="204" cy="86" r="6" fill="#D93A24"/>
+    <text x="264" y="91" font-size="14" font-weight="700" fill="#58524a">사진 속 점 (u, v)</text>
+    <line x1="181" y1="50" x2="262" y2="252" stroke="#D93A24" stroke-width="3"/>
+    <polygon points="18,228 298,228 346,282 66,282" fill="#F3EEE3" stroke="#8d8579" stroke-width="1.6"/>
+    <text x="28" y="308" font-size="14" font-weight="700" fill="#58524a">작업대 평면 · 높이 z (마커로 잰 값)</text>
+    <rect x="248" y="216" width="32" height="38" fill="#1F1C19" opacity=".88"/>
+    <circle cx="262" cy="252" r="7" fill="#D93A24" stroke="#FBF8F1" stroke-width="2"/>
+    <text x="292" y="190" font-size="15.5" font-weight="800" fill="#1F1C19" font-family="Paperlogy">팔 좌표</text>
+    <text x="292" y="210" font-size="14.5" font-weight="800" fill="#D93A24" font-family="monospace">(x, y, z)</text>
+  </svg>`;
+}
+
 const LAY = {
   cover: s => `<div class="cover"><div class="cv-l"><div class="cv-brand"><i></i>NEXT YEAR ROBOTICS</div><h1 class="cv-t">${s.t}</h1><p class="cv-s">${s.sub}</p>
     <div class="cv-by"><span>${s.by[0]}</span><span>${s.by[1]}</span></div></div><figure class="cv-img"><img src="${u(s.img)}" alt=""></figure></div>`,
@@ -1326,10 +1876,10 @@ const LAY = {
   story: s => `<div class="two story-grid"><div class="col"><h1 class="t">${s.t}</h1><p class="lead">${s.b}</p><p class="lead">${s.b2}</p>
     <p class="src">${s.src}</p><blockquote>${s.q}</blockquote></div>
     <div class="bf-strip">${s.frames.map(f=>`<div class="bf-card"><div class="bf-imgs ${f.pair?'pair':''}">${
-      f.pair ? f.pair.map(p=>`<img src="${u(p)}" alt="">`).join('') : (f.img ? `<img src="${u(f.img)}" alt="">` : `<b class="bf-word">${f.step}</b>`)
+      f.pair ? f.pair.map(p=>`<img src="${u(p)}" alt="">`).join('') : `<img src="${u(f.img)}" alt="">`
     }</div><div class="bf-cap"><span class="step">${f.step}</span><span>${f.cap}</span></div></div>`).join('')}</div></div>`,
 
-  stats: s => `<h1 class="t">${s.t}</h1><div class="stats">${s.stats.map(([im,k,n,un,lb,p,so])=>`<div class="st"><img src="${u(im)}" alt=""><div class="k">${k}</div><div class="num">${n}<small>${un}</small></div><div class="lb">${lb}</div><p>${p}</p><div class="so">${so}</div></div>`).join('')}</div><p class="sofar">${s.so}</p>`,
+  stats: s => `<h1 class="t">${s.t}</h1><div class="stats">${s.stats.map(([im,k,n,un,lb,p,so,source])=>`<div class="st"><img src="${u(im)}" alt=""><div class="k">${k}</div><div class="num">${n}<small>${un}</small></div><div class="lb">${lb}</div><p>${p}</p><a class="so" href="${source}" target="_blank" rel="noopener">${so}</a></div>`).join('')}</div><p class="sofar">${s.so}</p>`,
 
   rebut: s => `${head(s)}<div class="row"><figure class="dia"><img src="${u(s.img)}" alt=""></figure><div class="col rb">
     <div class="colh">${s.L[0]}</div><ol class="np">${s.L[1].map(([b,t])=>`<li><b>${b}</b><span>${t}</span></li>`).join('')}</ol>
@@ -1337,12 +1887,11 @@ const LAY = {
 
   probdef: s => `${head(s)}<div class="pdef">
     <div class="pdef-top">
-      <div class="pbox"><h3><i>STEP 1</i>현장에서 확인한 세 가지 빈틈</h3><ul class="plist">${s.gaps.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
-      <div class="pdef-arr">→</div>
-      <div class="pbox wall"><h3><i>STEP 2</i>기존 대안이 풀지 못한 벽</h3><ul class="plist">${s.walls.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
+      <div class="pbox"><h2>어르신이 겪는 일</h2><ul class="plist">${s.gaps.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
+      <div class="pdef-arr" aria-hidden="true">→</div>
+      <div class="pbox wall"><h2>막내가 맡을 일</h2><ul class="plist">${s.walls.map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul></div>
     </div>
-    <div class="pdef-core"><div class="ck">PROBLEM DEFINITION → 5 DESIGN PILLARS</div><p>${s.core}</p>
-      <div class="ppill-row">${s.pillars.map(([b,t],j)=>`<div class="ppill"><img class="pi" src="${u(`assets/gen/cap_${CAPS[j][0]}-256.webp`)}" alt=""><div><b>${b}</b>${t}</div></div>`).join('')}</div></div>
+    <blockquote class="pdef-core">${s.core}</blockquote>
   </div>`,
 
   reveal: s => `${head(s)}<div class="reveal-stage"><div class="reveal-frame">${vidHTML(s.vid,true)}</div></div>`,
@@ -1354,18 +1903,17 @@ const LAY = {
       <figure class="dh-card hall"><div class="dh-f"><img src="${u(s.hall)}" alt=""></div><figcaption><b>3D 설계 모델</b><span>3D CAD</span></figcaption></figure>
     </div></div>`,
 
-  showcase: s => `${head(s)}<div class="sc-wrap">
-    <div class="sc-stage"><div class="sc-frame">${vidHTML(s.vid,{sound:!!s.sound})}<div class="sc-prog"><i data-prog></i></div></div></div>
+  scenario: s => `${head(s)}<div class="sc-wrap">
+    <div class="sc-stage"><div class="sc-frame">${vidHTML(s.vid,{sound:true,subtitles:true})}<div class="sc-prog"><i data-prog></i></div></div></div>
     <aside class="sc-side">
-      <div class="sc-head"><span class="sc-no">${s.no}</span><span class="sc-cat">${s.cat}</span></div>
       <dl class="sc-pts">${s.pts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-      ${s.tags?`<div class="sc-tags">${s.tags.map(([t,c])=>`<span class="${c||''}">${t}</span>`).join('')}</div>`:''}
+      <p class="sc-note">${s.note}</p>
     </aside></div>`,
 
   dual_sync: s => `${head(s)}<div class="ds-wrap" data-dual-sync>
     <div class="ds-vids">
       <div class="ds-vcard active" data-ds-card="auto">
-        <div class="ds-vh"><span>① 핵심 파지·전달 — 100% 자율 실증 (소리 ON)</span><span class="ds-b">AUTONOMOUS</span></div>
+        <div class="ds-vh"><span>① 핵심 파지·전달 — 100% 자율 실증</span><span class="ds-b">AUTONOMOUS</span></div>
         <div class="ds-vf">${vidHTML(s.autoVid,{sound:true})}<div class="sc-prog"><i data-ds-prog="auto"></i></div></div>
       </div>
       <div class="ds-vcard" data-ds-card="tele">
@@ -1397,7 +1945,21 @@ const LAY = {
       return `<div class="gr"><div class="nm">STAGE 0${idx+1}<b>${PHASES[a]}</b></div><div class="tr"><div class="bar" style="left:${x(d0)};width:calc(${x(d1)} - ${x(d0)})"></div>
         <div class="ln" style="${late?`right:calc(100% - ${x(d1)})`:`left:${x(d0)}`}">${p} → <b>${f}</b></div></div></div>`}).join('')}</div>`},
 
-  beat: s => `${head(s)}<div class="row">${mediaHTML(s.m,s.stamp,s.pts?'':'full')}${ptsHTML(s.pts)}</div>`,
+  beat: s => `${head(s)}<div class="row">${mediaHTML(s.m,s.stamp,s.pts?'':'full')}${s.inset
+    ? `<div class="beat-side">${ptsHTML(s.pts)}${gridHTML({items:[[...s.inset,'dark']]})}</div>`
+    : ptsHTML(s.pts)}</div>`,
+
+  principle: s => {
+    const [file, label, alt] = s.diagram;
+    return `${head(s)}<div class="row principle ${s.wide?'wide':''}">
+      ${mediaHTML(s.m,s.stamp)}
+      <aside class="principle-side">
+        <figure class="principle-fig"><h2>${label}</h2><img src="${u(`assets/diagrams/${file}.svg`)}" alt="${alt}">
+          ${s.eq?`<figcaption>${s.eq}</figcaption>`:''}</figure>
+        ${ptsHTML(s.pts)}
+      </aside>
+    </div>`;
+  },
 
   order: s => `${head(s)}<div class="order-wrap ${s.order.items.length>=5?'wide':''}">${orderCardHTML(s.order, s.stamp)}<div class="oside">${
     s.sideMedia ? mediaHTML(s.sideMedia, null) : ''}${ptsHTML(s.pts)}</div></div>`,
@@ -1419,6 +1981,185 @@ const LAY = {
     <div class="mcu-rows">${s.rows.map(([k,b,n,sub,r])=>`<div class="mrow">
       <div class="mk">${k}</div><div class="mb">${b}</div><div class="ma">→</div>
       <div class="mn">${n}<small>${sub}</small></div><div class="mr">${r}</div></div>`).join('')}</div>
+  </div>`,
+
+  mcu_why: s => `${head(s)}<div class="mcu-why">
+    <div class="mw-tl">
+      <div class="mw-tlhead"><b><i></i>FIG. 1 · 50 ms 동안 MCU 안에서 실제로 일어난 일</b><span>PoC 실측 로그(dt 20 → 27 ms) vs 본체 100 Hz 인터럽트 + RTOS</span></div>
+      ${svgMcuTimeline()}
+    </div>
+    <div class="mw-bar"><span class="k">WHY STM32</span><p>${s.bar}</p></div>
+    <div class="mw-hw">${s.hw.map(h=>`<div class="mw-card">
+      <div class="mw-k"><span class="mw-n">${h.n}</span><span class="mw-ip">${h.ip}</span></div>
+      <h4>${h.t}</h4><p>${h.d}</p><div class="mw-stat">${h.stat}</div>
+    </div>`).join('')}</div>
+    <div class="mw-gloss">${s.gloss.map(([k,v])=>`<div><b>${k}</b>${v}</div>`).join('')}</div>
+  </div>`,
+
+  ekf_fusion: s => `${head(s)}<div class="ekf-wrap">
+    <div class="ekf-col">
+      <div class="ekf-card red ekf-fig1" style="flex:1">
+        <div class="ekf-hd"><b>FIG. 1 · 센서 위치</b><span>CAD</span></div>
+        <div class="ekf-body">${svgEkfSensors()}</div>
+      </div>
+      <div class="ekf-defs">
+        <div class="ekf-def"><div class="dh"><i>1</i>엔코더<small>TIM2/3 ×4</small></div>
+          <p>모터 축 회전 센서(1회전 <b>2,475.5틱</b>). 바퀴가 헛돌면 실제보다 적게 셈</p></div>
+        <div class="ekf-def"><div class="dh"><i>2</i>IMU 자이로<small>ICM-42688-P</small></div>
+          <p>몸체 각속도(ω) 측정 <b>100 Hz</b>. 슬립과 무관하나 작은 바이어스가 누적</p></div>
+      </div>
+    </div>
+    <div class="ekf-col">
+      <div class="ekf-card" style="flex:0.95">
+        <div class="ekf-hd"><b>FIG. 2 · 센서 융합 구조</b><span>30 Hz EKF</span></div>
+        <div class="ekf-body">${svgEkfFlow()}
+          <div class="ekf-bias">자이로 원시 바이어스 <b>+1.137°/s</b> (방치 시 1분에 68°) → 정지할 때마다 2초 평균으로 자동 보정 → <em>수 m°/s</em></div>
+        </div>
+      </div>
+      <div class="ekf-card red" style="flex:1.05">
+        <div class="ekf-hd"><b>FIG. 3 · 제자리 720° 회전 시험</b><span>2026.11.10 실측</span></div>
+        <div class="ekf-body">${svgEkfBar()}</div>
+      </div>
+    </div>
+    <div class="ekf-card red">
+      <div class="ekf-hd"><b>FIG. 4 · 칼만 필터 (1차원 직관)</b><span>분산 가중 평균</span></div>
+      <div class="ekf-body ekf-kf">
+        ${svgEkfGauss()}
+        <div class="ekf-eq"><i>x̂</i> = <i>x̂</i><sup>−</sup> + <i>K</i> ( <i>z</i> − <i>x̂</i><sup>−</sup> )<br><i>K</i> = <i>P</i><sup>−</sup> / ( <i>P</i><sup>−</sup> + <i>R</i> )</div>
+        <dl class="ekf-lg">
+          <div><dt>x̂⁻, P⁻</dt><dd>엔코더로 예측한 값과 그 분산(불확실성)</dd></div>
+          <div><dt>z, R</dt><dd>자이로 측정값과 그 분산(매우 작음)</dd></div>
+          <div><dt>K</dt><dd>칼만 이득 — 측정값을 신뢰하는 비율 (0~1)</dd></div>
+        </dl>
+        <div class="ekf-ours"><small>막내 실제 회전 속도 공분산 설정</small><b>P⁻ = 1×10⁻² · R = 6×10⁻⁸ → K ≈ 0.99999</b></div>
+        <div class="ekf-ext"><b>확장 칼만 필터(EKF)</b> — 2D 평면에서 회전이 섞인 이동은 비선형 곡선 → 매 스텝 <b>야코비안(Jacobian)</b>으로 직선 근사</div>
+      </div>
+    </div>
+  </div>`,
+
+  ros_safety: s => `${head(s)}<div class="rs-wrap">
+    <div class="rs-l">
+      <div class="rs-card" style="flex:1">
+        <div class="rs-hd"><b>FIG. 1 · 권한 경계와 하드웨어 교체선</b><span>ROS 2 Jazzy · SIL</span></div>
+        <div class="rs-gph">${svgRosSafety()}</div>
+      </div>
+      <div class="rs-split">
+        <div class="rs-box"><b>표준 ROS 2 패키지 (엔진)</b><span>slam_toolbox · Nav2<br>robot_localization(EKF) · twist_mux</span></div>
+        <div class="rs-box me"><b>직접 설계 · 구현 (10개 패키지 · 약 11,300줄)</b><span>mr_mission · mr_phone_bridge · mr_care_telemetry · mr_aruco<br>mr_base · mr_bringup(시뮬) · mr_description · 커스텀 메시지 3종</span></div>
+      </div>
+    </div>
+    <div class="rs-card ink">
+      <div class="rs-hd"><b>FIG. 2 · 어디가 끊겨도 멈추는 4겹 안전망</b><span>FAIL-SAFE</span></div>
+      <div class="rs-sflist">
+        <div class="rs-sf">
+          <h4><i>1</i>상태머신 · 권한 제한<small>mr_mission · 팔</small></h4>
+          <p>앱 · 웹 · VLM의 <b>/cmd_vel</b> 직접 발행 차단<br>안전 정지 후 자동 재개 금지 · “줘” 전 집게 잠금</p>
+        </div>
+        <div class="rs-sf">
+          <h4><i>2</i>주행 명령 우선순위<small>twist_mux</small></h4>
+          <div class="rs-prio">
+            <div class="top"><span>비상정지 잠금</span><span class="bar" style="width:100%"></span><em>255</em></div>
+            <div><span>사람 (Xbox 패드)</span><span class="bar" style="width:39%"></span><em>100</em></div>
+            <div><span>마커 정렬</span><span class="bar" style="width:24%"></span><em>60</em></div>
+            <div><span>Nav2 주행</span><span class="bar" style="width:22%"></span><em>55</em></div>
+            <div><span>따라가기</span><span class="bar" style="width:20%"></span><em>50</em></div>
+          </div>
+        </div>
+        <div class="rs-sf">
+          <h4><i>3</i>센서 감시<small>라이다 · 마커</small></h4>
+          <p>전방 장애물 감지 시 정지 · “지나갈게요” 안내<br>추적 마커 10초 유실 시 폰 GPS로 보호자 SOS</p>
+        </div>
+        <div class="rs-sf">
+          <h4><i>4</i>하드웨어 최후 정지<small>STM32</small></h4>
+          <p>Pi 5나 Wi-Fi가 끊겨도 <b>200 ms</b> 만에 바퀴 정지<br>펌웨어 멈춤 시 독립 워치독 <b>300.2 ms</b> 강제 리셋</p>
+        </div>
+      </div>
+    </div>
+  </div>`,
+
+  hand_vlm: s => `${head(s)}<div class="hv-wrap">
+    <div class="hv-tblcard">
+      <table class="hv-tbl">
+        <thead><tr><th></th><th>모방학습<small>ACT</small></th><th>VLA<small>영상·말 → 로봇 동작 모델</small></th><th class="me">막내<small>VLM + 하네스</small></th></tr></thead>
+        <tbody>
+          <tr><th>모델이 내는 것</th><td>관절 동작</td><td>관절 동작</td><td class="me">사진 속 점 · 상자 · 높이<br>(JSON)</td></tr>
+          <tr><th>새 물건</th><td>시연을 다시 모아 재학습</td><td>로봇 데이터로 추가 학습</td><td class="me">이름만 말하면 됨<br>(제로샷)</td></tr>
+          <tr><th>좌표 · 동작</th><td>정책이 직접</td><td>정책이 직접</td><td class="me">보정된 카메라 + 6-DOF IK</td></tr>
+          <tr><th>안전</th><td>정책 출력에 의존</td><td>정책 출력에 의존</td><td class="me">상태머신이 순서를 강제</td></tr>
+          <tr><th>필요한 것</th><td>시연 70개 + GPU 학습</td><td>대규모 로봇 데이터 · GPU</td><td class="me">API 호출 + 카메라 보정</td></tr>
+        </tbody>
+      </table>
+      <div class="hv-foot"><em>역할 분리:</em> 시맨틱 이해(물건 찾기)는 VLM에, 기하 · 동작 · 안전(집기)은 결정론적 코드 하네스에 맡긴다.</div>
+    </div>
+    <div class="hv-side">
+      <figure class="mc"><div class="mf"><img src="${u(s.photo)}" alt=""></div><figcaption><i>실물</i><span>${s.photoCap}</span></figcaption></figure>
+      <div class="hv-code">
+        <span class="ck">모델에게 요구하는 답 · 실제 프롬프트 형식</span>
+<pre>{"found": true/false,
+ "label": "물건 이름",
+ "point": [y, x],
+ "box_2d": [ymin, xmin, ymax, xmax],
+ "height_cm": 숫자,
+ "grasp_clear": true/false}</pre>
+        <p class="cn">gemini-4-hydrogen · temperature 0 · JSON만 수신</p>
+      </div>
+    </div>
+  </div>`,
+
+  hand_fsm: s => `${head(s)}<div class="hf-wrap">
+    <div class="hf-col">
+      <div class="hf-tools">
+        <div class="rs-hd"><b>음성 에이전트가 부르는 도구 20개</b><span>Tool Use</span></div>
+        <div class="hf-tbody">
+          <div class="hf-tg"><b>보기 2</b><code>look_at_table</code><code>look_front</code></div>
+          <div class="hf-tg"><b>팔 3</b><code class="on">fetch_object</code><code class="on">give_object</code><code>throw_object</code></div>
+          <div class="hf-tg"><b>이동 8</b><code>go_to_place</code><code class="on">fetch_from_place</code><code>go_to_marker</code><code>follow_marker</code><code>follow_me</code><code>move_robot</code><code>return_home</code><code>stop_moving</code></div>
+          <div class="hf-tg"><b>돌봄 3</b><code>call_for_help</code><code>cancel_help</code><code>get_robot_status</code></div>
+          <div class="hf-tg"><b>표현 4</b><code>set_expression</code><code>play_motion</code><code>play_introduction</code><code>play_talent_show</code></div>
+          <div class="hf-say"><b>“책상에서 약통 가져와”</b> → <code class="on">fetch_from_place(place="책상", name="약통")</code><br>가기 · 찾기 · 집기 · 돌아오기를 도구 하나가 끝까지 처리</div>
+        </div>
+      </div>
+      <div class="hf-vid">
+        <span class="hf-vtag">실물 · “투명 테이프 가져와” → “줘”</span>
+        <div class="hf-vf">${vidHTML(s.vid,{sound:true})}</div>
+        <div class="hf-vcap"><b>제로샷</b><span>학습한 적 없는 투명 테이프 · 무릎 위 그대로 자율 파지</span></div>
+      </div>
+    </div>
+    <div class="hf-col">
+      <div class="hf-sm">
+        <div class="rs-hd"><b>FIG. 1 · 팔 상태머신</b><span>Errand FSM</span></div>
+        <div class="hf-smbody">${svgHandFsm()}</div>
+      </div>
+      <div class="hf-refs">
+        <div class="hf-ref"><small>들고 있는데 또 시키면</small><p>“지금 약통을 들고 있어요. 먼저 받아 주세요.”</p></div>
+        <div class="hf-ref"><small>든 게 없는데 “줘”</small><p>“지금은 들고 있는 물건이 없어요.”</p></div>
+        <div class="hf-ref"><small>집게 자리에 손이 있으면</small><p>“집게가 내려갈 자리를 비워 주세요.”</p></div>
+      </div>
+      <p class="hf-note">모델이 무엇을 말하든 이 순서 밖의 동작은 코드가 거절 · 위 문장은 실제 코드의 응답</p>
+    </div>
+  </div>`,
+
+  hand_geo: s => `${head(s)}<div class="hg-wrap">
+    <figure class="mc"><div class="mf"><img src="${u(s.photo)}" alt=""></div><figcaption><i>실물</i><span>${s.photoCap}</span></figcaption></figure>
+    <div class="hg-steps">
+      <div class="hg-st"><i>1</i><div><b>작업대 높이</b><span>8 cm 마커를 7장 찍어 가운데값 (한 장 잡음 5~10 mm)<br>기울기도 같이 산출 · 20° 넘게 선 마커는 버림</span></div></div>
+      <div class="hg-st"><i>2</i><div><b>모델의 점 · 상자</b><span>“약통” → 사진 속 점 [y, x] · 상자 · 높이</span></div></div>
+      <div class="hg-st"><i>3</i><div><b>집게 방향</b><span>상자 안을 GrabCut으로 물건만 분리<br>가장 좁은 방향 = 집게가 무는 방향</span></div></div>
+      <div class="hg-st"><i>4</i><div><b>픽셀 → 3D</b><span>보정한 카메라로 광선을 그어 작업대 높이 평면과 교차</span></div></div>
+      <div class="hg-st"><i>5</i><div><b>역기구학 + 처짐 보정</b><span>6-DOF 관절 각을 풀고, 팔 무게로 처진 만큼(5~9 mm) 재보정</span></div></div>
+      <div class="hg-st"><i>6</i><div><b>빈손이면 3 mm 더 깊게</b><span>집게가 끝까지 닫히면 빈손 판정 · 같은 자리를 한 번 더</span></div></div>
+    </div>
+    <div class="hg-side">
+      <div class="hg-fig">
+        <div class="rs-hd"><b>FIG. 1 · 픽셀 → 3D</b><span>Ray-Plane</span></div>
+        <div class="hg-figb">${svgHandRay()}</div>
+      </div>
+      <div class="hg-kpis">
+        <div class="hg-kpi"><b>0.110<small>px</small></b><span>재투영 오차<br>체커보드 26장</span></div>
+        <div class="hg-kpi"><b>7<small>장</small></b><span>높이 마커<br>가운데값</span></div>
+      </div>
+      <div class="hg-cost"><b>26,750원 단안 C270</b>으로 40만 원대 뎁스 카메라 없이 작업대 높이·파지 좌표 해결</div>
+    </div>
   </div>`,
 
   flow: s => `${head(s)}<div class="row">${mediaHTML(s.m,s.stamp)}<ol class="steps"><div class="say"><small>어르신</small>“${s.say}”</div>${s.steps.map(([k,v],j)=>`<li><span class="n">${j+1}</span><div><b>${k}</b><p>${v}</p></div></li>`).join('')}</ol></div>`,
@@ -1467,14 +2208,59 @@ const LAY = {
   nums: s => `${head(s)}<div class="nums">${s.nums.map(([v,un,l,d])=>`<div><div class="v">${v}<small>${un}</small></div><div class="l">${l}</div><div class="d">${d}</div></div>`).join('')}</div>`,
 
   ledger: s => {const mx=Math.max(...s.rows.map(r=>Math.abs(r[3])));
-    const spent=s.rows.filter(r=>r[3]>0).reduce((a,r)=>a+r[3],0),inc=-s.rows.filter(r=>r[3]<0).reduce((a,r)=>a+r[3],0),bal=SEED_WON-spent+inc;
-    return `${head(s)}<table class="led"><thead><tr><th>날짜</th><th>어디서</th><th></th><th>무엇</th><th style="text-align:right">금액(원)</th><th></th></tr></thead><tbody>${s.rows.map(([d,w,x,a,k,its])=>
-      `<tr class="${k||''}"><td class="d">${d}</td><td class="w">${w}</td><td class="i">${(its||[]).map(it=>`<img src="${u(INV(it,k==='home'))}" alt="">`).join('')}</td><td class="x">${x}</td>
-       <td class="a">${a===0?'0':(a<0?'+':'−')+won(a)}</td><td class="b"><div class="bar" style="width:${Math.abs(a)/mx*100}%"></div></td></tr>`).join('')}</tbody></table>
-      <div class="sum"><div>종잣돈<b>${won(SEED_WON)}</b></div><span class="op">−</span><div>영수증<b>${won(spent)}</b></div><span class="op">+</span><div>장학금<b>${won(inc)}</b></div><span class="op">=</span><div class="neg">잔고<b>−${won(-bal)}</b></div></div>`},
+    const spent=s.rows.filter(r=>r[3]>0).reduce((a,r)=>a+r[3],0),bal=SEED_WON-spent;
+    const rf = s.ref;
+    return `${head(s)}<div class="led-wrap">
+      <div class="led-l">
+        <table class="led"><thead><tr><th>날짜</th><th>어디서</th><th></th><th>무엇</th><th style="text-align:right">금액(원)</th><th></th></tr></thead><tbody>${s.rows.map(([d,w,x,a,k,its])=>
+          `<tr class="${k||''}"><td class="d">${d}</td><td class="w">${w}</td><td class="i">${(its||[]).map(it=>`<img src="${u(INV(it,k==='home'))}" alt="">`).join('')}</td><td class="x">${x}</td>
+           <td class="a">${a===0?'0':(a<0?'+':'−')+won(a)}</td><td class="b"><div class="bar" style="width:${Math.abs(a)/mx*100}%"></div></td></tr>`).join('')}</tbody></table>
+        <div class="sum"><div>종잣돈<b>${won(SEED_WON)}</b></div><span class="op">−</span><div>영수증<b>${won(spent)}</b></div><span class="op">=</span><div class="neg">잔고<b>−${won(-bal)}</b></div></div>
+      </div>
+      ${rf?`<aside class="led-ref">
+        <span class="rk">${rf.k}</span>
+        <div class="rname">${rf.name}</div>
+        <div class="rusd">${rf.usd}</div>
+        <div class="rkrw">${rf.krw}</div>
+        <div class="rrate">${rf.rate}</div>
+        <div class="rratio">${rf.ratio}</div>
+        <div class="rim"><img src="${u(rf.img)}" alt="${rf.name}"></div>
+        <span class="rsrc">${rf.src}</span>
+      </aside>`:''}
+    </div>`},
 
   next: s => `${head(s)}${tableHTML(s,'obj')}<p class="tail">${s.tail}</p>`,
-  end: s => `<div class="end"><div><div class="brand">NEXT YEAR ROBOTICS</div><h1>${s.t}</h1><p>${s.b}</p></div><img src="${u(s.img)}" alt=""></div>`,
+  live: s => `${head(s)}<div class="live-wrap">
+    <figure class="mc dark live-screen"><div class="mf">${STATIC
+      ? `<img src="${u(s.img)}" alt="Gazebo 집의 막내 로봇과 ROS 2 경로·센서 화면">`
+      : `<video src="${u(s.vid)}" poster="${u(s.img)}" controls playsinline preload="metadata" aria-label="Gazebo 리모컨 심부름 시연"></video>`}</div>
+      <figcaption>Gazebo · ROS 2 · Nav2 · ArUco · SO-101</figcaption></figure>
+    <aside class="live-side">
+      ${ptsHTML(s.pts)}
+      <div class="live-actions"><a href="../#gazebo">제작기에서 시연 보기 ↗</a></div>
+    </aside>
+  </div>`,
+
+  release: s => `<div class="release">
+    <div>
+      <div class="release-brand"><i></i>NEXT YEAR ROBOTICS</div>
+      <h1>막내 <em>MAKNAE</em></h1>
+      <p class="release-desc">거동이 불편한 어르신의 심부름과 외출을 돕는 모바일 매니퓰레이터</p>
+      <section class="release-licenses">
+        <h2>막내 본체 오픈소스 공개</h2>
+        <dl>${s.licenses.map(([path,other,label,url])=>`<div>
+          <dt><code>${path}</code>${other?` · <code>${other}</code>`:''}</dt>
+          <dd><a href="${url}" target="_blank" rel="noopener">${label}</a></dd>
+        </div>`).join('')}</dl>
+      </section>
+      <blockquote class="release-quote">“${s.quote}”</blockquote>
+    </div>
+    <a class="release-qr" href="${s.github}" target="_blank" rel="noopener">
+      <strong>Next Year Robotics GitHub</strong>
+      <img src="${u('assets/brand/qr-nyr-github.png')}" alt="Next Year Robotics GitHub 조직으로 연결되는 QR 코드">
+      <small>github.com/next-year-robotics</small>
+    </a>
+  </div>`,
 };
 
 /* ═════════ 일력: 누적 그래프 ═════════ */
@@ -1660,6 +2446,25 @@ function initDualSync(root, s){
 
 const RAIL_OFF = {v:Q.get('rail')==='off'};
 let idx=0;
+function playWithSound(video){
+  video.muted=false;
+  video.play().catch(error=>{
+    if(error.name==='NotAllowedError'&&video.isConnected&&!video.muted){
+      video.muted=true;
+      video.play().catch(()=>{});
+    }
+  });
+}
+
+function toggleVideoSound(video){
+  if(video.ended||video.muted){
+    if(video.ended||video.currentTime>1.5)video.currentTime=0;
+    playWithSound(video);
+  }else{
+    video.muted=true;
+  }
+}
+
 function go(i){
   idx=Math.max(0,Math.min(S.length-1,i));
   const s=S[idx];
@@ -1676,35 +2481,18 @@ function go(i){
   upgradeWinImages(c);
   if(s.lay==='dual_sync') initDualSync(c, s);
   if(!STATIC){
-    c.querySelectorAll('video').forEach(v=>{
+    c.querySelectorAll('video:not([controls])').forEach(v=>{
       const once=v.dataset.once==='1';
       const sound=v.dataset.sound==='1';
       v.playsInline=true;
       if(sound){
-        const btn=v.parentElement?.querySelector('[data-aud-btn]');
-        const setBtn=(txt,warn)=>{if(btn){btn.textContent=txt;btn.classList.toggle('warn',!!warn)}};
-        v.loop=false;v.muted=false;v.volume=1.0;v.currentTime=0;
-        const p=v.play();
-        if(p&&typeof p.catch==='function'){
-          p.then(()=>setBtn('🔊 소리 ON',false)).catch(()=>{
-            v.muted=true;v.play().catch(()=>{});
-            setBtn('🔇 클릭해 소리 켜기',true);
-          });
-        }
-        v.addEventListener('ended',()=>setBtn('↺ 소리와 다시 재생',false));
+        playWithSound(v);
         const prog=v.closest('.sc-frame')?.querySelector('[data-prog]');
         if(prog){
           v.addEventListener('timeupdate',()=>{if(v.duration>0)prog.style.width=(v.currentTime/v.duration*100).toFixed(1)+'%'});
           v.addEventListener('ended',()=>{prog.style.width='100%'});
         }
-        const toggle=e=>{
-          e.stopPropagation();
-          if(v.ended){v.currentTime=0;v.muted=false;v.play().catch(()=>{});setBtn('🔊 소리 ON',false)}
-          else if(v.muted){v.muted=false;if(v.currentTime>1.5)v.currentTime=0;v.play().catch(()=>{});setBtn('🔊 소리 ON',false)}
-          else{v.muted=true;setBtn('🔇 음소거',false)}
-        };
-        if(btn)btn.addEventListener('click',toggle);
-        v.addEventListener('click',toggle);
+        v.addEventListener('click',()=>toggleVideoSound(v));
         return;
       }
       v.muted=true;v.defaultMuted=true;v.loop=!once;
@@ -1724,13 +2512,21 @@ function fit(){const w=document.documentElement.clientWidth,h=document.documentE
 addEventListener('resize',fit);
 addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1));if(n&&n-1!==idx)go(n-1)});
 addEventListener('keydown',e=>{
+  if(e.ctrlKey||e.metaKey||e.altKey||e.target.closest?.('#apanel input,#apanel select,#apanel button'))return;
+  if((e.key==='Enter'||e.key===' ')&&e.target.closest?.('button,a[href],video[controls]'))return;
   if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(idx+1)}
   else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(idx-1)}
   else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);
   else if(e.key==='r'||e.key==='R'){RAIL_OFF.v=!RAIL_OFF.v;go(idx)}
-  else if(e.key==='m'||e.key==='M'){const btn=$('content').querySelector('[data-aud-btn]');if(btn)btn.click()}
+  else if((e.key==='m'||e.key==='M')&&!e.repeat){
+    const video=$('content').querySelector('video[data-sound]');
+    if(video)toggleVideoSound(video);
+  }
 });
-$('stage').addEventListener('click',e=>{if(e.target.closest('video,[data-aud-btn],[data-ds-tab],[data-ds-idx],[data-ds-card]'))return;go(idx+(e.shiftKey?-1:1))});
+$('stage').addEventListener('click',e=>{
+  if(e.target.closest('video,button,a[href],[data-ds-idx],[data-ds-card]'))return;
+  go(idx+(e.shiftKey?-1:1));
+});
 
 fit();buildRail();
 document.fonts.ready.then(()=>go((parseInt(location.hash.slice(1))||1)-1));
@@ -1738,8 +2534,10 @@ document.fonts.ready.then(()=>go((parseInt(location.hash.slice(1))||1)-1));
 /* 사이트용 조작: 마우스를 움직이면 단추가 잠깐 보인다, F로 전체 화면, 손가락으로 넘긴다 */
 const chrome = document.createElement('div');
 chrome.id = 'chrome';
-chrome.innerHTML = '<a href="../">글로 읽기</a><button type="button" id="fsBtn">전체 화면</button>';
+chrome.innerHTML = '<button type="button" id="prevBtn" aria-label="이전 슬라이드">←</button><button type="button" id="nextBtn" aria-label="다음 슬라이드">→</button><a href="../">글로 읽기</a><a href="../en/" hreflang="en">영문 제작기</a><button type="button" id="fsBtn">전체 화면</button>';
 document.body.append(chrome);
+$('prevBtn').addEventListener('click', () => go(idx - 1));
+$('nextBtn').addEventListener('click', () => go(idx + 1));
 const fsBtn = document.getElementById('fsBtn');
 const toggleFs = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
 fsBtn.addEventListener('click', e => { e.stopPropagation(); toggleFs(); });
@@ -1749,7 +2547,7 @@ let hideTimer;
 addEventListener('mousemove', () => { document.body.classList.add('chrome'); clearTimeout(hideTimer); hideTimer = setTimeout(() => document.body.classList.remove('chrome'), 1800); });
 addEventListener('keydown', e => { if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey) toggleFs(); });
 let touch;
-addEventListener('touchstart', e => { touch = e.touches[0]; }, { passive: true });
+addEventListener('touchstart', e => { touch = e.target.closest('video,button,a') ? null : e.touches[0]; }, { passive: true });
 addEventListener('touchend', e => {
   if (!touch) return;
   const t = e.changedTouches[0], dx = t.clientX - touch.clientX, dy = t.clientY - touch.clientY;
@@ -1757,5 +2555,6 @@ addEventListener('touchend', e => {
   if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(idx + (dx < 0 ? 1 : -1));
 }, { passive: true });
 </script>
+
 </body>
 </html>

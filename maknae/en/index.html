@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building Maknae — Next Year Robotics</title>
+<meta name="description" content="Six months of building Maknae, a low-cost mobile robot that helps older adults carry things, fetch items, and keep in touch with family.">
+<meta name="theme-color" content="#FCFAF6">
+<link rel="canonical" href="https://next-year-robotics.github.io/maknae/en/">
+<link rel="alternate" hreflang="en" href="https://next-year-robotics.github.io/maknae/en/">
+<link rel="alternate" hreflang="ko" href="https://next-year-robotics.github.io/maknae/">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../article.css">
+<script src="../article.js" defer></script>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <a class="home-link" href="../../">Next Year Robotics</a>
+      <h1>Maknae</h1>
+      <p class="dek">Building a low-cost mobile manipulator to help older adults</p>
+      <p class="byline"><time datetime="2026-11">November 2026</time><a href="https://github.com/next-year-robotics/mobile-robot">Source code</a><a href="../slides/" hreflang="ko">Slides in Korean</a><a href="../" lang="ko" hreflang="ko">한국어</a></p>
+      <div class="lead">
+        <p>Maknae is a small mobile robot for older adults with limited mobility. It carries bags on outings, fetches items around the house, and tells family members when an outing starts or an SOS is triggered.</p>
+        <p>On June 3, 2026, I started with ₩1 million saved from work as a physics teaching assistant. Over six months I built the chassis, electronics, firmware, ROS 2 stack, arm, Android app, caregiver dashboard, and 3D avatar. The parts receipts came to ₩1,496,996.</p>
+      </div>
+    </div>
+    <figure class="hero-fig"><img src="../media/w/081-maknae_cutout.webp" alt="The finished Maknae robot, with an aluminum frame, a robot arm, and a tall camera mast." width="653" height="1400" decoding="async"></figure>
+  </div>
+</header>
+<main>
+  <section class="chapter" id="why" aria-labelledby="why-h">
+    <div class="wrap prose">
+      <h2 id="why-h">My grandmother rarely called first</h2>
+      <p>My grandmother lived on her own. I grew up hearing that I should call her more often, but when life got busy, both my father and I put off those calls. A Bodyfriend ad showed a son calling his mother after getting a notification that she had switched on her massage chair. A habit she already had gave him a reason to check in.</p>
+      <p>I wondered what else could fit into her routine. A robot could carry her groceries while she used her usual walking aid, bring small things within reach at home, and share an update with her family when she headed out.</p>
+      <figure class="fig wide stats">
+        <div class="stat">
+          <img class="m" src="../media/w/059-quiet_phone.webp" alt="" loading="lazy" width="1536" height="1024">
+          <p class="stat-k">Gaps in care</p><p class="stat-n">18.6<small>%</small></p>
+          <p class="stat-b">Share of older adults in South Korea reporting a functional limitation. Of that group, 47.2% received care. <a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156655081">2023 Survey of Older Persons</a></p>
+        </div>
+        <div class="stat">
+          <img class="m" src="../media/w/051-bedside_water.webp" alt="" loading="lazy" width="1536" height="1024">
+          <p class="stat-k">Falls at home</p><p class="stat-n">45.3<small>%</small></p>
+          <p class="stat-b">Share of fall injuries treated in emergency departments in the Korean 2025 survey that occurred at home. <a href="https://www.kdca.go.kr/bbs/kdca/41/312311/artclView.do">Korea Disease Control and Prevention Agency</a></p>
+        </div>
+        <div class="stat">
+          <img class="m" src="../media/w/056-one_hand_cart.webp" alt="" loading="lazy" width="1536" height="1024">
+          <p class="stat-k">Getting home safely</p><p class="stat-n">16,586</p>
+          <p class="stat-b">Missing-person reports involving people with dementia in South Korea in 2025. <a href="https://www.index.go.kr/unity/potal/eNara/sub/showStblGams3.do?freq=Y&amp;idx_cd=1610&amp;period=N&amp;stts_cd=161001">Korean National Police Agency data</a></p>
+        </div>
+      </figure>
+      <h3>Could a shopping cart do the job?</h3>
+      <p>Pulling a cart takes a hand the walker may need for balance. Loading a cart can also move its center of mass forward and up. With Maknae, the walker keeps using their own cane or walker, and the robot carries the load and follows. At home, the arm handles short errands for things like water, medication, or glasses.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="what" aria-labelledby="what-h">
+    <div class="wrap prose">
+      <h2 id="what-h">What Maknae does</h2>
+      <p>In Korean, <i>maknae</i> means the youngest member of the family. It also stands for Mobile Assistant for Kin’s Needs And Errands. The 450 × 400 × 368 mm aluminum chassis carries an SO-101 arm and a one-meter overhead camera mast. Two spring-loaded drive wheels and three casters keep the base in contact with the floor.</p>
+      <h3>Fetching a pill case</h3>
+      <p>In this illustrated scenario, Grandma asks from her seat. Maknae drives to the desk, aligns with a marker, finds the pill case with its overhead camera, and brings it back. The gripper waits for her to say “hand it to me.”</p>
+      <figure class="fig wide">
+        <video class="m" style="--ar:16/9" src="../media/errand_full_hq.mp4" poster="../media/errand_full_hq.jpg" controls playsinline preload="none" aria-label="Illustrated pill case errand">
+          <track kind="subtitles" src="../media/errand_full_hq.en.vtt" srclang="en" label="English" default>
+          <track kind="subtitles" src="../media/errand_full_hq.ko.vtt" srclang="ko" label="한국어">
+        </video>
+      </figure>
+      <h3>Taking the groceries home</h3>
+      <p>Starting a trip sends a notification to the family. Maknae carries the load and follows a printed marker on the bag. It stops if the marker leaves view. After ten seconds without reacquiring it, the system raises an SOS. The phone’s location is shared during the active SOS and deleted when the alert is cleared.</p>
+      <figure class="fig wide">
+        <video class="m" style="--ar:16/9" src="../media/outing_full_hq.mp4" poster="../media/outing_full_hq.jpg" controls playsinline preload="none" aria-label="Illustrated shopping trip and SOS">
+          <track kind="subtitles" src="../media/outing_full_hq.en.vtt" srclang="en" label="English" default>
+          <track kind="subtitles" src="../media/outing_full_hq.ko.vtt" srclang="ko" label="한국어">
+        </video>
+      </figure>
+      <h3>What the operator and family can see</h3>
+      <p>The development console shows the marker’s distance and bearing, wheel speeds, the lidar scan, the planned Nav2 route, and the overhead camera used by the arm. The older adult’s Android app uses large tiles for outings and SOS. The caregiver dashboard displays trip updates and active alerts.</p>
+      <figure class="fig wide">
+        <video class="m" style="--ar:2" src="../media/console_walkthrough.mp4" poster="../media/console_walkthrough.jpg" controls playsinline preload="none" aria-label="Development console walkthrough"></video>
+        <figcaption>The following, mapping, and arm tabs.</figcaption>
+      </figure>
+      <h3>A voice and a face</h3>
+      <p>ElevenLabs Agents turns a spoken Korean request into a tool call. The on-screen avatar uses three-vrm to render facial expressions and moves its mouth with the audio.</p>
+      <figure class="fig wide">
+        <video class="m" style="--ar:16/9" src="../media/avatar_reply.mp4" poster="../media/avatar_reply.jpg" controls playsinline preload="none" aria-label="Maknae's 3D avatar responds to an errand request">
+          <track kind="subtitles" src="../media/avatar_reply.en.vtt" srclang="en" label="English" default>
+          <track kind="subtitles" src="../media/avatar_reply.ko.vtt" srclang="ko" label="한국어">
+        </video>
+      </figure>
+      <h3 id="demo">Trying it on the physical robot</h3>
+      <p>The first clip shows an autonomous grasp. Maknae hears a request, finds a roll of clear tape on a knee, lifts it, and hands it over after a second voice command. I drove the robot remotely for the full fridge-to-bed route in the second clip. The remaining integration work is to make docking accurate enough for the arm to take over reliably. At an exhibition booth I also tested ArUco following and SOS delivery to both a phone and a tablet.</p>
+      <figure class="fig wide">
+        <div class="row">
+          <div class="cell" style="--ar:16/9"><video class="m" src="../media/039-knee_tape.mp4" poster="../media/038-knee_tape.jpg" controls playsinline preload="none" aria-label="Autonomous clear tape grasp and handover"></video><figcaption>Autonomous grasp and handover.</figcaption></div>
+          <div class="cell" style="--ar:16/9"><video class="m" src="../media/017-errand_soymilk-public.mp4" poster="../media/016-errand_soymilk-public.jpg" controls playsinline preload="none" aria-label="Teleoperated soy milk delivery"></video><figcaption>Teleoperated fridge-to-bed route.</figcaption></div>
+        </div>
+        <div class="row">
+          <div class="cell" style="--ar:16/9"><video class="m" src="../media/013-booth_follow-public.mp4" poster="../media/012-booth_follow-public.jpg" controls playsinline preload="none" aria-label="Physical robot following a marker at a booth"></video><figcaption>Marker following with a live digital twin.</figcaption></div>
+          <div class="cell" style="--ar:16/9"><video class="m" src="../media/015-booth_sos-public.mp4" poster="../media/014-booth_sos-public.jpg" controls playsinline preload="none" aria-label="SOS demonstration with a phone and tablet"></video><figcaption>Loss of tracking triggers an SOS on both devices.</figcaption></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter" id="log" aria-labelledby="log-h">
+    <div class="wrap prose">
+      <h2 id="log-h">Six months at the workbench</h2>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-06">June 2026</time></p>
+        <h3>A wire cart, two motors, and a small screen</h3>
+        <p>I drilled mounting holes in a wire cart and bolted on two encoder motors. The ESP32-S3 ran a 50 Hz control loop, and its TFT screen showed the target and measured wheel speeds while I walked alongside it. The encoder readings agreed, yet the chassis drifted 40 cm over 87.8 cm of forward travel. The wire base flexed and the wheels lost traction. For the SO-101 arm I used a USB-C PD trigger and a buck converter to get 12 V from a power bank for ₩9,853.</p>
+        <figure class="fig">
+          <video class="m" style="--ar:16/9" src="../media/trolley_wheel_slip.mp4" poster="../media/trolley_wheel_slip.jpg" controls playsinline preload="none" aria-label="The test cart's drive wheels slipping"></video>
+        </figure>
+      </article>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-07">July 2026</time></p>
+        <h3>From a proof of concept to a chassis</h3>
+        <p>I tested ArUco alignment and grasp sequencing in Gazebo while getting the physical prototype to follow a marker. On July 31 the wheel, hub, and hinge order took the balance below zero. The next chassis used 2020 aluminum extrusion and spring-loaded drive wheels to keep both wheels on the floor.</p>
+      </article>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-08">August 2026</time></p>
+        <h3>Deterministic timing and an expensive wiring lesson</h3>
+        <p>I moved wheel control to an STM32F446RE with static FreeRTOS. A hardware timer drives the 100 Hz loop, dedicated timers read the encoders, and micro-ROS carries commands and telemetry to the Raspberry Pi over UART. An overcurrent incident cost ₩41,091 in replacement parts and led to a fused supply and a dedicated interface board.</p>
+        <p>I also tested ACT on 70 recorded demonstrations. It struggled with unfamiliar objects and lighting, so I gave the vision model a smaller job. It identifies the object and returns a point, while the arm code computes the motion.</p>
+      </article>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-09">September 2026</time></p>
+        <h3>KiCad, perfboard, and a phone for GPS</h3>
+        <p>Vibration broke contacts on the breadboard. I drew the Rev B interface board in KiCad and soldered it on perfboard. I designed a 400 × 450 × 15 mm plywood top plate with 17 mounting holes and had it cut on a CNC router. For location sharing I used the existing Android phone instead of adding a separate GNSS modem and data plan.</p>
+        <figure class="fig"><img class="m" style="--ar:16/9;object-fit:contain" src="../media/090-baseplate_drawing.png" alt="Technical drawing of the CNC-cut plywood top plate." loading="lazy"><figcaption>CNC drawing for the top plate.</figcaption></figure>
+      </article>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-10">October 2026</time></p>
+        <h3>Mounting the arm and starting from battery power</h3>
+        <p>The SO-101, power bank, and one-meter mast went on the top plate. I calibrated the Logitech C270 overhead camera with 26 checkerboard views and measured a reprojection error of 0.11 px. When the controller booted only with USB connected, I traced it to the external clock arriving after the startup timeout. Extending the clock wait fixed standalone startup.</p>
+      </article>
+      <article class="entry">
+        <p class="entry-meta"><time datetime="2026-11">November 2026</time></p>
+        <h3>Buying lidar and getting the pose right</h3>
+        <p>On November 6, I bought an RPLIDAR C1 for ₩99,000. That brought the remaining balance to −₩496,996. I moved from four corner casters to three, leaving two sprung drive wheels and five floor contact points. An extended Kalman filter combined wheel speed and gyro data. On a 720° turn in place, the heading error fell from 90.3° to 3.7°.</p>
+        <p>Maknae built a 5 cm occupancy map on the physical robot with the lidar and slam_toolbox. I exercised map-based routes through Nav2 in Gazebo, with A* for planning and Regulated Pure Pursuit for path following. The final tests included the clear-tape grasp and an avatar gesture synchronized with the arm.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="chapter" id="inside" aria-labelledby="inside-h">
+    <div class="wrap prose">
+      <h2 id="inside-h">Inside the robot</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th scope="col">Layer</th><th scope="col">Job</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Chassis and power</th><td>Aluminum extrusion, five-point suspension, Rev B interface board, LiFePO₄ battery, separate power for the arm.</td></tr>
+            <tr><th scope="row">STM32 firmware</th><td>100 Hz wheel speed control, encoder and IMU sampling, a command timeout, and a separate hardware watchdog.</td></tr>
+            <tr><th scope="row">ROS 2 on Pi 5</th><td>EKF, 2D SLAM, Nav2, twist_mux, and the outing and SOS state machine.</td></tr>
+            <tr><th scope="row">Vision and arm</th><td>Single-camera ArUco pose estimation, vision-language object pointing, inverse kinematics, and gripper interlocks.</td></tr>
+            <tr><th scope="row">App, web, and avatar</th><td>Large-tile Android controls, a read-only caregiver dashboard, web push, and voice requests.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Who can move the robot?</h3>
+      <p>Manual input, marker following, errands, and Nav2 send separate velocity commands. twist_mux picks the highest-priority active input, and a stop lock can override them all. The MCU still enforces its own command timeout and independent watchdog.</p>
+      <h3>How a pixel becomes a grasp</h3>
+      <p>The C270 overhead camera measures the work surface using seven frames of an 8 cm marker. The vision model points to the item and reports whether a hand overlaps it. The code estimates the gripper orientation, solves inverse kinematics, and compensates for 5–9 mm of arm sag. The state machine only permits opening the gripper at the corresponding release step.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ledger" aria-labelledby="ledger-h">
+    <div class="wrap prose">
+      <h2 id="ledger-h">What it cost</h2>
+      <p>One developer, six months, seven Git repositories, and 543 photos and videos. I counted the parts purchases from 26 purchase records and six MISUMI delivery notes. I reused the wire cart, ESP32, webcam, and power bank I already had.</p>
+      <figure class="fig tbl ledger">
+        <table>
+          <thead><tr><th scope="col">Date</th><th scope="col">Purchase</th><th scope="col" class="la">KRW</th></tr></thead>
+          <tbody>
+            <tr><td>Jun 4</td><td>Encoder motors, 5 V buck converter, emergency stop, and switch</td><td class="la">51,221</td></tr>
+            <tr><td>Jun 5</td><td>Raspberry Pi 5, battery, charger, and driver</td><td class="la">487,432</td></tr>
+            <tr><td>Jun 20</td><td>SO-ARM101 Pro, PD trigger, and 12 V buck converter</td><td class="la">401,271</td></tr>
+            <tr><td>Jul 2</td><td>NUCLEO-F446RE</td><td class="la">39,600</td></tr>
+            <tr><td>Jul 31</td><td>Wheels, hubs, hinges, and bolts</td><td class="la">77,880</td></tr>
+            <tr><td>Aug 3</td><td>Extrusion, brackets, springs, and casters</td><td class="la">144,892</td></tr>
+            <tr><td>Aug 20</td><td>IMU, MCU supply, fuses, and wire</td><td class="la">34,333</td></tr>
+            <tr><td>Aug 30</td><td>Replacement driver and motors</td><td class="la">41,091</td></tr>
+            <tr><td>Sep 22</td><td>Machined extrusion, JST cables, and overhead camera</td><td class="la">75,470</td></tr>
+            <tr><td>Oct 1</td><td>Frame reinforcement hardware</td><td class="la">44,806</td></tr>
+            <tr><td>Nov 6</td><td>RPLIDAR C1</td><td class="la">99,000</td></tr>
+          </tbody>
+          <tfoot>
+            <tr class="sum"><td colspan="2">Total spent on parts</td><td class="la">₩1,496,996</td></tr>
+            <tr class="sum"><td colspan="2">Balance from ₩1,000,000</td><td class="la minus">−₩496,996</td></tr>
+          </tfoot>
+        </table>
+      </figure>
+      <p>For scale, Hello Robot lists its Stretch 4 research platform at $29,950, roughly ₩40 million. Maknae’s parts spending was about one twenty-seventh of that list price. <a href="https://hello-robot.com/purchase/">Hello Robot pricing</a></p>
+    </div>
+  </section>
+
+  <section class="chapter" id="next" aria-labelledby="next-h">
+    <div class="wrap prose">
+      <h2 id="next-h">Next year</h2>
+      <p>Three purchases are still on my list. An RGB-D camera would simplify the marker-based geometry. A fabricated PCB would replace a long night of hand soldering. A GPS and LTE module would give the robot an independent connection when it needs one.</p>
+      <h3 id="gazebo">Picking up a remote in Gazebo</h3>
+      <p>I typed a request for the remote on the desk. The physical robot’s ROS 2 nodes ran the route, aligned to the marker, found the object using the simulated overhead camera, and controlled the arm on the way out and back. Gazebo supplies the home, sensors, and actuators. A simulated joint holds the object once it is between the gripper fingers.</p>
+      <figure class="fig wide">
+        <video class="m" style="--ar:16/9" src="../media/gazebo_errand.mp4" poster="../media/gazebo_errand.jpg" controls playsinline preload="none" aria-label="Gazebo simulation of a full remote-control pickup and handover">
+          <track kind="captions" src="../media/gazebo_errand.en.vtt" srclang="en" label="English" default>
+        </video>
+        <figcaption>Recorded ROS 2 and Gazebo run, from the typed request to handover.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+<footer class="end">
+  <div class="wrap">
+    <img class="end-mark" src="../media/005-last_calendar_page.svg" alt="" width="120" height="122">
+    <p class="end-line">See you next year.</p>
+    <p class="end-links"><a href="../../">Next Year Robotics</a><a href="https://github.com/next-year-robotics/mobile-robot">Maknae source code</a><a href="../" lang="ko" hreflang="ko">한국어</a></p>
+  </div>
+</footer>
+</body>
+</html>

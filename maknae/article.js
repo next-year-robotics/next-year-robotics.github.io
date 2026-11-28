@@ -48,11 +48,11 @@
   }
 
   /* ── 일력 ── */
-  const data = JSON.parse($('rail-data').textContent);
-  const days = data.days;
   const entries = [...document.querySelectorAll('.entry[data-d]')];
   const rail = $('rail');
   if (!entries.length || !rail) return;
+  const data = JSON.parse($('rail-data').textContent);
+  const days = data.days;
 
   const day = s => new Date(s + 'T00:00:00');
   const won = n => Math.round(Math.abs(n)).toLocaleString('ko-KR');
