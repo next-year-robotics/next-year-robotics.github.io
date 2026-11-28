@@ -181,5 +181,7 @@
   "assets/clips/scenario/outing_full_hq.en.vtt": "./media/outing_full_hq.en.vtt",
   "assets/clips/avatar_reply.en.vtt": "./media/avatar_reply.en.vtt",
   "assets/clips/gazebo_errand.mp4": "./media/gazebo_errand.mp4",
-  "assets/clips/gazebo_errand.jpg": "./media/gazebo_errand.jpg"
+  "assets/clips/gazebo_errand.jpg": "./media/gazebo_errand.jpg",
+  "assets/diagrams/ros-authority.svg": "./media/ros-authority.svg",
+  "assets/diagrams/hand-ray.svg": "./media/hand-ray.svg"
 }

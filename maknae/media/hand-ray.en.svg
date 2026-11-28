@@ -1,0 +1,14 @@
+<svg viewBox="0 0 388 324" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
+    <rect x="130" y="14" width="102" height="36" rx="4" fill="#1F1C19"/>
+    <text x="181" y="38" font-size="14.5" font-weight="800" fill="#FBF8F1" text-anchor="middle" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Camera</text>
+    <line x1="108" y1="86" x2="254" y2="86" stroke="#1F1C19" stroke-width="3"/>
+    <circle cx="204" cy="86" r="6" fill="#D93A24"/>
+    <text x="264" y="91" font-size="14" font-weight="700" fill="#58524a">Pixel (u, v)</text>
+    <line x1="181" y1="50" x2="262" y2="252" stroke="#D93A24" stroke-width="3"/>
+    <polygon points="18,228 298,228 346,282 66,282" fill="#F3EEE3" stroke="#8d8579" stroke-width="1.6"/>
+    <text x="28" y="308" font-size="14" font-weight="700" fill="#58524a">Work surface at z measured from the marker</text>
+    <rect x="248" y="216" width="32" height="38" fill="#1F1C19" opacity=".88"/>
+    <circle cx="262" cy="252" r="7" fill="#D93A24" stroke="#FBF8F1" stroke-width="2"/>
+    <text x="292" y="190" font-size="15.5" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Arm target</text>
+    <text x="292" y="210" font-size="14.5" font-weight="800" fill="#D93A24" font-family="monospace">(x, y, z)</text>
+  </svg>

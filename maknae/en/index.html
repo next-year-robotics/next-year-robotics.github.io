@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="en" href="https://next-year-robotics.github.io/maknae/en/">
 <link rel="alternate" hreflang="ko" href="https://next-year-robotics.github.io/maknae/">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../article.css">
+<link rel="stylesheet" href="../article.css?v=2bac0d0229">
 <script src="../article.js" defer></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <p class="byline"><time datetime="2026-11">November 2026</time><a href="https://github.com/next-year-robotics/mobile-robot">Source code</a><a href="../slides/" hreflang="ko">Slides in Korean</a><a href="../" lang="ko" hreflang="ko">한국어</a></p>
       <div class="lead">
         <p>Maknae is a small mobile robot for older adults with limited mobility. It carries bags on outings, fetches items around the house, and tells family members when an outing starts or an SOS is triggered.</p>
-        <p>On June 3, 2026, I started with ₩1 million saved from work as a physics teaching assistant. Over six months I built the chassis, electronics, firmware, ROS 2 stack, arm, Android app, caregiver dashboard, and 3D avatar. The parts receipts came to ₩1,496,996.</p>
+        <p>On June 3, 2026, I started with about $749 saved from work as a physics teaching assistant. Over six months I built the chassis, electronics, firmware, ROS 2 stack, arm, Android app, caregiver dashboard, and 3D avatar. The parts receipts came to about $1,121.</p>
       </div>
     </div>
     <figure class="hero-fig"><img src="../media/w/081-maknae_cutout.webp" alt="The finished Maknae robot, with an aluminum frame, a robot arm, and a tall camera mast." width="653" height="1400" decoding="async"></figure>
@@ -112,7 +112,7 @@
       <article class="entry">
         <p class="entry-meta"><time datetime="2026-06">June 2026</time></p>
         <h3>A wire cart, two motors, and a small screen</h3>
-        <p>I drilled mounting holes in a wire cart and bolted on two encoder motors. The ESP32-S3 ran a 50 Hz control loop, and its TFT screen showed the target and measured wheel speeds while I walked alongside it. The encoder readings agreed, yet the chassis drifted 40 cm over 87.8 cm of forward travel. The wire base flexed and the wheels lost traction. For the SO-101 arm I used a USB-C PD trigger and a buck converter to get 12 V from a power bank for ₩9,853.</p>
+        <p>I drilled mounting holes in a wire cart and bolted on two encoder motors. The ESP32-S3 ran a 50 Hz control loop, and its TFT screen showed the target and measured wheel speeds while I walked alongside it. The encoder readings agreed, yet the chassis drifted 40 cm over 87.8 cm of forward travel. The wire base flexed and the wheels lost traction. For the SO-101 arm I used a USB-C PD trigger and a buck converter to get 12 V from a power bank for about $7.</p>
         <figure class="fig">
           <video class="m" style="--ar:16/9" src="../media/trolley_wheel_slip.mp4" poster="../media/trolley_wheel_slip.jpg" controls playsinline preload="none" aria-label="The test cart's drive wheels slipping"></video>
         </figure>
@@ -125,7 +125,7 @@
       <article class="entry">
         <p class="entry-meta"><time datetime="2026-08">August 2026</time></p>
         <h3>Deterministic timing and an expensive wiring lesson</h3>
-        <p>I moved wheel control to an STM32F446RE with static FreeRTOS. A hardware timer drives the 100 Hz loop, dedicated timers read the encoders, and micro-ROS carries commands and telemetry to the Raspberry Pi over UART. An overcurrent incident cost ₩41,091 in replacement parts and led to a fused supply and a dedicated interface board.</p>
+        <p>I moved wheel control to an STM32F446RE with static FreeRTOS. A hardware timer drives the 100 Hz loop, dedicated timers read the encoders, and micro-ROS carries commands and telemetry to the Raspberry Pi over UART. An overcurrent incident cost about $31 in replacement parts and led to a fused supply and a dedicated interface board.</p>
         <p>I also tested ACT on 70 recorded demonstrations. It struggled with unfamiliar objects and lighting, so I gave the vision model a smaller job. It identifies the object and returns a point, while the arm code computes the motion.</p>
       </article>
       <article class="entry">
@@ -142,7 +142,7 @@
       <article class="entry">
         <p class="entry-meta"><time datetime="2026-11">November 2026</time></p>
         <h3>Buying lidar and getting the pose right</h3>
-        <p>On November 6, I bought an RPLIDAR C1 for ₩99,000. That brought the remaining balance to −₩496,996. I moved from four corner casters to three, leaving two sprung drive wheels and five floor contact points. An extended Kalman filter combined wheel speed and gyro data. On a 720° turn in place, the heading error fell from 90.3° to 3.7°.</p>
+        <p>On November 6, I bought an RPLIDAR C1 for about $74. That put me about $372 over budget. I moved from four corner casters to three, leaving two sprung drive wheels and five floor contact points. An extended Kalman filter combined wheel speed and gyro data. On a 720° turn in place, the heading error fell from 90.3° to 3.7°.</p>
         <p>Maknae built a 5 cm occupancy map on the physical robot with the lidar and slam_toolbox. I exercised map-based routes through Nav2 in Gazebo, with A* for planning and Regulated Pure Pursuit for path following. The final tests included the clear-tape grasp and an avatar gesture synchronized with the arm.</p>
       </article>
     </div>
@@ -151,22 +151,89 @@
   <section class="chapter" id="inside" aria-labelledby="inside-h">
     <div class="wrap prose">
       <h2 id="inside-h">Inside the robot</h2>
-      <div class="tbl">
-        <table>
-          <thead><tr><th scope="col">Layer</th><th scope="col">Job</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Chassis and power</th><td>Aluminum extrusion, five-point suspension, Rev B interface board, LiFePO₄ battery, separate power for the arm.</td></tr>
-            <tr><th scope="row">STM32 firmware</th><td>100 Hz wheel speed control, encoder and IMU sampling, a command timeout, and a separate hardware watchdog.</td></tr>
-            <tr><th scope="row">ROS 2 on Pi 5</th><td>EKF, 2D SLAM, Nav2, twist_mux, and the outing and SOS state machine.</td></tr>
-            <tr><th scope="row">Vision and arm</th><td>Single-camera ArUco pose estimation, vision-language object pointing, inverse kinematics, and gripper interlocks.</td></tr>
-            <tr><th scope="row">App, web, and avatar</th><td>Large-tile Android controls, a read-only caregiver dashboard, web push, and voice requests.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Who can move the robot?</h3>
-      <p>Manual input, marker following, errands, and Nav2 send separate velocity commands. twist_mux picks the highest-priority active input, and a stop lock can override them all. The MCU still enforces its own command timeout and independent watchdog.</p>
+      <p>Maknae has five layers, from the chassis and power at the bottom to the interfaces that the older adult and family use at the top.</p>
+      <figure class="fig wide stack">
+        <ol>
+          <li><p class="ly-n">App, web, and avatar</p><p class="ly-r">The Kotlin and Compose app starts outings and requests SOS. The React dashboard reads telemetry and alerts through Firebase. The avatar uses three-vrm and ElevenLabs Agents for conversation.</p></li>
+          <li><p class="ly-n">Vision and arm</p><p class="ly-r">The C270 overhead camera, ArUco, and a Gemini vision-language model help locate objects. The SO-101 arm follows poses computed in code.</p></li>
+          <li><p class="ly-n">ROS 2 on Raspberry Pi 5</p><p class="ly-r">ROS 2 Jazzy runs the EKF, slam_toolbox, Nav2, twist_mux, and the outing and SOS state machine.</p></li>
+          <li><p class="ly-n">STM32 firmware</p><p class="ly-r">Static FreeRTOS handles wheel control, encoder and IMU sampling, battery sensing, and local motor stops.</p></li>
+          <li><p class="ly-n">Chassis and power</p><p class="ly-r">2020 aluminum extrusion, five-point suspension, a LiFePO₄ battery, and the KiCad Rev B interface board.</p></li>
+        </ol>
+      </figure>
+
+      <h3>SolidWorks chassis and KiCad interface board</h3>
+      <p>I checked the fit of the SO-101 arm, one-meter overhead camera mast, and lidar in a 450 × 400 × 368 mm chassis. Two spring-loaded drive wheels and three casters support it. A 12.8 V LiFePO₄ pack powers the base, and a separate power bank supplies 20 V that a buck converter steps down to 12 V for the arm.</p>
+      <p>The Rev B interface board separates motor power from sensor wiring. I added a 5 A fuse, reverse-polarity protection, encoder pull-ups, and PWM pull-downs. The 90 × 70 mm perfboard uses a star ground and a 3.3 V bus. Different connectors help prevent the left and right encoders from being swapped.</p>
+      <figure class="fig wide tech-fig contain">
+        <div class="row" style="max-width:min(100%,522px)">
+          <div class="cell" style="--ar:1.0870">
+            <a href="../media/089-sw_assembly.png"><img class="m" src="../media/w/089-sw_assembly.webp" alt="SolidWorks assembly" width="1600" height="1472" loading="lazy" decoding="async"></a>
+            <figcaption><b>SolidWorks assembly</b> · Five-point suspension, lidar, arm, and camera mast.</figcaption>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell" style="--ar:1.4337">
+            <a href="../media/088-kicad_schematic.png"><img class="m" src="../media/w/088-kicad_schematic.webp" alt="KiCad Rev B schematic" width="1600" height="1116" loading="lazy" decoding="async"></a>
+            <figcaption><b>KiCad Rev B schematic</b> · Power protection, battery sensing, and signal conditioning.</figcaption>
+          </div>
+          <div class="cell" style="--ar:1.2729">
+            <a href="../media/087-kicad_pcb.png"><img class="m" src="../media/w/087-kicad_pcb.webp" alt="Perfboard layout" width="1600" height="1257" loading="lazy" decoding="async"></a>
+            <figcaption><b>Perfboard layout</b> · Connectors, star ground, and 3.3 V wiring.</figcaption>
+          </div>
+        </div>
+      </figure>
+
+      <h3>STM32 firmware and CubeMX</h3>
+      <p>TIM6 wakes the wheel control task in static FreeRTOS every 10 ms. TIM1 generates 18 kHz PWM, while TIM2 and TIM3 count the quadrature encoders in hardware. The Pi 5 exchanges velocity commands and telemetry with the MCU over micro-ROS at 921,600 bps.</p>
+      <p>The PLL takes the 8 MHz crystal up to 84 MHz for the system clock. The independent watchdog runs from a separate 32 kHz oscillator and resets the MCU after about 300 ms if the control loop stalls.</p>
+      <figure class="fig wide tech-fig contain">
+        <div class="row">
+          <div class="cell" style="--ar:1.9584">
+            <a href="../media/085-cubemx_configuration.png"><img class="m" src="../media/w/085-cubemx_configuration.webp" alt="Timer configuration" width="1600" height="817" loading="lazy" decoding="async"></a>
+            <figcaption><b>Timer configuration</b> · Four TIM1 PWM channels and ARR set to 4,666.</figcaption>
+          </div>
+          <div class="cell" style="--ar:2.5118">
+            <a href="../media/084-cubemx_clock.png"><img class="m" src="../media/084-cubemx_clock.png" alt="Clock tree" width="1600" height="637" loading="lazy" decoding="async"></a>
+            <figcaption><b>Clock tree</b> · 8 MHz crystal, 84 MHz system clock, and 32 kHz watchdog oscillator.</figcaption>
+          </div>
+        </div>
+        <div class="row" style="max-width:min(100%,632px)">
+          <div class="cell" style="--ar:1.4350">
+            <a href="../media/086-cubemx_pinout.png"><img class="m" src="../media/w/086-cubemx_pinout.webp" alt="LQFP64 pinout" width="1600" height="1115" loading="lazy" decoding="async"></a>
+            <figcaption><b>LQFP64 pinout</b> · PWM, encoders, serial ports, IMU, and battery sensing.</figcaption>
+          </div>
+        </div>
+      </figure>
+
+      <h3>ROS 2 navigation and four ways to stop</h3>
+      <p>A 30 Hz extended Kalman filter combines wheel odometry and gyro data. The physical robot built a 5 cm grid map using the RPLIDAR C1 and slam_toolbox. In Gazebo, Nav2 planned routes with A* and followed them with Regulated Pure Pursuit. The same navigation nodes consume the same ROS topics on both setups.</p>
+      <figure class="fig wide tech-fig contain">
+        <div class="row">
+          <div class="cell" style="--ar:2.1138">
+            <a href="../media/ros-authority.en.svg"><img class="m" src="../media/ros-authority.en.svg" alt="ROS 2 authority and interfaces" width="1040" height="492" loading="lazy" decoding="async"></a>
+            <figcaption><b>ROS 2 authority and interfaces</b> · The physical robot and Gazebo use the same ROS topics for sensors and drive commands.</figcaption>
+          </div>
+        </div>
+      </figure>
+      <ol class="flow">
+        <li><b>State machines.</b> The app and voice layer make trip, stop, or errand requests. The caregiver dashboard reads status, and the motion nodes decide wheel speeds.</li>
+        <li><b>Command priority.</b> twist_mux gives the emergency stop lock priority 255, the gamepad 100, marker alignment 60, Nav2 55, and following 50.</li>
+        <li><b>Sensor checks.</b> Collision Monitor stops the base for obstacles ahead. Losing the bag marker stops following. If the marker stays out of view for ten seconds, the phone's location is shared in an SOS.</li>
+        <li><b>Local motor stop.</b> With no new velocity command for 200 ms, the STM32 stops the motors. Its independent watchdog can also reset a stalled controller.</li>
+      </ol>
+
       <h3>How a pixel becomes a grasp</h3>
-      <p>The C270 overhead camera measures the work surface using seven frames of an 8 cm marker. The vision model points to the item and reports whether a hand overlaps it. The code estimates the gripper orientation, solves inverse kinematics, and compensates for 5–9 mm of arm sag. The state machine only permits opening the gripper at the corresponding release step.</p>
+      <p>The C270 overhead camera takes the median of seven readings of an 8 cm ArUco marker to estimate the work surface height. The vision model marks the item with a point and a box. The code uses GrabCut to isolate the outline, then projects a ray through the point and intersects it with the work surface to calculate the target. Inverse kinematics gives the joint angles, with another correction for 5–9 mm of arm sag.</p>
+      <figure class="fig tech-fig contain">
+        <div class="row" style="max-width:min(100%,419px)">
+          <div class="cell" style="--ar:1.1975">
+            <a href="../media/hand-ray.en.svg"><img class="m" src="../media/hand-ray.en.svg" alt="From camera pixel to arm target" width="388" height="324" loading="lazy" decoding="async"></a>
+            <figcaption><b>From camera pixel to arm target</b> · A ray through the pixel intersects the work surface at the height measured from the marker.</figcaption>
+          </div>
+        </div>
+      </figure>
+      <p>The errand state machine opens the gripper for handover after it is holding an object and receives a release request. After a safety stop, the outing state machine waits for a new start request even if it sees the marker again.</p>
     </div>
   </section>
 
@@ -176,27 +243,28 @@
       <p>One developer, six months, seven Git repositories, and 543 photos and videos. I counted the parts purchases from 26 purchase records and six MISUMI delivery notes. I reused the wire cart, ESP32, webcam, and power bank I already had.</p>
       <figure class="fig tbl ledger">
         <table>
-          <thead><tr><th scope="col">Date</th><th scope="col">Purchase</th><th scope="col" class="la">KRW</th></tr></thead>
+          <thead><tr><th scope="col">Date</th><th scope="col">Purchase</th><th scope="col" class="la">USD</th></tr></thead>
           <tbody>
-            <tr><td>Jun 4</td><td>Encoder motors, 5 V buck converter, emergency stop, and switch</td><td class="la">51,221</td></tr>
-            <tr><td>Jun 5</td><td>Raspberry Pi 5, battery, charger, and driver</td><td class="la">487,432</td></tr>
-            <tr><td>Jun 20</td><td>SO-ARM101 Pro, PD trigger, and 12 V buck converter</td><td class="la">401,271</td></tr>
-            <tr><td>Jul 2</td><td>NUCLEO-F446RE</td><td class="la">39,600</td></tr>
-            <tr><td>Jul 31</td><td>Wheels, hubs, hinges, and bolts</td><td class="la">77,880</td></tr>
-            <tr><td>Aug 3</td><td>Extrusion, brackets, springs, and casters</td><td class="la">144,892</td></tr>
-            <tr><td>Aug 20</td><td>IMU, MCU supply, fuses, and wire</td><td class="la">34,333</td></tr>
-            <tr><td>Aug 30</td><td>Replacement driver and motors</td><td class="la">41,091</td></tr>
-            <tr><td>Sep 22</td><td>Machined extrusion, JST cables, and overhead camera</td><td class="la">75,470</td></tr>
-            <tr><td>Oct 1</td><td>Frame reinforcement hardware</td><td class="la">44,806</td></tr>
-            <tr><td>Nov 6</td><td>RPLIDAR C1</td><td class="la">99,000</td></tr>
+            <tr><td>Jun 4</td><td>Encoder motors, 5 V buck converter, emergency stop, and switch</td><td class="la">$38.37</td></tr>
+            <tr><td>Jun 5</td><td>Raspberry Pi 5, battery, charger, and driver</td><td class="la">$365.14</td></tr>
+            <tr><td>Jun 20</td><td>SO-ARM101 Pro, PD trigger, and 12 V buck converter</td><td class="la">$300.60</td></tr>
+            <tr><td>Jul 2</td><td>NUCLEO-F446RE</td><td class="la">$29.67</td></tr>
+            <tr><td>Jul 31</td><td>Wheels, hubs, hinges, and bolts</td><td class="la">$58.34</td></tr>
+            <tr><td>Aug 3</td><td>Extrusion, brackets, springs, and casters</td><td class="la">$108.54</td></tr>
+            <tr><td>Aug 20</td><td>IMU, MCU supply, fuses, and wire</td><td class="la">$25.72</td></tr>
+            <tr><td>Aug 30</td><td>Replacement driver and motors</td><td class="la">$30.78</td></tr>
+            <tr><td>Sep 22</td><td>Machined extrusion, JST cables, and overhead camera</td><td class="la">$56.54</td></tr>
+            <tr><td>Oct 1</td><td>Frame reinforcement hardware</td><td class="la">$33.57</td></tr>
+            <tr><td>Nov 6</td><td>RPLIDAR C1</td><td class="la">$74.16</td></tr>
           </tbody>
           <tfoot>
-            <tr class="sum"><td colspan="2">Total spent on parts</td><td class="la">₩1,496,996</td></tr>
-            <tr class="sum"><td colspan="2">Balance from ₩1,000,000</td><td class="la minus">−₩496,996</td></tr>
+            <tr class="sum"><td colspan="2">Total spent on parts</td><td class="la">$1,121.43</td></tr>
+            <tr class="sum"><td colspan="2">Balance from $749.12</td><td class="la minus">−$372.31</td></tr>
           </tfoot>
         </table>
       </figure>
-      <p>For scale, Hello Robot lists its Stretch 4 research platform at $29,950, roughly ₩40 million. Maknae’s parts spending was about one twenty-seventh of that list price. <a href="https://hello-robot.com/purchase/">Hello Robot pricing</a></p>
+      <p>USD estimates use the November 27, 2026 ECB reference rates, about 1,334.90 Korean won per US dollar. <a href="https://data-api.ecb.europa.eu/service/data/EXR/D.USD+KRW.EUR.SP00.A?startPeriod=2026-11-27&amp;endPeriod=2026-11-27&amp;format=csvdata">ECB rate data</a></p>
+      <p>For scale, Hello Robot lists its Stretch 4 research platform at $29,950. Maknae’s parts spending was about one twenty-seventh of that list price. <a href="https://hello-robot.com/purchase/">Hello Robot pricing</a></p>
     </div>
   </section>
 

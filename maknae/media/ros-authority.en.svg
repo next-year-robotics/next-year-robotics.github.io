@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1040 492" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
+    <defs>
+      <marker id="rsk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.8" markerHeight="6.8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"/></marker>
+      <marker id="rsr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.8" markerHeight="6.8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"/></marker>
+    </defs>
+
+    <rect x="0" y="10" width="1040" height="90" fill="#FBF8F1" stroke="#1F1C19" stroke-width="1.8"/>
+    <rect x="0" y="10" width="118" height="90" fill="#F3EEE3"/>
+    <line x1="118" y1="10" x2="118" y2="100" stroke="#d8cfbf" stroke-width="1.5"/>
+    <text x="59" y="48" text-anchor="middle" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif" font-size="14.5" font-weight="800" fill="#8d8579">USER · AI</text>
+    <text x="59" y="75" text-anchor="middle" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif" font-size="17.5" font-weight="800" fill="#1F1C19">Requests</text>
+
+    <g font-size="16" font-weight="800" fill="#1F1C19">
+      <rect x="134" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="148" y="50">Android app</text><text x="148" y="73" font-size="13.5" font-weight="500" fill="#58524a">Start trip · stop · SOS</text>
+
+      <rect x="336" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="350" y="50">Caregiver web</text><text x="350" y="73" font-size="13.5" font-weight="500" fill="#58524a">Read-only telemetry</text>
+
+      <rect x="538" y="23" width="208" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
+      <text x="552" y="50">Voice and VLM (Gemini)</text><text x="552" y="73" font-size="13.5" font-weight="500" fill="#58524a">Errand tool calls</text>
+    </g>
+
+    <rect x="764" y="23" width="258" height="64" fill="#1F1C19"/>
+    <text x="893" y="49" text-anchor="middle" font-size="15.5" font-weight="800" fill="#FF8C7A" font-family="monospace">No direct /cmd_vel</text>
+    <text x="893" y="73" text-anchor="middle" font-size="13.5" fill="#F3EEE3">Request destinations or stops</text>
+
+    <path d="M520,100 V132" fill="none" stroke="#1F1C19" stroke-width="2.2" marker-end="url(#rsk)"/>
+    <text x="534" y="122" font-size="14" font-weight="700" fill="#58524a">Trip, stop and errand requests</text>
+
+    <rect x="0" y="138" width="1040" height="162" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2.2"/>
+    <rect x="0" y="138" width="1040" height="34" fill="#1F1C19"/>
+    <text x="16" y="161" font-size="15.5" font-weight="800" fill="#FBF8F1" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">ROS 2 nodes shared by the physical robot and simulation</text>
+    <g font-size="13.5" fill="#F3EEE3">
+      <rect x="752" y="149" width="12" height="12" fill="#D93A24"/><text x="771" y="160">Custom</text>
+      <rect x="854" y="149" width="12" height="12" fill="#8d8579"/><text x="873" y="160">Standard ROS 2</text>
+    </g>
+
+    <g font-size="16" font-weight="800" fill="#1F1C19">
+      <rect x="18" y="198" width="176" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="18" y="198" width="176" height="6" fill="#D93A24"/>
+      <text x="30" y="231" font-family="monospace">mr_mission</text><text x="30" y="255" font-size="13.5" font-weight="500" fill="#58524a">Trip and SOS states</text>
+
+      <rect x="216" y="198" width="178" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="216" y="198" width="178" height="6" fill="#D93A24"/>
+      <text x="228" y="231" font-family="monospace">mr_aruco</text><text x="228" y="255" font-size="13.5" font-weight="500" fill="#58524a">Follow and align</text>
+
+      <rect x="418" y="198" width="172" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="418" y="198" width="172" height="6" fill="#8d8579"/>
+      <text x="430" y="231">EKF · SLAM</text><text x="430" y="255" font-size="13.5" font-weight="500" fill="#58524a">Pose and 2D map</text>
+
+      <rect x="614" y="198" width="184" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+      <rect x="614" y="198" width="184" height="6" fill="#8d8579"/>
+      <text x="626" y="231">Nav2</text><text x="626" y="255" font-size="13.5" font-weight="500" fill="#58524a">A* and collision checks</text>
+
+      <rect x="844" y="198" width="178" height="74" fill="#D93A24"/>
+      <text x="860" y="231" fill="#FBF8F1" font-family="monospace">twist_mux</text><text x="860" y="255" font-size="13.5" font-weight="700" fill="#FFD6CE">Highest priority wins</text>
+    </g>
+
+    <g fill="none" stroke="#1F1C19" stroke-width="1.8" marker-end="url(#rsk)">
+      <path d="M194,235 H211"/><path d="M590,235 H609"/>
+    </g>
+    <g fill="none" stroke="#D93A24" stroke-width="2.2" marker-end="url(#rsr)">
+      <path d="M798,235 H838"/>
+      <path d="M305,198 V184 H933 V193"/>
+    </g>
+    <path d="M106,272 V288 H933 V278" fill="none" stroke="#1F1C19" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#rsk)"/>
+    <text x="520" y="291" text-anchor="middle" font-size="12.5" fill="#58524a" font-weight="700" style="paint-order:stroke;stroke:#FBF8F1;stroke-width:6px">Emergency stop lock (/safety/lock)</text>
+
+    <line x1="0" y1="336" x2="1040" y2="336" stroke="#D93A24" stroke-width="2.5" stroke-dasharray="9 6"/>
+    <rect x="304" y="319" width="432" height="34" fill="#FBF8F1" stroke="#D93A24" stroke-width="2"/>
+    <text x="520" y="342" text-anchor="middle" font-size="15.5" font-weight="800" fill="#D93A24" font-family="monospace">ROS topics · /scan · /odom · /imu · /cmd_vel</text>
+
+    <g fill="none" stroke-width="2.2">
+      <path d="M248,306 V372" stroke="#1F1C19" marker-start="url(#rsk)" marker-end="url(#rsk)"/>
+      <path d="M792,306 V372" stroke="#D93A24" marker-start="url(#rsr)" marker-end="url(#rsr)"/>
+    </g>
+
+    <rect x="0" y="378" width="474" height="106" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <rect x="16" y="394" width="88" height="26" fill="#1F1C19"/>
+    <text x="60" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">REAL</text>
+    <text x="116" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Physical robot hardware</text>
+    <text x="16" y="444" font-size="15" fill="#58524a">STM32 (100 Hz) · RPLIDAR C1 · C920 camera · IMU</text>
+    <text x="16" y="468" font-size="14" fill="#8d8579" font-family="monospace">921,600 bps UART · 9.8 kg chassis</text>
+
+    <text x="520" y="428" text-anchor="middle" font-size="30" font-weight="800" fill="#D93A24">⇄</text>
+    <text x="520" y="452" text-anchor="middle" font-size="13.5" font-weight="700" fill="#58524a">Swap</text>
+
+    <rect x="566" y="378" width="474" height="106" fill="#fff5f3" stroke="#D93A24" stroke-width="2" stroke-dasharray="7 5"/>
+    <rect x="582" y="394" width="114" height="26" fill="#D93A24"/>
+    <text x="639" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">SIMULATION</text>
+    <text x="708" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Simulation (SIL)</text>
+    <text x="582" y="444" font-size="15" fill="#58524a">Simulated sensors and wheels publish the same topics</text>
+    <text x="582" y="468" font-size="14" fill="#8d8579" font-family="monospace">Software-in-the-loop validation</text>
+  </svg>

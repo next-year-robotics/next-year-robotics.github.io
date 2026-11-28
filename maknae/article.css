@@ -54,6 +54,9 @@ sup.fn a{font:700 11px/1 var(--sans);color:var(--red);text-decoration:none;paddi
 .fig video.m{cursor:pointer}
 .fig video[controls]{cursor:auto;background:#000}
 .fig.contain .m,.fig.diagram .m{object-fit:contain;background:var(--sheet)}
+.tech-fig a{display:block;border:1px solid var(--rule);border-radius:2px}
+.tech-fig a:hover,.tech-fig a:focus-visible{border-color:var(--red)}
+.tech-fig img{background:var(--sheet)}
 figcaption{font:400 13.5px/1.55 var(--sans);color:var(--mute);margin-top:7px}
 .fig-cap{margin-top:10px}
 .fig.reveal{margin-top:0}
@@ -278,6 +281,8 @@ code.hot{background:#FBE5DF;color:#B8301C}
   .roadmap .rm-months{margin-left:0}
   .roadmap li{grid-template-columns:1fr}
   .rm-ph{grid-row:auto}
+  .tech-fig .row{flex-direction:column;gap:18px}
+  .tech-fig .cell{flex:auto}
   .fig .row.n3{flex-wrap:wrap}
   .fig .row.n3 .cell{flex:1 1 calc(50% - 5px)}
   .fig .row.n3 .m{aspect-ratio:auto}
