@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="en" href="https://next-year-robotics.github.io/maknae/en/">
 <link rel="alternate" hreflang="ko" href="https://next-year-robotics.github.io/maknae/">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../article.css?v=2bac0d0229">
+<link rel="stylesheet" href="../article.css?v=66e6ca85fc">
 <script src="../article.js" defer></script>
 </head>
 <body>
@@ -187,24 +187,26 @@
       <h3>STM32 firmware and CubeMX</h3>
       <p>TIM6 wakes the wheel control task in static FreeRTOS every 10 ms. TIM1 generates 18 kHz PWM, while TIM2 and TIM3 count the quadrature encoders in hardware. The Pi 5 exchanges velocity commands and telemetry with the MCU over micro-ROS at 921,600 bps.</p>
       <p>The PLL takes the 8 MHz crystal up to 84 MHz for the system clock. The independent watchdog runs from a separate 32 kHz oscillator and resets the MCU after about 300 ms if the control loop stalls.</p>
-      <figure class="fig wide tech-fig contain">
-        <div class="row">
-          <div class="cell" style="--ar:1.9584">
+      <div class="fig wide firmware-figures">
+        <figure class="tech-fig firmware-diagram">
+          <a href="../media/freertos.en.svg"><img class="m" src="../media/freertos.en.svg" alt="Static FreeRTOS task and motor control diagram" width="820" height="620" loading="lazy" decoding="async"></a>
+          <figcaption><b>Static FreeRTOS</b> · From hardware interrupts to tasks and motor output.</figcaption>
+        </figure>
+        <div class="firmware-settings">
+          <figure class="tech-fig">
             <a href="../media/085-cubemx_configuration.png"><img class="m" src="../media/w/085-cubemx_configuration.webp" alt="Timer configuration" width="1600" height="817" loading="lazy" decoding="async"></a>
-            <figcaption><b>Timer configuration</b> · Four TIM1 PWM channels and ARR set to 4,666.</figcaption>
-          </div>
-          <div class="cell" style="--ar:2.5118">
+            <figcaption><b>Timer configuration</b> · Four TIM1 PWM channels, ARR set to 4,666.</figcaption>
+          </figure>
+          <figure class="tech-fig">
             <a href="../media/084-cubemx_clock.png"><img class="m" src="../media/084-cubemx_clock.png" alt="Clock tree" width="1600" height="637" loading="lazy" decoding="async"></a>
-            <figcaption><b>Clock tree</b> · 8 MHz crystal, 84 MHz system clock, and 32 kHz watchdog oscillator.</figcaption>
-          </div>
-        </div>
-        <div class="row" style="max-width:min(100%,632px)">
-          <div class="cell" style="--ar:1.4350">
+            <figcaption><b>Clock tree</b> · 8 MHz crystal, 84 MHz system clock, 32 kHz watchdog.</figcaption>
+          </figure>
+          <figure class="tech-fig firmware-pinout">
             <a href="../media/086-cubemx_pinout.png"><img class="m" src="../media/w/086-cubemx_pinout.webp" alt="LQFP64 pinout" width="1600" height="1115" loading="lazy" decoding="async"></a>
             <figcaption><b>LQFP64 pinout</b> · PWM, encoders, serial ports, IMU, and battery sensing.</figcaption>
-          </div>
+          </figure>
         </div>
-      </figure>
+      </div>
 
       <h3>ROS 2 navigation and four ways to stop</h3>
       <p>A 30 Hz extended Kalman filter combines wheel odometry and gyro data. The physical robot built a 5 cm grid map using the RPLIDAR C1 and slam_toolbox. In Gazebo, Nav2 planned routes with A* and followed them with Regulated Pure Pursuit. The same navigation nodes consume the same ROS topics on both setups.</p>

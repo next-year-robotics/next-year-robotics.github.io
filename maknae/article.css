@@ -57,6 +57,19 @@ sup.fn a{font:700 11px/1 var(--sans);color:var(--red);text-decoration:none;paddi
 .tech-fig a{display:block;border:1px solid var(--rule);border-radius:2px}
 .tech-fig a:hover,.tech-fig a:focus-visible{border-color:var(--red)}
 .tech-fig img{background:var(--sheet)}
+
+.firmware-figures{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start;gap:18px}
+.firmware-figures figure{margin:0;min-width:0}
+.firmware-figures a{cursor:zoom-in}
+.firmware-diagram .m{max-height:min(500px,72svh);aspect-ratio:auto;object-fit:contain}
+.firmware-settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.firmware-settings .m{aspect-ratio:2/1;object-fit:contain}
+.firmware-pinout{grid-column:1/-1}
+@media (max-width:760px){
+  .prose>.fig.firmware-figures{grid-template-columns:minmax(0,1fr);max-width:var(--text);gap:14px}
+  .firmware-settings{gap:12px}
+}
+
 figcaption{font:400 13.5px/1.55 var(--sans);color:var(--mute);margin-top:7px}
 .fig-cap{margin-top:10px}
 .fig.reveal{margin-top:0}

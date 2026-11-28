@@ -1,0 +1,100 @@
+<svg viewBox="0 0 820 620" width="820" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
+    <defs>
+      <marker id="mk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"/></marker>
+      <marker id="mr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"/></marker>
+    </defs>
+    <!-- 헤더 배너 -->
+    <rect x="8" y="8" width="804" height="44" fill="#1F1C19"/>
+    <text x="24" y="36" font-size="17" font-weight="800" fill="#FBF8F1" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">STATIC FREERTOS (configSUPPORT_DYNAMIC_ALLOCATION = 0 · heap_4 제거)</text>
+
+    <!-- 왼쪽: 하드웨어 ISR / 주변장치 -->
+    <text x="14" y="80" font-size="14" font-weight="800" fill="#D93A24" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">HW PERIPHERALS / ISR</text>
+    <g fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.8">
+      <rect x="12" y="94" width="215" height="92" rx="3"/>
+      <rect x="12" y="216" width="215" height="84" rx="3"/>
+      <rect x="12" y="330" width="215" height="92" rx="3"/>
+      <rect x="12" y="452" width="215" height="92" rx="3" stroke="#D93A24" stroke-width="2.2"/>
+    </g>
+    <text x="24" y="120" font-size="16" font-weight="800" fill="#D93A24">TIM6 100 Hz ISR</text>
+    <text x="24" y="143" font-size="13" fill="#58524a">10.0 ms 하드웨어 틱</text>
+    <text x="24" y="164" font-size="12.5" fill="#1F1C19" font-family="monospace">xTaskNotifyFromISR()</text>
+    <text x="24" y="180" font-size="12" fill="#8d8579">기동 지연 14~18.5 µs</text>
+
+    <text x="24" y="242" font-size="16" font-weight="800">SPI2 + EXTI0 DRDY</text>
+    <text x="24" y="264" font-size="13" fill="#58524a">ICM-42688-P (2.625 MHz)</text>
+    <text x="24" y="286" font-size="12.5" fill="#1F1C19" font-family="monospace">DWT 타임스탬프 −12.9 ms</text>
+
+    <text x="24" y="356" font-size="16" font-weight="800">USART1 Circular DMA</text>
+    <text x="24" y="378" font-size="13" fill="#58524a">RPi5 GPIO UART0 직결</text>
+    <text x="24" y="402" font-size="12.5" fill="#1F1C19" font-family="monospace">921,600 bps · 0 errors</text>
+
+    <text x="24" y="478" font-size="16" font-weight="800" fill="#D93A24">ADC1 + IWDG (LSI)</text>
+    <text x="24" y="500" font-size="13" fill="#58524a">PA4 분압 6.02 + VREFINT</text>
+    <text x="24" y="524" font-size="12.5" fill="#D93A24" font-family="monospace">Prescaler 32 · Reload 250</text>
+
+    <!-- 중앙: 4 Static Tasks -->
+    <text x="284" y="80" font-size="14" font-weight="800" fill="#D93A24" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">4 STATIC TASKS (우선순위별)</text>
+    <rect x="282" y="94" width="290" height="106" rx="4" fill="#1F1C19" stroke="#D93A24" stroke-width="2.5"/>
+    <text x="298" y="122" font-size="18" font-weight="800" fill="#FBF8F1">ControlTask <tspan fill="#FF8C7A" font-size="14">P5 (최고)</tspan></text>
+    <text x="298" y="146" font-size="13.5" fill="#d8cfbf">TIM2/3 ×4 엔코더 읽기 → PI + FF</text>
+    <text x="298" y="168" font-size="13.5" fill="#FFD6CE">WCET 46.7 µs (주기의 0.47%)</text>
+    <text x="298" y="188" font-size="12.5" fill="#9a9286">21분 연속 loop_overruns = 0</text>
+
+    <rect x="282" y="216" width="290" height="84" rx="4" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <text x="298" y="243" font-size="17" font-weight="800">ImuTask <tspan fill="#D93A24" font-size="13.5">P4</tspan></text>
+    <text x="298" y="266" font-size="13.5" fill="#58524a">100 Hz 6축 수집 · 정지 바이어스 제거</text>
+    <text x="298" y="287" font-size="12.5" fill="#8d8579" font-family="monospace">→ len-1 overwrite mailbox</text>
+
+    <rect x="282" y="330" width="290" height="92" rx="4" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
+    <text x="298" y="356" font-size="17" font-weight="800">MicroRosTask <tspan fill="#58524a" font-size="13.5">P3</tspan></text>
+    <text x="298" y="378" font-size="13.5" fill="#58524a">전용 8 KiB static_pool · 세션 재연결</text>
+    <text x="298" y="400" font-size="12.5" fill="#1F1C19" font-family="monospace">/cmd_vel ↔ /joint_states · /imu</text>
+
+    <rect x="282" y="452" width="290" height="92" rx="4" fill="#fff5f3" stroke="#D93A24" stroke-width="2"/>
+    <text x="298" y="478" font-size="17" font-weight="800" fill="#D93A24">HealthTask <tspan font-size="13.5">P4 (50 ms)</tspan></text>
+    <text x="298" y="500" font-size="13.5" fill="#58524a">Control heartbeat 감시 · 스택 워터마크</text>
+    <text x="298" y="524" font-size="13" fill="#D93A24" font-weight="700">스톨 시 MOE OFF + 300.2 ms IWDG 리셋</text>
+
+    <!-- 오른쪽: 출력 & 진단 -->
+    <text x="614" y="80" font-size="14" font-weight="800" fill="#D93A24" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">ACTUATION &amp; SAFETY</text>
+    <g fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.8">
+      <rect x="612" y="94" width="196" height="106" rx="3" stroke="#D93A24" stroke-width="2.2"/>
+      <rect x="612" y="232" width="196" height="106" rx="3"/>
+      <rect x="612" y="370" width="196" height="174" rx="3"/>
+    </g>
+    <text x="626" y="122" font-size="16" font-weight="800" fill="#D93A24">TIM1 18 kHz PWM</text>
+    <text x="626" y="145" font-size="13" fill="#58524a">4,667 스텝 고해상도</text>
+    <text x="626" y="166" font-size="13" fill="#58524a">→ Cytron MDD3A</text>
+    <text x="626" y="186" font-size="12.5" fill="#D93A24" font-weight="700">BDTR.MOE 즉시 차단</text>
+
+    <text x="626" y="260" font-size="16" font-weight="800">길이-1 Mailbox</text>
+    <text x="626" y="284" font-size="13" fill="#58524a">속도 명령 덮어쓰기</text>
+    <text x="626" y="304" font-size="13" fill="#58524a">상태 스냅샷 전송</text>
+    <text x="626" y="324" font-size="13" fill="#58524a">IMU 큐 (lock-free)</text>
+
+    <text x="626" y="398" font-size="16" font-weight="800">비침습 진단</text>
+    <text x="626" y="422" font-size="13" fill="#58524a">• SWD 핫플러그 RAM</text>
+    <text x="626" y="444" font-size="13" fill="#58524a">  실시간 메트릭 덤프</text>
+    <text x="626" y="468" font-size="13" fill="#58524a">• USART2 230,400</text>
+    <text x="626" y="490" font-size="13" fill="#58524a">  독립 디버그 콘솔</text>
+    <text x="626" y="514" font-size="13" fill="#1F1C19" font-weight="700">• HSE 3초 대기 부팅</text>
+
+    <!-- 화살표 -->
+    <g fill="none" stroke="#1F1C19" stroke-width="2" marker-end="url(#mk)">
+      <path d="M227,258 L278,258"/>
+      <path d="M227,376 L278,376"/>
+      <path d="M427,300 L427,326"/>
+      <path d="M572,258 L608,274"/>
+      <path d="M572,376 L608,308"/>
+    </g>
+    <g fill="none" stroke="#D93A24" stroke-width="2.6" marker-end="url(#mr)">
+      <path d="M227,140 L278,140"/>
+      <path d="M572,146 L608,146"/>
+      <path d="M227,498 L278,498"/>
+      <path d="M427,452 L427,432 L252,432 L252,175 L278,175"/>
+    </g>
+
+    <!-- 하단 요약 -->
+    <rect x="8" y="564" width="804" height="48" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
+    <text x="26" y="594" font-size="15.5" fill="#1F1C19"><tspan font-weight="800" fill="#D93A24">핵심 실측:</tspan>  PI+FF 속도 오차 <tspan font-weight="800">0.137%</tspan>  ·  배터리 ADC 오차 <tspan font-weight="800">+0.3%</tspan>  ·  UART 유실 <tspan font-weight="800">0건</tspan>  ·  런타임 malloc <tspan font-weight="800">0 byte</tspan></text>
+  </svg>
