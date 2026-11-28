@@ -1,295 +1,1282 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Building Maknae — Next Year Robotics</title>
-<meta name="description" content="Six months of building Maknae, a low-cost mobile robot that helps older adults carry things, fetch items, and keep in touch with family.">
-<meta name="theme-color" content="#FCFAF6">
-<link rel="canonical" href="https://next-year-robotics.github.io/maknae/en/">
-<link rel="alternate" hreflang="en" href="https://next-year-robotics.github.io/maknae/en/">
-<link rel="alternate" hreflang="ko" href="https://next-year-robotics.github.io/maknae/">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../article.css?v=66e6ca85fc">
-<script src="../article.js" defer></script>
+<meta content="How I spent six months and a starting budget of $749.12 building Maknae on my own, a mobile robot for older adults with limited mobility." name="description"/>
+<link href="https://next-year-robotics.github.io/maknae/en/" rel="canonical"/>
+<link href="https://next-year-robotics.github.io/maknae/" hreflang="ko" rel="alternate"/>
+<link href="https://next-year-robotics.github.io/maknae/en/" hreflang="en" rel="alternate"/>
+<meta content="article" property="og:type"/>
+<meta content="Maknae — A low-cost (!?) mobile manipulator that helps older adults" property="og:title"/>
+<meta content="Six months, one builder, and a $749.12 starting budget to build a robot that helps older adults." property="og:description"/>
+<meta content="https://next-year-robotics.github.io/maknae/en/" property="og:url"/>
+<meta content="https://next-year-robotics.github.io/maknae/media/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FCFAF6" name="theme-color"/>
+<link href="../../favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="../article.css?v=61e50eae71" rel="stylesheet"/>
+<script id="rail-data" type="application/json">{"seed":1000000,"seedDate":"2026-06-03","from":"2026-06-01","to":"2026-11-30","range":{"min":-600000,"max":1100000},"caps":["Outing companion","Indoor errands","Check-ins & SOS","Safe autonomous driving","Friendly interface"],"capIcons":["../media/gen/cap_follow-256.webp","../media/gen/cap_errand-256.webp","../media/gen/cap_sos-256.webp","../media/gen/cap_nav-256.webp","../media/gen/cap_ui-256.webp"],"days":{"2026-06-03":{"tx":[[1000000,"Savings from tutoring physics","in"]],"chg":[],"bal":1000000,"acc":0,"cap":[0,0,0,0,0],"level":0.0,"stage":"","img":"","rec":1,"night":0},"2026-06-05":{"tx":[[-51221,"AliExpress · motors, buck, E-stop",""],[-487432,"Devicemart · Pi 5 and battery",""]],"chg":[],"bal":461347,"acc":0,"cap":[0,0,0,0,0],"level":0.0,"stage":"","img":"","rec":3,"night":0},"2026-06-17":{"tx":[],"chg":["+ Two-tier wire cart","+ Two underside motors and drive wheels"],"bal":461347,"acc":0,"cap":[0.08,0,0,0,0],"level":0.016,"stage":"Two-tier wire cart prototype","img":"../media/101-stage_tray.png","rec":59,"night":0},"2026-06-20":{"tx":[[-391418,"SO-ARM101 Pro",""],[-9853,"PD trigger and 12 V buck",""]],"chg":[],"bal":60076,"acc":0,"cap":[0.08,0.1,0,0,0],"level":0.036,"stage":"Two-tier wire cart prototype","img":"../media/101-stage_tray.png","rec":117,"night":0},"2026-06-27":{"tx":[],"chg":[],"bal":60076,"acc":0,"cap":[0.12,0.1,0,0,0],"level":0.044,"stage":"Two-tier wire cart prototype","img":"../media/101-stage_tray.png","rec":141,"night":8},"2026-07-04":{"tx":[],"chg":[],"bal":60076,"acc":0,"cap":[0.18,0.15,0,0,0],"level":0.066,"stage":"Two-tier wire cart prototype","img":"../media/101-stage_tray.png","rec":160,"night":8},"2026-07-21":{"tx":[],"chg":["+ C920 distortion calibration and ArUco following"],"bal":60076,"acc":0,"cap":[0.26,0.15,0,0,0],"level":0.082,"stage":"Cart proof of concept complete","img":"../media/101-stage_tray.png","rec":173,"night":8},"2026-07-25":{"tx":[[-39600,"NUCLEO-F446RE",""]],"chg":[],"bal":20476,"acc":0,"cap":[0.26,0.15,0,0,0],"level":0.082,"stage":"Cart proof of concept complete","img":"../media/101-stage_tray.png","rec":173,"night":8},"2026-07-31":{"tx":[[-77880,"Devicemart · wheels, hubs, hinges, bolts",""]],"chg":[],"bal":-57404,"acc":0,"cap":[0.26,0.15,0,0,0],"level":0.082,"stage":"Cart proof of concept complete","img":"../media/101-stage_tray.png","rec":180,"night":8},"2026-08-03":{"tx":[[-144892,"MISUMI · first frame order",""]],"chg":[],"bal":-202296,"acc":0,"cap":[0.26,0.15,0,0,0],"level":0.082,"stage":"Cart proof of concept complete","img":"../media/101-stage_tray.png","rec":197,"night":8},"2026-08-04":{"tx":[],"chg":[],"bal":-202296,"acc":0,"cap":[0.26,0.25,0,0,0],"level":0.102,"stage":"Cart proof of concept complete","img":"../media/101-stage_tray.png","rec":206,"night":12},"2026-08-13":{"tx":[],"chg":["− Wire cart","+ 2020 frame and four corner casters"],"bal":-202296,"acc":0,"cap":[0.3,0.25,0,0,0],"level":0.11,"stage":"2020 frame assembled","img":"../media/100-stage_frame6.png","rec":259,"night":29},"2026-08-16":{"tx":[],"chg":["+ Spring swingarms and two Pololu drive wheels"],"bal":-202296,"acc":0,"cap":[0.36,0.25,0,0,0],"level":0.122,"stage":"2020 frame · six contact points","img":"../media/100-stage_frame6.png","rec":281,"night":32},"2026-08-20":{"tx":[[-34333,"AliExpress · IMU, buck, fuses, wire",""]],"chg":[],"bal":-236629,"acc":0,"cap":[0.36,0.25,0,0,0],"level":0.122,"stage":"2020 frame · six contact points","img":"../media/100-stage_frame6.png","rec":291,"night":42},"2026-08-22":{"tx":[],"chg":[],"bal":-236629,"acc":0,"cap":[0.45,0.25,0,0.3,0],"level":0.2,"stage":"2020 frame · six contact points","img":"../media/100-stage_frame6.png","rec":296,"night":44},"2026-08-29":{"tx":[],"chg":["+ Logitech C920 (front)"],"bal":-236629,"acc":0,"cap":[0.6,0.25,0,0.3,0],"level":0.23,"stage":"Front C920 mounted","img":"../media/098-stage_cam.png","rec":328,"night":45},"2026-08-30":{"tx":[[-14410,"Replacement MDD3A","acc"],[-26681,"Two replacement encoder motors","acc"]],"chg":[],"bal":-277720,"acc":41091,"cap":[0.6,0.25,0,0.3,0],"level":0.23,"stage":"Front C920 mounted","img":"../media/098-stage_cam.png","rec":334,"night":45},"2026-09-19":{"tx":[],"chg":[],"bal":-277720,"acc":41091,"cap":[0.6,0.25,0,0.3,0],"level":0.23,"stage":"Front C920 mounted","img":"../media/098-stage_cam.png","rec":357,"night":45},"2026-09-22":{"tx":[[-75470,"Extrusion machining, JST, C270",""]],"chg":[],"bal":-353190,"acc":41091,"cap":[0.6,0.25,0,0.3,0],"level":0.23,"stage":"Front C920 mounted","img":"../media/098-stage_cam.png","rec":359,"night":45},"2026-09-26":{"tx":[],"chg":["+ Rev B perfboard and ICM-42688-P IMU"],"bal":-353190,"acc":41091,"cap":[0.6,0.25,0,0.4,0],"level":0.25,"stage":"Rev B electronics installed","img":"../media/097-stage_board6.png","rec":378,"night":53},"2026-09-27":{"tx":[],"chg":[],"bal":-353190,"acc":41091,"cap":[0.6,0.25,0.7,0.4,0.35],"level":0.46,"stage":"Rev B electronics installed","img":"../media/097-stage_board6.png","rec":385,"night":53},"2026-10-28":{"tx":[[-44806,"MISUMI · frame reinforcement hardware (Oct 1–8)",""]],"chg":["+ Top plate, SO-101, and C270 mast"],"bal":-397996,"acc":41091,"cap":[0.6,0.5,0.7,0.4,0.35],"level":0.51,"stage":"Arm and L-shaped mast installed","img":"../media/095-stage_arm_mast.png","rec":420,"night":56},"2026-10-31":{"tx":[],"chg":[],"bal":-397996,"acc":41091,"cap":[0.6,0.5,0.7,0.45,0.35],"level":0.52,"stage":"Arm and L-shaped mast installed","img":"../media/095-stage_arm_mast.png","rec":477,"night":71},"2026-11-04":{"tx":[],"chg":[],"bal":-397996,"acc":41091,"cap":[0.6,0.7,0.7,0.45,0.35],"level":0.56,"stage":"Arm and L-shaped mast installed","img":"../media/095-stage_arm_mast.png","rec":507,"night":80},"2026-11-06":{"tx":[[-99000,"RPLIDAR C1",""]],"chg":[],"bal":-496996,"acc":41091,"cap":[0.6,0.7,0.7,0.45,0.35],"level":0.56,"stage":"Arm and L-shaped mast installed","img":"../media/095-stage_arm_mast.png","rec":507,"night":80},"2026-11-08":{"tx":[],"chg":["− One front caster","↔ Moved remaining front caster to center"],"bal":-496996,"acc":41091,"cap":[0.6,0.7,0.7,0.55,0.35],"level":0.58,"stage":"Five-point base conversion","img":"../media/096-stage_arm_mast_5pt.png","rec":507,"night":80},"2026-11-10":{"tx":[],"chg":["+ RPLIDAR C1 (middle shelf)"],"bal":-496996,"acc":41091,"cap":[0.75,0.7,0.7,0.85,0.35],"level":0.67,"stage":"Finished build (+ RPLIDAR C1)","img":"../media/099-stage_final.png","rec":521,"night":80},"2026-11-15":{"tx":[],"chg":[],"bal":-496996,"acc":41091,"cap":[0.75,0.85,0.7,0.85,0.35],"level":0.7,"stage":"Finished build (+ RPLIDAR C1)","img":"../media/099-stage_final.png","rec":532,"night":80},"2026-11-16":{"tx":[],"chg":[],"bal":-496996,"acc":41091,"cap":[0.85,0.85,0.85,0.85,0.9],"level":0.86,"stage":"Finished build (+ RPLIDAR C1)","img":"../media/099-stage_final.png","rec":535,"night":80}},"currency":"USD","krwPerUsd":1334.9000638861003}</script>
+<script defer="" src="../article.js?v=480847e5fe"></script>
 </head>
 <body>
+<div aria-hidden="true" class="logbar" id="logbar"><span id="bDate"></span><span id="bBal"></span><span id="bStage"></span><i><b id="bLv"></b></i></div>
 <header class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
       <a class="home-link" href="../../">Next Year Robotics</a>
       <h1>Maknae</h1>
-      <p class="dek">Building a low-cost mobile manipulator to help older adults</p>
-      <p class="byline"><time datetime="2026-11">November 2026</time><a href="https://github.com/next-year-robotics/mobile-robot">Source code</a><a href="../slides/" hreflang="ko">Slides in Korean</a><a href="../" lang="ko" hreflang="ko">한국어</a></p>
+      <p class="dek">A low-cost<span class="q">(!?)</span> mobile manipulator that also lends older adults a hand</p>
+      <p class="byline"><time datetime="2026-11">November 2026</time><a href="https://github.com/next-year-robotics/mobile-robot">Source code</a><a href="../slides/" hreflang="ko">Slides in Korean</a><a href="../" hreflang="ko" lang="ko">한국어</a></p>
       <div class="lead">
-        <p>Maknae is a small mobile robot for older adults with limited mobility. It carries bags on outings, fetches items around the house, and tells family members when an outing starts or an SOS is triggered.</p>
-        <p>On June 3, 2026, I started with about $749 saved from work as a physics teaching assistant. Over six months I built the chassis, electronics, firmware, ROS 2 stack, arm, Android app, caregiver dashboard, and 3D avatar. The parts receipts came to about $1,121.</p>
+        <p>Maknae is a small mobile robot that works alongside older adults who have trouble getting around. Outside, it carries their things and walks with them. At home, they can ask from where they’re sitting: “Maknae, bring me my pill case.” When they head out or send an SOS, their family gets a notification on their phones.</p>
+        <p>On June 3, 2026, I started with $749.12 I’d saved working as a teaching assistant at a tutoring academy. I built it all on my own: chassis, electronics, firmware, ROS 2, robot arm, app for older adults, caregiver dashboard, and 3D avatar. By November, the receipts added up to $1,121.43.</p>
+        <p>I’ve written down why I made it, what it does now, and where I got stuck over those six months and how I got past it. As you scroll through the build, the calendar turns with you, showing how much money I had left and what the robot looked like that day.</p>
       </div>
     </div>
-    <figure class="hero-fig"><img src="../media/w/081-maknae_cutout.webp" alt="The finished Maknae robot, with an aluminum frame, a robot arm, and a tall camera mast." width="653" height="1400" decoding="async"></figure>
+    <figure class="hero-fig">
+      <img alt="The finished Maknae, with a robot arm and tall camera mast on an aluminum frame." class="m" decoding="async" height="1400" src="../media/w/081-maknae_cutout.webp" width="653"/>
+    </figure>
   </div>
 </header>
 <main>
-  <section class="chapter" id="why" aria-labelledby="why-h">
+  <section aria-labelledby="why-h" class="chapter" id="why">
     <div class="wrap prose">
-      <h2 id="why-h">My grandmother rarely called first</h2>
-      <p>My grandmother lived on her own. I grew up hearing that I should call her more often, but when life got busy, both my father and I put off those calls. A Bodyfriend ad showed a son calling his mother after getting a notification that she had switched on her massage chair. A habit she already had gave him a reason to check in.</p>
-      <p>I wondered what else could fit into her routine. A robot could carry her groceries while she used her usual walking aid, bring small things within reach at home, and share an update with her family when she headed out.</p>
+      <h2 id="why-h">Grandma doesn’t call first</h2>
+      <p>Grandma lived on her own, away from the rest of us. She wasn’t one to call first, so growing up I kept hearing, “You should call Grandma more often.” Then a few busy days go by, and somehow the call keeps getting pushed back. My dad did the same thing I did.</p>
+      <p>Then I saw Bodyfriend’s “Checking In” ad.<sup class="fn"><a aria-label="Note 1" href="#fn1" id="fnr1">1</a></sup> A parent switches on their massage chair, their child gets a notification, and the child calls. An ordinary thing the parent already does becomes a reason to check in.</p>
+      <figure class="fig wide bf">
+        <ol>
+          <li>
+            <div class="bf-img pair"><img alt="" loading="lazy" src="../media/001-bf_01_run.jpg" style="object-position:34% center"/><img alt="" loading="lazy" src="../media/002-bf_02_notify.jpg" style="object-position:26% center"/></div>
+            <p class="bf-cap"><span class="bf-step">SCENE 01</span>A notification comes in mid-run — <b>“Your mother has started using her Bodyfriend chair.”</b></p>
+          </li>
+          <li>
+            <div class="bf-img"><img alt="" loading="lazy" src="../media/003-bf_03_call.jpg" style="object-position:62% center"/></div>
+            <p class="bf-cap"><span class="bf-step">SCENE 02</span><span class="sp-m">Mom</span>“Oh, my eldest! What are you calling at this hour for?”<span class="sp-s">Son</span><b>“Hey, Mom. You’re in the massage chair, huh?”</b></p>
+          </li>
+          <li>
+            <div class="bf-img"><img alt="" loading="lazy" src="../media/004-bf_04_mom.jpg" style="object-position:70% center"/></div>
+            <p class="bf-cap"><span class="bf-step">SCENE 03</span><span class="sp-m">Mom</span><b>“Oh, this is too funny…”</b> — and just like that, they’re catching up.</p>
+          </li>
+        </ol>
+        <figcaption class="fig-cap">Scenes from Bodyfriend’s “Checking In” ad, the mother’s story</figcaption>
+      </figure>
+      <blockquote class="pull">What if checking in were a little signal that came from an older person’s ordinary day, instead of one more call you have to remember to make?</blockquote>
+      <p>Grandma goes to the supermarket and makes trips out of town, too. What if the family got a ping when she left and when she got back? What if something could go along and carry her things, then bring her whatever was out of reach when she sat down at home? That’s where Maknae started.</p>
+      <h3>It isn’t just our family</h3>
+      <p>When I looked into it, I found three places where people could use help.</p>
       <figure class="fig wide stats">
-        <div class="stat">
-          <img class="m" src="../media/w/059-quiet_phone.webp" alt="" loading="lazy" width="1536" height="1024">
-          <p class="stat-k">Gaps in care</p><p class="stat-n">18.6<small>%</small></p>
-          <p class="stat-b">Share of older adults in South Korea reporting a functional limitation. Of that group, 47.2% received care. <a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156655081">2023 Survey of Older Persons</a></p>
-        </div>
-        <div class="stat">
-          <img class="m" src="../media/w/051-bedside_water.webp" alt="" loading="lazy" width="1536" height="1024">
-          <p class="stat-k">Falls at home</p><p class="stat-n">45.3<small>%</small></p>
-          <p class="stat-b">Share of fall injuries treated in emergency departments in the Korean 2025 survey that occurred at home. <a href="https://www.kdca.go.kr/bbs/kdca/41/312311/artclView.do">Korea Disease Control and Prevention Agency</a></p>
-        </div>
-        <div class="stat">
-          <img class="m" src="../media/w/056-one_hand_cart.webp" alt="" loading="lazy" width="1536" height="1024">
-          <p class="stat-k">Getting home safely</p><p class="stat-n">16,586</p>
-          <p class="stat-b">Missing-person reports involving people with dementia in South Korea in 2025. <a href="https://www.index.go.kr/unity/potal/eNara/sub/showStblGams3.do?freq=Y&amp;idx_cd=1610&amp;period=N&amp;stts_cd=161001">Korean National Police Agency data</a></p>
+        <div class="stat"><img alt="" class="m" decoding="async" height="1024" loading="lazy" src="../media/w/059-quiet_phone.webp" width="1536"/><p class="stat-k">Gaps in care</p><p class="stat-n">18.6<small>%</small><sup class="fn"><a aria-label="Note 2" href="#fn2" id="fnr2">2</a></sup></p><p class="stat-b"><b>Share of people aged 65 and over with a physical limitation</b>. Of that group, 47.2% receive care. Across all older adults, 32.8% live alone.</p></div>
+        <div class="stat"><img alt="" class="m" decoding="async" height="1024" loading="lazy" src="../media/w/051-bedside_water.webp" width="1536"/><p class="stat-k">Getting around at home</p><p class="stat-n">45.3<small>%</small><sup class="fn"><a aria-label="Note 3" href="#fn3" id="fnr3">3</a></sup></p><p class="stat-b"><b>Share of fall patients treated in emergency departments in 2025 who fell at home</b>. Even getting water or medication means getting up from the bed or sofa and making a short trip.</p></div>
+        <div class="stat"><img alt="" class="m" decoding="async" height="1024" loading="lazy" src="../media/w/056-one_hand_cart.webp" width="1536"/><p class="stat-k">Going out</p><p class="stat-n">16,586<small>reports</small><sup class="fn"><a aria-label="Note 4" href="#fn4" id="fnr4">4</a></sup></p><p class="stat-b"><b>Missing-person reports involving people with dementia in 2025</b>. People still need to shop and get to the doctor. If contact is lost during an outing, family members need a way to find out what happened.</p></div>
+      </figure>
+      <p>Checking in should happen without anyone having to think of it. Outings need a safety net. And for those short trips around the house, sometimes you just need someone to get up for you.</p>
+      <h3>“Couldn’t they just pull a shopping cart?”</h3>
+      <p>That’s the first thing people ask when I bring this up. The trouble is that supporting your weight and carrying your things end up being the job of the same device. Pull a shopping cart with one hand and you lean to that side, with only one hand left to catch yourself if you fall. Load the basket on a rollator and its center of gravity shifts forward and up, making it easier to tip at a threshold or on a slope.</p>
+      <figure class="fig diagram">
+        <div class="row" style="max-width:min(100%,1001px)">
+          <div class="cell" style="--ar:1.9259"><img alt="Loading a rollator shifts its center of gravity forward and up. Maknae carries the load separately and follows along." class="m" decoding="async" height="540" loading="lazy" src="../media/gen/silver_cart_maknae.en.svg" width="1040"/><figcaption>Loading a rollator shifts its center of gravity forward and up. Maknae carries the load separately and follows along.</figcaption></div>
         </div>
       </figure>
-      <h3>Could a shopping cart do the job?</h3>
-      <p>Pulling a cart takes a hand the walker may need for balance. Loading a cart can also move its center of mass forward and up. With Maknae, the walker keeps using their own cane or walker, and the robot carries the load and follows. At home, the arm handles short errands for things like water, medication, or glasses.</p>
+      <p>Maknae splits the two jobs. The robot carries the bags and follows, so the person’s hands are free for their cane. At home, it saves them getting up for water, medicine, or glasses. Outside, it tells the family when they leave and when they get back.</p>
+      <h3>The problem I decided to tackle</h3>
+      <p>The options I found each came up short somewhere. Carrying a load with a manual mobility aid can raise the risk of a fall, and it does nothing for errands or check-ins. Commercial care robots either cost tens of thousands of dollars, putting them out of reach for most individuals, or amount to a speaker that can talk without lending a hand. Smart-home devices mean a pile of apps, tiny buttons, and bits of English in the menus. In the end, older adults stop using them on their own.</p>
+      <p class="define">I wanted one affordable, friendly machine that could carry things on outings, run small errands at home, and keep family in the loop about both everyday comings and goings and emergencies.</p>
+      <p>That gave me five requirements.</p>
+      <ul class="pillars">
+        <li><img alt="" height="44" loading="lazy" src="../media/gen/cap_follow-256.webp" width="44"/><b>Outing companion</b><span>Carries the bags and walks alongside you — ArUco following and a five-point spring-suspended cart</span></li>
+        <li><img alt="" height="44" loading="lazy" src="../media/gen/cap_errand-256.webp" width="44"/><b>Indoor errands</b><span>Saves you getting up — SO-101 arm, a roughly $20 overhead webcam, and Gemini 4 with a control harness</span></li>
+        <li><img alt="" height="44" loading="lazy" src="../media/gen/cap_sos-256.webp" width="44"/><b>Check-ins &amp; SOS</b><span>Everyday updates without another call to remember — app with phone GPS, caregiver dashboard, and push notifications</span></li>
+        <li><img alt="" height="44" loading="lazy" src="../media/gen/cap_nav-256.webp" width="44"/><b>Safe autonomous driving</b><span>100 Hz STM32 control, gyroscope EKF, 2D SLAM with the RPLIDAR C1, and obstacle stops</span></li>
+        <li><img alt="" height="44" loading="lazy" src="../media/gen/cap_ui-256.webp" width="44"/><b>Friendly interface</b><span>Large tiles and text (20–28 sp and up), plus a 3D avatar you can talk to</span></li>
+      </ul>
     </div>
   </section>
-
-  <section class="chapter" id="what" aria-labelledby="what-h">
+  <section aria-labelledby="what-h" class="chapter" id="what">
     <div class="wrap prose">
       <h2 id="what-h">What Maknae does</h2>
-      <p>In Korean, <i>maknae</i> means the youngest member of the family. It also stands for Mobile Assistant for Kin’s Needs And Errands. The 450 × 400 × 368 mm aluminum chassis carries an SO-101 arm and a one-meter overhead camera mast. Two spring-loaded drive wheels and three casters keep the base in contact with the floor.</p>
-      <h3>Fetching a pill case</h3>
-      <p>In this illustrated scenario, Grandma asks from her seat. Maknae drives to the desk, aligns with a marker, finds the pill case with its overhead camera, and brings it back. The gripper waits for her to say “hand it to me.”</p>
-      <figure class="fig wide">
-        <video class="m" style="--ar:16/9" src="../media/errand_full_hq.mp4" poster="../media/errand_full_hq.jpg" controls playsinline preload="none" aria-label="Illustrated pill case errand">
-          <track kind="subtitles" src="../media/errand_full_hq.en.vtt" srclang="en" label="English" default>
-          <track kind="subtitles" src="../media/errand_full_hq.ko.vtt" srclang="ko" label="한국어">
-        </video>
-      </figure>
-      <h3>Taking the groceries home</h3>
-      <p>Starting a trip sends a notification to the family. Maknae carries the load and follows a printed marker on the bag. It stops if the marker leaves view. After ten seconds without reacquiring it, the system raises an SOS. The phone’s location is shared during the active SOS and deleted when the alert is cleared.</p>
-      <figure class="fig wide">
-        <video class="m" style="--ar:16/9" src="../media/outing_full_hq.mp4" poster="../media/outing_full_hq.jpg" controls playsinline preload="none" aria-label="Illustrated shopping trip and SOS">
-          <track kind="subtitles" src="../media/outing_full_hq.en.vtt" srclang="en" label="English" default>
-          <track kind="subtitles" src="../media/outing_full_hq.ko.vtt" srclang="ko" label="한국어">
-        </video>
-      </figure>
-      <h3>What the operator and family can see</h3>
-      <p>The development console shows the marker’s distance and bearing, wheel speeds, the lidar scan, the planned Nav2 route, and the overhead camera used by the arm. The older adult’s Android app uses large tiles for outings and SOS. The caregiver dashboard displays trip updates and active alerts.</p>
-      <figure class="fig wide">
-        <video class="m" style="--ar:2" src="../media/console_walkthrough.mp4" poster="../media/console_walkthrough.jpg" controls playsinline preload="none" aria-label="Development console walkthrough"></video>
-        <figcaption>The following, mapping, and arm tabs.</figcaption>
-      </figure>
-      <h3>A voice and a face</h3>
-      <p>ElevenLabs Agents turns a spoken Korean request into a tool call. The on-screen avatar uses three-vrm to render facial expressions and moves its mouth with the audio.</p>
-      <figure class="fig wide">
-        <video class="m" style="--ar:16/9" src="../media/avatar_reply.mp4" poster="../media/avatar_reply.jpg" controls playsinline preload="none" aria-label="Maknae's 3D avatar responds to an errand request">
-          <track kind="subtitles" src="../media/avatar_reply.en.vtt" srclang="en" label="English" default>
-          <track kind="subtitles" src="../media/avatar_reply.ko.vtt" srclang="ko" label="한국어">
-        </video>
-      </figure>
-      <h3 id="demo">Trying it on the physical robot</h3>
-      <p>The first clip shows an autonomous grasp. Maknae hears a request, finds a roll of clear tape on a knee, lifts it, and hands it over after a second voice command. I drove the robot remotely for the full fridge-to-bed route in the second clip. The remaining integration work is to make docking accurate enough for the arm to take over reliably. At an exhibition booth I also tested ArUco following and SOS delivery to both a phone and a tablet.</p>
-      <figure class="fig wide">
-        <div class="row">
-          <div class="cell" style="--ar:16/9"><video class="m" src="../media/039-knee_tape.mp4" poster="../media/038-knee_tape.jpg" controls playsinline preload="none" aria-label="Autonomous clear tape grasp and handover"></video><figcaption>Autonomous grasp and handover.</figcaption></div>
-          <div class="cell" style="--ar:16/9"><video class="m" src="../media/017-errand_soymilk-public.mp4" poster="../media/016-errand_soymilk-public.jpg" controls playsinline preload="none" aria-label="Teleoperated soy milk delivery"></video><figcaption>Teleoperated fridge-to-bed route.</figcaption></div>
+      <figure class="fig wide reveal">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="" class="m auto" data-src="../media/043-maknae_reveal.mp4" height="1080" loop="" muted="" playsinline="" poster="../media/042-maknae_reveal.jpg" preload="none" width="1920"></video>
+          </div>
         </div>
-        <div class="row">
-          <div class="cell" style="--ar:16/9"><video class="m" src="../media/013-booth_follow-public.mp4" poster="../media/012-booth_follow-public.jpg" controls playsinline preload="none" aria-label="Physical robot following a marker at a booth"></video><figcaption>Marker following with a live digital twin.</figcaption></div>
-          <div class="cell" style="--ar:16/9"><video class="m" src="../media/015-booth_sos-public.mp4" poster="../media/014-booth_sos-public.jpg" controls playsinline preload="none" aria-label="SOS demonstration with a phone and tablet"></video><figcaption>Loss of tracking triggers an SOS on both devices.</figcaption></div>
+      </figure>
+      <p>MAKNAE stands for <i lang="en">Mobile Assistant for Kin’s Needs And Errands</i>. In Korean, maknae is the youngest in the family. I wanted the robot to feel like a younger sibling or grandkid who’s around to run the little errands.</p>
+      <p>I mounted a six-axis SO-101 arm and a one-meter L-shaped camera mast on a 450 × 400 × 368 mm aluminum chassis. Two spring-loaded drive wheels and three casters sit on the floor. A Raspberry Pi 5 and STM32 handle driving, a laptop on top runs the arm, voice conversations, and avatar, and a cloud model recognizes objects. I first sketched out the home and outing scenarios on video, then tested the functions below on the real robot.</p>
+      <h3>Asking for a pill case without getting up</h3>
+      <p>Maknae hears a request for the pill case on the desk and lines itself up with the marker in front of it. It finds the pill case through the overhead camera, picks it up, and goes back to where it was asked. When it hears “hand it to me,” it opens the gripper.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="Asking for a pill case without getting up" class="m" controls="" height="1080" playsinline="" poster="../media/errand_full_hq.jpg" preload="none" src="../media/errand_full_hq.mp4" width="1920">
+              <track kind="subtitles" label="한국어" src="../media/errand_full_hq.ko.vtt" srclang="ko"/>
+              <track default="" kind="subtitles" label="English" src="../media/errand_full_hq.en.vtt" srclang="en"/>
+            </video>
+            <figcaption>Asking for a pill case without getting up</figcaption>
+          </div>
+        </div>
+      </figure>
+      <h3>Let Maknae carry the shopping</h3>
+      <p>When the older adult heads out, the family gets a notification. Maknae carries the bags and follows the marker on the bag. It stops if the marker drops out of sight. If it still can’t find it ten seconds later, it sends an SOS. Once the alert is cleared, the shared location is deleted.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="Let Maknae carry the shopping" class="m" controls="" height="1080" playsinline="" poster="../media/outing_full_hq.jpg" preload="none" src="../media/outing_full_hq.mp4" width="1920">
+              <track kind="subtitles" label="한국어" src="../media/outing_full_hq.ko.vtt" srclang="ko"/>
+              <track default="" kind="subtitles" label="English" src="../media/outing_full_hq.en.vtt" srclang="en"/>
+            </video>
+            <figcaption>Let Maknae carry the shopping</figcaption>
+          </div>
+        </div>
+      </figure>
+      <h3>Watching the robot drive from the console</h3>
+      <p>The Follow tab shows the distance and bearing to the marker as read by the camera, alongside both wheel speeds. The Map tab overlays the lidar scan and robot pose so I can see the path Nav2 planned. In the Arm tab I use the overhead feed to check where the gripper should go and test individual moves.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,1120px)">
+          <div class="cell" style="--ar:2.0000">
+            <video aria-label="Watching the robot drive from the console" class="m auto" data-src="../media/console_walkthrough.mp4" height="960" loop="" muted="" playsinline="" poster="../media/console_walkthrough.jpg" preload="none" width="1920"></video>
+            <figcaption>Watching the robot drive from the console</figcaption>
+          </div>
+        </div>
+      </figure>
+      <h3>A 3D avatar that listens and talks back</h3>
+      <p>Maknae answers on screen with a voice and a face. three-vrm moves the mouth with the amplitude of the audio and changes the expression. ElevenLabs Agents turns requests spoken in Korean into calls to the errand or guidance tools.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="A 3D avatar that listens and talks back" class="m" controls="" height="720" playsinline="" poster="../media/avatar_reply.jpg" preload="none" src="../media/avatar_reply.mp4" width="1280">
+              <track kind="subtitles" label="한국어" src="../media/avatar_reply.ko.vtt" srclang="ko"/>
+              <track default="" kind="subtitles" label="English" src="../media/avatar_reply.en.vtt" srclang="en"/>
+            </video>
+            <figcaption>A 3D avatar that listens and talks back</figcaption>
+          </div>
+        </div>
+      </figure>
+      <h3>The app for older adults and the caregiver dashboard</h3>
+      <p>The older adult starts an outing with a large tile. A caregiver can see outing notifications and SOS alerts on the web. The app gets the location from the older adult’s phone and shares it only while an SOS is active. The caregiver dashboard is read-only.</p>
+      <figure class="fig wide contain">
+        <div class="row" style="max-width:min(100%,526px)">
+          <div class="cell" style="--ar:0.4750"><img alt="Outing and SOS tiles in the app for older adults" class="m" decoding="async" height="1200" loading="lazy" src="../media/care_home.png" width="570"/><figcaption>Outing and SOS tiles in the app for older adults</figcaption></div>
+          <div class="cell" style="--ar:0.8396"><img alt="Active SOS in the caregiver dashboard" class="m" decoding="async" height="1191" loading="lazy" src="../media/w/care_sos.webp" width="1000"/><figcaption>Active SOS in the caregiver dashboard</figcaption></div>
+        </div>
+      </figure>
+      <h3 id="demo">Demos on the real robot</h3>
+      <p>These clips were filmed on the physical robot. In the first one, from the spoken request all the way to the handover, Maknae grasps the object on its own. A knee is an uneven surface with no height marker, and the clear tape wasn’t in the training data. Play the clip and the steps beside it light up as they happen.</p>
+      <figure class="fig wide sync" id="demo-tape">
+        <div class="sync-grid">
+          <video aria-label="Maknae picks up clear tape from a knee and hands it over" class="m" controls="" data-sync="tape" height="608" playsinline="" poster="../media/038-knee_tape.jpg" preload="none" src="../media/039-knee_tape.mp4" width="1080"></video>
+          <ol class="sync-steps" data-for="tape">
+            <li data-t0="0" data-t1="3.5"><b>Ask</b><span>“Maknae, can you bring me the clear tape?” The voice conversation calls the errand tool. If the robot is already busy, it says so right away.</span></li>
+            <li data-t0="3.5" data-t1="7"><b>Find</b><span>The arm tucks away to clear the overhead camera’s view. Gemini 4 finds the tape and the hole in the middle. If a hand overlaps the tape, Maknae stops and asks the person to move it.</span></li>
+            <li data-t0="7" data-t1="11.5"><b>Calculate</b><span>Maknae maps the image coordinates into the arm’s frame and checks that it can reach. It approaches at a height that clears other objects.</span></li>
+            <li data-t0="11.5" data-t1="19.5"><b>Grasp</b><span>It lowers slowly, accounting for 5–9 mm of sag under the arm’s own weight, slips the fixed finger through the hole, and closes the gripper. If it comes up empty, it tries again 3 mm lower.</span></li>
+            <li data-t0="19.5" data-t1="26.5"><b>Hold and wait</b><span>With the tape lifted, Maknae checks every 200 ms that it hasn’t slipped. It keeps the gripper closed until it hears “hand it to me.”</span></li>
+            <li data-t0="26.5" data-t1="34"><b>Hand it over</b><span>On “hand it to me,” Maknae opens the gripper into the person’s hand, then folds the arm back into its resting pose.</span></li>
+          </ol>
+        </div>
+      </figure>
+      <p>Next is the whole trip, bringing soy milk from the top of the fridge to the bedside. I drove the physical robot remotely for this run. I’d tested driving up to a marker, picking up an unfamiliar object, and returning to the start autonomously on their own. Stringing the three together is still on the list. The next job is to handle a few centimeters of docking error gracefully with an arm that reaches 30 cm.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="Drive to the fridge → pick up the soy milk carton → carry it to the bed → hand it over" class="m auto" data-src="../media/017-errand_soymilk-public.mp4" height="720" loop="" muted="" playsinline="" poster="../media/016-errand_soymilk-public.jpg" preload="none" width="1280"></video>
+            <figcaption>Drive to the fridge → pick up the soy milk carton → carry it to the bed → hand it over</figcaption>
+          </div>
+        </div>
+      </figure>
+      <p>At the booth, someone held up a marker and Maknae followed them as they walked. When it lost track, the SOS popped up on the older adult’s phone and the caregiver’s tablet at the same time. I blurred the visitors’ faces.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,1989px)">
+          <div class="cell" style="--ar:1.7763">
+            <video aria-label="Maknae follows a marker across the exhibition floor alongside its live digital twin" class="m auto" data-src="../media/013-booth_follow-public.mp4" height="608" loop="" muted="" playsinline="" poster="../media/012-booth_follow-public.jpg" preload="none" width="1080"></video>
+            <figcaption>Maknae follows a marker across the exhibition floor alongside its live digital twin</figcaption>
+          </div>
+          <div class="cell" style="--ar:1.7763">
+            <video aria-label="The lost marker triggers an SOS on the older adult’s phone and the caregiver’s tablet" class="m auto" data-src="../media/015-booth_sos-public.mp4" height="608" loop="" muted="" playsinline="" poster="../media/014-booth_sos-public.jpg" preload="none" width="1080"></video>
+            <figcaption>The lost marker triggers an SOS on the older adult’s phone and the caregiver’s tablet</figcaption>
+          </div>
         </div>
       </figure>
     </div>
   </section>
-
-  <section class="chapter" id="log" aria-labelledby="log-h">
-    <div class="wrap prose">
-      <h2 id="log-h">Six months at the workbench</h2>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-06">June 2026</time></p>
-        <h3>A wire cart, two motors, and a small screen</h3>
-        <p>I drilled mounting holes in a wire cart and bolted on two encoder motors. The ESP32-S3 ran a 50 Hz control loop, and its TFT screen showed the target and measured wheel speeds while I walked alongside it. The encoder readings agreed, yet the chassis drifted 40 cm over 87.8 cm of forward travel. The wire base flexed and the wheels lost traction. For the SO-101 arm I used a USB-C PD trigger and a buck converter to get 12 V from a power bank for about $7.</p>
-        <figure class="fig">
-          <video class="m" style="--ar:16/9" src="../media/trolley_wheel_slip.mp4" poster="../media/trolley_wheel_slip.jpg" controls playsinline preload="none" aria-label="The test cart's drive wheels slipping"></video>
+  <section aria-labelledby="log-h" class="chapter" id="log">
+    <div class="wrap">
+      <div class="prose">
+        <h2 id="log-h">Six months at the workbench</h2>
+        <p>I took it one function at a time, testing the important bits on the real thing and changing the design whenever I hit a wall. The bars below show what got in the way at each stage, what got me past it, and when.</p>
+        <figure class="fig wide roadmap">
+          <div class="rm-months"><span style="left:0.00%">Jun</span><span style="left:16.48%">Jul</span><span style="left:33.52%">Aug</span><span style="left:50.55%">Sep</span><span style="left:67.03%">Oct</span><span style="left:84.07%">Nov</span></div>
+          <ol>
+            <li><span class="rm-ph">Cart proof of concept</span><span class="rm-track"><i style="left:1.65%;width:25.82%"></i></span><span class="rm-txt"><s>The wire mesh flexes and the drive wheels spin</s> → 2020 aluminum extrusion and spring suspension</span></li>
+            <li><span class="rm-ph">Frame &amp; MCU</span><span class="rm-track"><i style="left:17.03%;width:30.77%"></i></span><span class="rm-txt"><s>One 50 Hz ESP32 superloop</s> → STM32, static FreeRTOS at 100 Hz, and micro-ROS</span></li>
+            <li><span class="rm-ph">Manipulator</span><span class="rm-track"><i style="left:10.44%;width:81.87%"></i></span><span class="rm-txt"><s>ACT fails with new objects and lighting</s> → Gemini 4 semantic pointing and a deterministic control harness</span></li>
+            <li><span class="rm-ph">Electronics &amp; hardware</span><span class="rm-track"><i style="left:45.60%;width:37.91%"></i></span><span class="rm-txt"><s>Six points of contact, overcurrent, and bad breadboard connections</s> → Five points of contact, replacement parts, and the KiCad Rev B perfboard</span></li>
+            <li><span class="rm-ph">Sensor fusion &amp; SLAM</span><span class="rm-track"><i style="left:68.13%;width:20.88%"></i></span><span class="rm-txt"><s>Wheel rotation off by 12.5% and no obstacle detection</s> → Gyroscope EKF and RPLIDAR C1</span></li>
+            <li><span class="rm-ph">Care platform</span><span class="rm-track"><i style="left:46.70%;width:45.60%"></i></span><span class="rm-txt"><s>The cost of separate GPS and the awkwardness of talking to thin air</s> → Phone GPS app, caregiver PWA, and Maknae’s 3D avatar</span></li>
+          </ol>
         </figure>
-      </article>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-07">July 2026</time></p>
-        <h3>From a proof of concept to a chassis</h3>
-        <p>I tested ArUco alignment and grasp sequencing in Gazebo while getting the physical prototype to follow a marker. On July 31 the wheel, hub, and hinge order took the balance below zero. The next chassis used 2020 aluminum extrusion and spring-loaded drive wheels to keep both wheels on the floor.</p>
-      </article>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-08">August 2026</time></p>
-        <h3>Deterministic timing and an expensive wiring lesson</h3>
-        <p>I moved wheel control to an STM32F446RE with static FreeRTOS. A hardware timer drives the 100 Hz loop, dedicated timers read the encoders, and micro-ROS carries commands and telemetry to the Raspberry Pi over UART. An overcurrent incident cost about $31 in replacement parts and led to a fused supply and a dedicated interface board.</p>
-        <p>I also tested ACT on 70 recorded demonstrations. It struggled with unfamiliar objects and lighting, so I gave the vision model a smaller job. It identifies the object and returns a point, while the arm code computes the motion.</p>
-      </article>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-09">September 2026</time></p>
-        <h3>KiCad, perfboard, and a phone for GPS</h3>
-        <p>Vibration broke contacts on the breadboard. I drew the Rev B interface board in KiCad and soldered it on perfboard. I designed a 400 × 450 × 15 mm plywood top plate with 17 mounting holes and had it cut on a CNC router. For location sharing I used the existing Android phone instead of adding a separate GNSS modem and data plan.</p>
-        <figure class="fig"><img class="m" style="--ar:16/9;object-fit:contain" src="../media/090-baseplate_drawing.png" alt="Technical drawing of the CNC-cut plywood top plate." loading="lazy"><figcaption>CNC drawing for the top plate.</figcaption></figure>
-      </article>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-10">October 2026</time></p>
-        <h3>Mounting the arm and starting from battery power</h3>
-        <p>The SO-101, power bank, and one-meter mast went on the top plate. I calibrated the Logitech C270 overhead camera with 26 checkerboard views and measured a reprojection error of 0.11 px. When the controller booted only with USB connected, I traced it to the external clock arriving after the startup timeout. Extending the clock wait fixed standalone startup.</p>
-      </article>
-      <article class="entry">
-        <p class="entry-meta"><time datetime="2026-11">November 2026</time></p>
-        <h3>Buying lidar and getting the pose right</h3>
-        <p>On November 6, I bought an RPLIDAR C1 for about $74. That put me about $372 over budget. I moved from four corner casters to three, leaving two sprung drive wheels and five floor contact points. An extended Kalman filter combined wheel speed and gyro data. On a 720° turn in place, the heading error fell from 90.3° to 3.7°.</p>
-        <p>Maknae built a 5 cm occupancy map on the physical robot with the lidar and slam_toolbox. I exercised map-based routes through Nav2 in Gazebo, with A* for planning and Regulated Pure Pursuit for path following. The final tests included the clear-tape grasp and an avatar gesture synchronized with the arm.</p>
-      </article>
+      </div>
+      <div class="log-grid">
+        <div class="log">
+          <article class="entry" data-d="2026-06-03" id="d0603">
+            <p class="entry-meta"><time datetime="2026-06-03">Jun 3</time><span>Starting line</span></p>
+            <h3><a href="#d0603">A $749.12 decision</a></h3>
+            <p>My starting money was the $749.12 I’d put away over a semester as a teaching assistant at a physics tutoring academy. I didn’t feel bad spending it. I like making robots for its own sake, and I learn a lot by doing it.</p>
+            <p>I wanted to reuse the Raspberry Pi, battery, STM32, and arm on the next robot. First, I’d see whether I could get it to drive and follow using the wire cart I already had at home.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,448px)">
+                <div class="cell" style="--ar:1.1779"><img alt="The first sketch, June 3. A two-wheel cart made from 2020 extrusion." class="m" decoding="async" height="517" loading="lazy" src="../media/143-build.jpg" width="609"/><figcaption>The first sketch, June 3. A two-wheel cart made from 2020 extrusion.</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-06-05" id="d0605">
+            <p class="entry-meta"><time datetime="2026-06-05">Jun 5</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0605">First shopping cart: about $404</a></h3>
+            <p>Two days into ordering parts, half my starting money was gone. I bought the computer (a Raspberry Pi 5), the power supply (a LiFePO₄ battery), and the drive hardware (encoder motors and a driver) all in one go.</p>
+            <figure class="receipt">
+              <div class="rc-head"><span>Devicemart + AliExpress</span><span>2026-06-04 ~ 06-05</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/074-pi5.png" width="44"/><span class="it"><b>Raspberry Pi 5 8 GB with cooler and case</b><small>Main computer and ROS 2 host</small></span><span class="pr">$234.85</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/061-batt.png" width="44"/><span class="it"><b>12.8 V, 9.9 Ah LiFePO₄ battery and charger</b><small>20 A BMS and 4-cell 6 A charger</small></span><span class="pr">$110.83</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/070-motor.png" width="44"/><span class="it"><b>Two JGB37-520 Hall encoder motors</b><small>12 V, 178 RPM drive motors</small></span><span class="pr">$22.08</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/068-mdd.png" width="44"/><span class="it"><b>Cytron MDD3A, WAGO connectors, and DC jacks</b><small>Dual-channel 3 A motor driver and accessories</small></span><span class="pr">$19.46</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/064-estop.png" width="44"/><span class="it"><b>E-stop, LED switch, and 5 V 5 A buck converter</b><small>Physical emergency stop and Pi power</small></span><span class="pr">$16.29</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$403.52</b></div>
+              <ul class="rc-note">
+                <li>15 items total, covering the computer, battery, and drive</li>
+                <li>Balance after ordering: <b>$345.60</b></li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:0.7500"><img alt="The Raspberry Pi 5 and cooler arrive" class="m" decoding="async" height="1600" loading="lazy" src="../media/104-build.jpg" width="1200"/><figcaption>The Raspberry Pi 5 and cooler arrive</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="LiFePO₄ battery wired with WAGO 221 connectors" class="m" decoding="async" height="1200" loading="lazy" src="../media/108-build.jpg" width="1600"/><figcaption>LiFePO₄ battery wired with WAGO 221 connectors</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-06-17" id="d0617">
+            <p class="entry-meta"><time datetime="2026-06-17">Jun 17</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0617">So I drilled holes in the wire mesh</a></h3>
+            <p>I wasn’t aiming for a finished robot on the first try. I flipped over a 440 × 360 × 540 mm two-tier wire cart I had at home, drilled holes for the brackets, and bolted on the motors and drive wheels. I crimped ferrules onto the wires so the connections would hold. The proof of concept was to see whether driving, reading encoders, and following a person would actually work before I built a proper chassis.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:0.7500"><img alt="Enlarging the bracket bolt holes with a drill" class="m" decoding="async" height="1600" loading="lazy" src="../media/105-build.jpg" width="1200"/><figcaption>Enlarging the bracket bolt holes with a drill</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="Mounting the L-brackets and motors to the wire base" class="m" decoding="async" height="1200" loading="lazy" src="../media/106-build.jpg" width="1600"/><figcaption>Mounting the L-brackets and motors to the wire base</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1387px)">
+                <div class="cell" style="--ar:1.3333"><img alt="The cart upside down, with two drive wheels and four corner casters" class="m" decoding="async" height="1200" loading="lazy" src="../media/107-build.jpg" width="1600"/><figcaption>The cart upside down, with two drive wheels and four corner casters</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="Crimping ferrules onto the power and motor leads" class="m" decoding="async" height="1200" loading="lazy" src="../media/109-build.jpg" width="1600"/><figcaption>Crimping ferrules onto the power and motor leads</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-06-20" id="d0620">
+            <p class="entry-meta"><time datetime="2026-06-20">Jun 20</time><span>Manipulator</span></p>
+            <h3><a href="#d0620">I bought the arm first. Power cost $7.38</a></h3>
+            <p>I bought the SO-ARM101 Pro for $293.22, about 40% of my starting money. Then I had to power it. The servos want 12 V, there’s no wall socket on a rolling cart, and power banks either don’t offer a 12 V output or are stuck at 5 V. A USB-C PD trigger negotiated 20 V from the power bank. A buck converter brought it down to 12 V. The two parts cost $7.38.</p>
+            <figure class="receipt">
+              <div class="rc-head"><span>AliExpress, Seeed Studio, and others</span><span>2026-06-20</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/060-arm.png" width="44"/><span class="it"><b>SO-ARM101 Pro (Assembled)</b><small>Six-DOF manipulator kit</small></span><span class="pr">$293.22</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/062-buck.png" width="44"/><span class="it"><b>Waterproof 24 V to 12 V, 5 A buck converter</b><small>C2D60K2412 · 60 W</small></span><span class="pr">$4.59</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/073-pd.png" width="44"/><span class="it"><b>ZY12PDN USB-C PD trigger</b><small>Negotiates 20 V from the power bank</small></span><span class="pr">$2.79</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$300.60</b></div>
+              <ul class="rc-note">
+                <li>Power banks either lack a 12 V PDO or put out a fixed 5 V.</li>
+                <li>The workaround was <b>PD at 20 V into a 12 V buck converter ($7.38)</b>.</li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,780px)">
+                <div class="cell" style="--ar:0.7500"><img alt="The PD trigger negotiates 20.1 V" class="m" decoding="async" height="1600" loading="lazy" src="../media/112-build.jpg" width="1200"/><figcaption>The PD trigger negotiates 20.1 V</figcaption></div>
+                <div class="cell" style="--ar:0.7500"><img alt="Running the SO-101 from the 12 V buck converter" class="m" decoding="async" height="1600" loading="lazy" src="../media/113-build.jpg" width="1200"/><figcaption>Running the SO-101 from the 12 V buck converter</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-06-27" id="d0627">
+            <p class="entry-meta"><time datetime="2026-06-27">Jun 27</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0627">Closing my first loop with a tiny screen</a></h3>
+            <p>I put the left and right speed targets and the measured encoder speeds on the ESP32-S3 board’s little TFT. That let me see what was happening as it drove, without lugging around a monitor. I raised the PWM bit by bit to find where the wheels started to turn (50–56 on the two sides), compensated with feedforward, and checked that both encoders followed a target of 250. Then came the one-meter straight-line test.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,682px)">
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="Closed-loop driving with target speed (tgt) and measured encoder speed (cur) on screen" class="m auto" data-src="../media/047-poc_tft_pid.mp4" height="960" loop="" muted="" playsinline="" poster="../media/046-poc_tft_pid.jpg" preload="none" width="540"></video>
+                  <figcaption>Closed-loop driving with target speed (tgt) and measured encoder speed (cur) on screen</figcaption>
+                </div>
+                <div class="cell" style="--ar:0.7500"><img alt="PWM dead-zone sweep and left/right speed display" class="m" decoding="async" height="1600" loading="lazy" src="../media/110-build.jpg" width="1200"/><figcaption>PWM dead-zone sweep and left/right speed display</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-06-27" id="d0627b">
+            <p class="entry-meta"><time datetime="2026-06-27">Jun 27</time><span>Cart proof of concept</span><span class="tag tag-fail">Failure · Wire mesh bends</span></p>
+            <h3><a href="#d0627b">It drifted 40 cm in a one-meter run</a></h3>
+            <p>Both encoders showed the same ticks, yet the chassis veered left. The tape measure said it had gone 87.8 cm forward and slid 40 cm left. That’s 24.5°.</p>
+            <p>The culprit was the 1.2 mm wire mesh. The reaction to the drive torque bent the mesh up near the bolts, taking weight off the wheels and letting them spin. The finite-element bending analysis showed the same thing. I decided to rebuild with a frame of 2020 extrusion and add spring suspension.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,908px)">
+                <div class="cell" style="--ar:1.7464">
+                  <video aria-label="Drive wheels spinning on the wire cart" class="m auto" data-src="../media/trolley_wheel_slip.mp4" height="418" loop="" muted="" playsinline="" poster="../media/trolley_wheel_slip.jpg" preload="none" width="730"></video>
+                  <figcaption>Drive wheels spinning on the wire cart</figcaption>
+                </div>
+              </div>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,924px)">
+                <div class="cell" style="--ar:1.7778">
+                  <video aria-label="Finite-element bending analysis showing the drive torque reaction bending the wire mesh up and lifting a wheel" class="m auto" data-src="../media/019-fea_poc_mesh.mp4" height="1080" loop="" muted="" playsinline="" poster="../media/018-fea_poc_mesh.jpg" preload="none" width="1920"></video>
+                  <figcaption>Finite-element bending analysis showing the drive torque reaction bending the wire mesh up and lifting a wheel</figcaption>
+                </div>
+              </div>
+              <div class="row" style="max-width:min(100%,1114px)">
+                <div class="cell" style="--ar:1.5474"><img alt="Straight-line test with a one-meter tape measure on the floor" class="m" decoding="async" height="1034" loading="lazy" src="../media/111-build.jpg" width="1600"/><figcaption>Straight-line test with a one-meter tape measure on the floor</figcaption></div>
+                <div class="cell" style="--ar:0.5950"><img alt="Measured trajectory: 40 cm left over 87.8 cm forward" class="m" decoding="async" height="1600" loading="lazy" src="../media/141-build.jpg" width="952"/><figcaption>Measured trajectory: 40 cm left over 87.8 cm forward</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-07-04" id="d0704">
+            <p class="entry-meta"><time datetime="2026-07-04">Jul 4</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0704">Everything on the cart, then into simulation</a></h3>
+            <p>I temporarily mounted the C920 camera, emergency stop, and SO-101 arm on the cart. In Gazebo Harmonic I simulated lining up with several markers and then picking up an object. All 78 automated tests passed. I also caught a gotcha: the camera dropped from 30 Hz to 4 Hz unless I pinned down the Fast DDS network settings.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:0.7500"><img alt="The C920, emergency stop, and SO-101 together on the cart for the first time" class="m" decoding="async" height="1600" loading="lazy" src="../media/115-build.jpg" width="1200"/><figcaption>The C920, emergency stop, and SO-101 together on the cart for the first time</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="Marker alignment and grasping in Gazebo Harmonic" class="m" decoding="async" height="1200" loading="lazy" src="../media/114-build.jpg" width="1600"/><figcaption>Marker alignment and grasping in Gazebo Harmonic</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-07-21" id="d0721">
+            <p class="entry-meta"><time datetime="2026-07-21">Jul 21</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0721">A checkerboard and a marker to follow</a></h3>
+            <p>I took a series of checkerboard photos to get the C920’s intrinsics and distortion coefficients. You need those to read distance from the marker’s size. Using one camera at 720p and 30 fps, the cart estimated the 3D distance and angle to a paper ArUco marker and drove right after it. That proved the core person-following pipeline could work without an expensive depth camera.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1658px)">
+                <div class="cell" style="--ar:1.7763">
+                  <video aria-label="The wire cart follows a paper ArUco marker" class="m auto" data-src="../media/045-poc_aruco-public.mp4" height="608" loop="" muted="" playsinline="" poster="../media/044-poc_aruco-public.jpg" preload="none" width="1080"></video>
+                  <figcaption>The wire cart follows a paper ArUco marker</figcaption>
+                </div>
+                <div class="cell" style="--ar:1.4129"><img alt="Calibrating C920 lens distortion with a checkerboard" class="m" decoding="async" height="1027" loading="lazy" src="../media/w/142-build.webp" width="1451"/><figcaption>Calibrating C920 lens distortion with a checkerboard</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-07-21" id="d0721b">
+            <p class="entry-meta"><time datetime="2026-07-21">Jul 21</time><span>Cart proof of concept</span></p>
+            <h3><a href="#d0721b">Wrapping up the proof of concept</a></h3>
+            <p>The wire cart proved three things. A single camera and a paper marker were enough to follow someone. Closed-loop encoder speed control and the simulation pipeline both worked. And I could power the arm separately from a single power bank.</p>
+            <p>It also exposed two limits. Thin wire mesh bends. And the ESP32 controller, with screen, control, and communications crammed into one 50 Hz loop, had neither an input filter nor a watchdog. I couldn’t leave it that way on a robot meant to drive alongside older adults. At the end of July I started designing the real chassis.</p>
+          </article>
+          <article class="entry" data-d="2026-07-25" id="d0725">
+            <p class="entry-meta"><time datetime="2026-07-25">Jul 25</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0725">From ESP32 to STM32, from 50 to 100 Hz</a></h3>
+            <p>Safety came first on the main controller. I used the NUCLEO-F446RE I’d bought on July 2 for $29.67 to build the real-time control and hardware safety layers from scratch. To be fair, micro-ROS and FreeRTOS both run on an ESP32. I wanted hardware encoder counters, advanced control timers, and a more precise ADC. And working out the clock tree myself in CubeMX was the kind of fun I hadn’t had with Arduino.</p>
+            <figure class="fig tbl">
+              <table>
+                <thead>
+                  <tr><th></th><th>ESP32 PoC</th><th>STM32 on the main robot</th><th>Measured</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th>Execution model</th><td>Control, TFT, and LEDs in one loop() (up to 27 ms between iterations)</td><td>Static FreeRTOS triggered directly by TIM6 at 100 Hz</td><td>Zero overruns in 21 minutes</td></tr>
+                  <tr><th>Communications &amp; encoders</th><td>USB CDC at 115.2k with ASCII (String) and weak internal pull-ups</td><td>USART1 921.6k DMA · TIM2/3 ×4 (IC1F=4)</td><td>RTT 2.54 ms · ≤1 tick</td></tr>
+                  <tr><th>Hardware safety</th><td>Software-only millis() check at 500 ms</td><td>Independent watchdog (IWDG) and TIM1 MOE cutoff</td><td>Automatic reset in 300.2 ms</td></tr>
+                  <tr><th>Control &amp; sensors</th><td>10-bit PWM, ad hoc ×0.70 scale factor, and no IMU</td><td>18 kHz(4,667 step) PI+FF · SPI2 IMU · ADC</td><td>0.137% speed error</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p>The control interrupt’s worst-case execution time was 46.7 µs, or 0.47% of the 10 ms period. Dynamic allocation at runtime: 0 bytes. Over DMA at 921.6 kbps, 32,072 messages went back and forth in 600 seconds without a loss. If control stalls, the watchdog cuts motor output in 300.2 ms.</p>
+          </article>
+          <article class="entry" data-d="2026-07-31" id="d0731">
+            <p class="entry-meta"><time datetime="2026-07-31">Jul 31</time><span>Frame &amp; MCU</span><span class="tag tag-red">In the red since July 31</span></p>
+            <h3><a href="#d0731">Ordering the drive parts put me in the red</a></h3>
+            <p>I measured the motor bracket holes with calipers (3.86 mm), drew the spring suspension in CAD, then ordered wheels, hubs, and hinges. That order used up the last of the $749.12 I started with. Total spent: $792.12. Balance: <span class="money">−$43.00</span>. I was in the red from here on out.</p>
+            <figure class="receipt">
+              <div class="rc-head"><span>Devicemart · 14 items</span><span>2026-07-31</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/076-wheel.png" width="44"/><span class="it"><b>Two Pololu scooter wheels, 100 × 24 mm</b><small>High-grip urethane drive tires</small></span><span class="pr">$23.40</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/076-wheel.png" width="44"/><span class="it"><b>Two Pololu 6 mm aluminum hubs</b><small>Precision adapters for the motor shafts</small></span><span class="pr">$20.44</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/075-profile.png" width="44"/><span class="it"><b>M5 stainless threaded rod and four 20-series hinges</b><small>Spring swingarm hinges and guide rods</small></span><span class="pr">$9.06</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/075-profile.png" width="44"/><span class="it"><b>Ten types of stainless bolts, nuts, and washers</b><small>Fasteners for the frame and motor mounts</small></span><span class="pr">$5.44</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$58.34</b></div>
+              <ul class="rc-note">
+                <li>The entire $749.12 starting budget was gone</li>
+                <li>Total spent: $792.12 · Balance: <b><span class="money">−$43.00</span></b></li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,780px)">
+                <div class="cell" style="--ar:0.7500"><img alt="CAD for the spring-suspended motor mount" class="m" decoding="async" height="1600" loading="lazy" src="../media/116-build.jpg" width="1200"/><figcaption>CAD for the spring-suspended motor mount</figcaption></div>
+                <div class="cell" style="--ar:0.7500"><img alt="Measuring a motor bracket hole with calipers" class="m" decoding="async" height="1600" loading="lazy" src="../media/117-build.jpg" width="1200"/><figcaption>Measuring a motor bracket hole with calipers</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-03" id="d0803">
+            <p class="entry-meta"><time datetime="2026-08-03">Aug 3</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0803">Test fit in SolidWorks, order from MISUMI</a></h3>
+            <p>I downloaded MISUMI’s STEP files and assembled them in SolidWorks first. I checked for interference and weighed the frame in CAD (2,603.9 g by itself), then ordered what I’d drawn: 21 lengths of extrusion, 68 corner brackets, and 296 bolts and nuts.</p>
+            <figure class="receipt">
+              <div class="rc-head"><span>MISUMI Korea · 17 items</span><span>2026-08-03 ~ 08-11</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/075-profile.png" width="44"/><span class="it"><b>21 lengths of black 2020/2040 extrusion</b><small>Cut to 360, 450, 410, 328, and 130 mm</small></span><span class="pr">$36.07</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/075-profile.png" width="44"/><span class="it"><b>68 corner brackets and four caster plates</b><small>Fasteners for the rigid three-tier frame</small></span><span class="pr">$33.86</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/075-profile.png" width="44"/><span class="it"><b>296 bolts, T-nuts, and square nuts</b><small>M5-8 / M5-15 / SPN205 / SQN205</small></span><span class="pr">$21.10</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/076-wheel.png" width="44"/><span class="it"><b>Four casters and two WM12-60 coil springs</b><small>Swivel casters and springs to load the drive wheels</small></span><span class="pr">$17.51</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$108.54</b></div>
+              <ul class="rc-note">
+                <li>Frame alone in SolidWorks: 2,603.9 g</li>
+                <li>Frame assembly started as soon as the parts arrived</li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1413px)">
+                <div class="cell" style="--ar:1.7003"><img alt="Mass and center of gravity in SolidWorks" class="m" decoding="async" height="941" loading="lazy" src="../media/w/102-build.webp" width="1600"/><figcaption>Mass and center of gravity in SolidWorks</figcaption></div>
+                <div class="cell" style="--ar:1.0169"><img alt="2020 frame and drive assembly" class="m" decoding="async" height="1420" loading="lazy" src="../media/w/103-build.webp" width="1444"/><figcaption>2020 frame and drive assembly</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,693px)">
+                <div class="cell" style="--ar:1.3333"><img alt="The extrusion, brackets, and wheels arrive" class="m" decoding="async" height="1200" loading="lazy" src="../media/119-build.jpg" width="1600"/><figcaption>The extrusion, brackets, and wheels arrive</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-04" id="d0804">
+            <p class="entry-meta"><time datetime="2026-08-04">Aug 4</time><span>Manipulator</span></p>
+            <h3><a href="#d0804">2:50 a.m., 70 episodes</a></h3>
+            <p>At first I thought one imitation-learning policy (ACT) could do all the indoor errands. I recorded 70 demonstrations myself with LeRobot 0.6.1, then submitted a Slurm job for 100,000 training steps on the university’s Seraph Aurora GPU cluster (RTX 3090). The trained policy could do things like “put the ball in the yellow bowl.”</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1263px)">
+                <div class="cell" style="--ar:1.7763">
+                  <video aria-label="The trained ACT policy does “put the ball in the yellow bowl”" class="m auto" data-src="../media/009-act_policy.mp4" height="608" loop="" muted="" playsinline="" poster="../media/008-act_policy.jpg" preload="none" width="1080"></video>
+                  <figcaption>The trained ACT policy does “put the ball in the yellow bowl”</figcaption>
+                </div>
+                <div class="cell" style="--ar:0.6531"><img alt="Recording demonstrations at 2:50 a.m." class="m" decoding="async" height="1600" loading="lazy" src="../media/118-build.jpg" width="1045"/><figcaption>Recording demonstrations at 2:50 a.m.</figcaption></div>
+              </div>
+            </figure>
+            <figure class="fig contain">
+              <div class="row" style="max-width:min(100%,1071px)">
+                <div class="cell" style="--ar:2.0597"><img alt="Undergraduate allocations on the university’s Seraph Aurora GPU cluster" class="m" decoding="async" height="536" loading="lazy" src="../media/147-seraph_gpu_status.png" width="1104"/><figcaption>Undergraduate allocations on the university’s Seraph Aurora GPU cluster</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1595px)">
+                <div class="cell" style="--ar:3.0667"><img alt="Uploading the dataset and submitting the Slurm job" class="m" decoding="async" height="360" loading="lazy" src="../media/148-seraph_upload_sbatch.png" width="1104"/><figcaption>Uploading the dataset and submitting the Slurm job</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1391px)">
+                <div class="cell" style="--ar:2.6746"><img alt="Training log on Seraph aurora-g4 (RTX 3090, 24 GB)" class="m" decoding="async" height="338" loading="lazy" src="../media/149-seraph_job_log.png" width="904"/><figcaption>Training log on Seraph aurora-g4 (RTX 3090, 24 GB)</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,953px)">
+                <div class="cell" style="--ar:1.8328"><img alt="Weights &amp; Biases learning curve for 100,000 ACT steps on Seraph (loss 0.055)" class="m" decoding="async" height="873" loading="lazy" src="../media/w/150-seraph_wandb.webp" width="1600"/><figcaption>Weights &amp; Biases learning curve for 100,000 ACT steps on Seraph (loss 0.055)</figcaption></div>
+              </div>
+            </figure>
+            <p>Then I’d move the camera a centimeter, or the sun or exposure would shift a little, and it fell apart. It couldn’t pick up a pill case, a water bottle, or glasses it hadn’t seen in the training data. Every home has different objects and different light. That made up my mind to change the design. I wrote about what replaced it on <a href="#d1104">November 4</a>.</p>
+          </article>
+          <article class="entry" data-d="2026-08-13" id="d0813">
+            <p class="entry-meta"><time datetime="2026-08-13">Aug 13</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0813">450 × 400 × 368 mm: assembling the main chassis</a></h3>
+            <p>I built the aluminum box frame with 68 corner brackets. I split the base into three bays and bolted a caster plate to each corner. The frame’s 21 lengths of extrusion didn’t give the way the wire mesh did, and the chassis rolled smoothly without twisting. Seventeen of that day’s photos were taken between midnight and 6 a.m.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,986px)">
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="Rolling the finished frame for the first time" class="m auto" data-src="../media/027-frame_roll.mp4" height="960" loop="" muted="" playsinline="" poster="../media/026-frame_roll.jpg" preload="none" width="540"></video>
+                  <figcaption>Rolling the finished frame for the first time</figcaption>
+                </div>
+                <div class="cell" style="--ar:1.3333"><img alt="The full black 2020 frame" class="m" decoding="async" height="1200" loading="lazy" src="../media/120-build.jpg" width="1600"/><figcaption>The full black 2020 frame</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,693px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Three bays underneath and a caster plate at each corner" class="m" decoding="async" height="1200" loading="lazy" src="../media/121-build.jpg" width="1600"/><figcaption>Three bays underneath and a caster plate at each corner</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-16" id="d0816">
+            <p class="entry-meta"><time datetime="2026-08-16">Aug 16</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0816">Springs to keep the wheels on the floor</a></h3>
+            <p>This was the fix for the wire mesh flexing. A 20-series hinge served as the pivot for each plywood swingarm. An M5 threaded rod guided a WM12-60 coil spring to press the drive wheel down. The springs take up the movement over bumps and dips, while the frame above stays level.</p>
+            <p>That gave me a 9.8 kg chassis resting on six points: four corner casters and two drive wheels in the middle. Those six points would come back to bite me.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,924px)">
+                <div class="cell" style="--ar:1.7778">
+                  <video aria-label="Finite-element analysis showing how the spring takes the load over bumps and dips to maintain traction" class="m auto" data-src="../media/021-fea_spring_susp.mp4" height="1080" loop="" muted="" playsinline="" poster="../media/020-fea_spring_susp.jpg" preload="none" width="1920"></video>
+                  <figcaption>Finite-element analysis showing how the spring takes the load over bumps and dips to maintain traction</figcaption>
+                </div>
+              </div>
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:0.7500"><img alt="Hinge, plywood swingarm, and WM12-60 spring assembly" class="m" decoding="async" height="1600" loading="lazy" src="../media/122-build.jpg" width="1200"/><figcaption>Hinge, plywood swingarm, and WM12-60 spring assembly</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="Pololu 100 mm wheel, 6 mm hub, and motor" class="m" decoding="async" height="1200" loading="lazy" src="../media/123-build.jpg" width="1600"/><figcaption>Pololu 100 mm wheel, 6 mm hub, and motor</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-20" id="d0820">
+            <p class="entry-meta"><time datetime="2026-08-20">Aug 20</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0820">3 a.m., one turn of a wheel by hand</a></h3>
+            <p>The Hall encoder outputs were open-drain, so I needed pull-up and pull-down resistors to get a usable signal. I filled a mini breadboard with resistors, put STM32’s TIM2 and TIM3 in hardware encoder mode, and turned each wheel by hand exactly one revolution to count the ticks. It came to 2,475.5 ticks per revolution. After turning the wheels back, the left was off by zero ticks and the right by one.</p>
+            <p>That day I also ordered the ICM-42688-P IMU, a 5 V buck converter, fuses, and 60 m of wire.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,986px)">
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="Turning a wheel through one revolution using a pointer" class="m auto" data-src="../media/049-wheel_cal.mp4" height="960" loop="" muted="" playsinline="" poster="../media/048-wheel_cal.jpg" preload="none" width="540"></video>
+                  <figcaption>Turning a wheel through one revolution using a pointer</figcaption>
+                </div>
+                <div class="cell" style="--ar:1.3333"><img alt="Pull-up and pull-down resistors on a mini breadboard" class="m" decoding="async" height="1200" loading="lazy" src="../media/124-build.jpg" width="1600"/><figcaption>Pull-up and pull-down resistors on a mini breadboard</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,746px)">
+                <div class="cell" style="--ar:1.4350"><img alt="TIM2 and TIM3 hardware encoder and filter settings in STM32CubeMX" class="m" decoding="async" height="1115" loading="lazy" src="../media/w/086-cubemx_pinout.webp" width="1600"/><figcaption>TIM2 and TIM3 hardware encoder and filter settings in STM32CubeMX</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-22" id="d0822">
+            <p class="entry-meta"><time datetime="2026-08-22">Aug 22</time><span>Frame &amp; MCU</span></p>
+            <h3><a href="#d0822">Five days to a direct micro-ROS link</a></h3>
+            <p>I started with the NUCLEO board on its own on August 18 and got 100 Hz PI + feedforward speed control running. By the 22nd, it was wired straight into the Raspberry Pi 5’s GPIO UART at 921,600 bps. There were no losses in 600 seconds of continuous transmission, and the round trip took 2.54 ms. I drove a triangle marked on the floor with tape to calibrate odometry. The effective wheel radius came out to 0.04979 m and the distance between wheels to 0.30912 m.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,780px)">
+                <div class="cell" style="--ar:0.7500"><img alt="Temporary wiring for the NUCLEO, Raspberry Pi 5, and MDD3A" class="m" decoding="async" height="1600" loading="lazy" src="../media/126-build.jpg" width="1200"/><figcaption>Temporary wiring for the NUCLEO, Raspberry Pi 5, and MDD3A</figcaption></div>
+                <div class="cell" style="--ar:0.7500"><img alt="Calibrating odometry with a taped triangle on the floor" class="m" decoding="async" height="1600" loading="lazy" src="../media/127-build.jpg" width="1200"/><figcaption>Calibrating odometry with a taped triangle on the floor</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-29" id="d0829">
+            <p class="entry-meta"><time datetime="2026-08-29">Aug 29</time><span>Frame &amp; MCU</span><span class="tag tag-next">I’ll buy it next year · Depth camera</span></p>
+            <h3><a href="#d0829">I couldn’t afford a depth camera</a></h3>
+            <p>A depth camera would have run around $300. I used the C920 I already had and a marker printed on paper. Given the marker size, PnP can work out its 3D distance, bearing, and which way it’s facing. That was enough to follow a person and line the robot up square with a marker.</p>
+            <p>When several behaviors ask the wheels for speed at once, twist_mux sorts them by priority. Emergency stop comes first (255), then gamepad (100), alignment (60), Nav2 (55), and following (50).</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,585px)">
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="The main chassis follows a paper marker" class="m auto" data-src="../media/025-frame_aruco.mp4" height="960" loop="" muted="" playsinline="" poster="../media/024-frame_aruco.jpg" preload="none" width="540"></video>
+                  <figcaption>The main chassis follows a paper marker</figcaption>
+                </div>
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="Automatically lining up square with the marker" class="m auto" data-src="../media/023-frame_align-public.mp4" height="960" loop="" muted="" playsinline="" poster="../media/022-frame_align-public.jpg" preload="none" width="540"></video>
+                  <figcaption>Automatically lining up square with the marker</figcaption>
+                </div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-08-30" id="d0830">
+            <p class="entry-meta"><time datetime="2026-08-30">Aug 30</time><span>Electronics &amp; hardware</span><span class="tag tag-red">Accident · About $31 in replacements</span></p>
+            <h3><a href="#d0830">I fried the MDD3A. There went another $31</a></h3>
+            <p>I hit an overcurrent fault while following a marker on the real robot. The MDD3A motor driver burned out, and one motor and one encoder went with it. The encoder output was stuck at 0.4 V. I paid $30.78 to replace them, practically in tears. After that I added a 5 A fuse and an SR540 reverse-polarity diode, and gave the MCU its own power rail. That’s what finally got me to design a proper interface board.</p>
+            <figure class="receipt acc">
+              <div class="rc-head"><span>Naver Pay + AliExpress (replacements after the fault)</span><span>2026-08-30 ~ 09-01</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/069-mdd2.png" width="44"/><span class="it"><b>Cytron MDD3A (second purchase)</b><small>Replaces the driver burned out by overcurrent</small></span><span class="pr">$10.79</span></li>
+                <li><img alt="" height="44" loading="lazy" src="../media/071-motor2.png" width="44"/><span class="it"><b>Two JGB37-520 Hall encoder motors</b><small>Replaced one motor and an encoder stuck at 0.4 V</small></span><span class="pr">$19.99</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$30.78</b></div>
+              <ul class="rc-note">
+                <li>What I learned to add: 5 A fuse, SR540 reverse-polarity diode, and a separate MCU supply</li>
+                <li>→ Straight to designing a proper interface board</li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Checking the driver right after the fault" class="m" decoding="async" height="1200" loading="lazy" src="../media/128-build.jpg" width="1600"/><figcaption>Checking the driver right after the fault</figcaption></div>
+                <div class="cell" style="--ar:0.7500"><img alt="Rewiring the replacement driver and checking power-up" class="m" decoding="async" height="1600" loading="lazy" src="../media/129-build.jpg" width="1200"/><figcaption>Rewiring the replacement driver and checking power-up</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-09-19" id="d0919">
+            <p class="entry-meta"><time datetime="2026-09-19">Sep 19</time><span>Electronics &amp; hardware</span></p>
+            <h3><a href="#d0919">Drawing a Rev B interface board in KiCad</a></h3>
+            <p>The breadboard lost contact just from vibration. I had to throw out the entire first round of PI tuning. So I drew a proper interface board in KiCad.</p>
+            <p>Star grounding keeps the high motor current apart from the ADC and encoder signals. A RECOM R-78E5.0 buck converter, 5 A glass fuse, and SR540 reverse-polarity diode protect the supply. I read battery voltage through a divider made with 1% resistors. The left and right encoder connectors have different pin counts, four and five, so I can’t plug them into the wrong sockets.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,746px)">
+                <div class="cell" style="--ar:1.4337"><img alt="Rev B schematic: power protection, battery divider, encoder pull-ups, and SPI2 for the IMU" class="m" decoding="async" height="1116" loading="lazy" src="../media/w/088-kicad_schematic.webp" width="1600"/><figcaption>Rev B schematic: power protection, battery divider, encoder pull-ups, and SPI2 for the IMU</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1453px)">
+                <div class="cell" style="--ar:1.2729"><img alt="90 × 70 mm perfboard layout" class="m" decoding="async" height="1257" loading="lazy" src="../media/w/087-kicad_pcb.webp" width="1600"/><figcaption>90 × 70 mm perfboard layout</figcaption></div>
+                <div class="cell" style="--ar:1.5209"><img alt="KiCad 3D model" class="m" decoding="async" height="1052" loading="lazy" src="../media/w/083-kicad_perfboard_3d.webp" width="1600"/><figcaption>KiCad 3D model</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-09-22" id="d0922">
+            <p class="entry-meta"><time datetime="2026-09-22">Sep 22</time><span>Electronics &amp; hardware</span></p>
+            <h3><a href="#d0922">I drew it. I paid someone to machine it</a></h3>
+            <p>A hand drill couldn’t get me the precision I needed for the overhead camera mast and top plate. I drew a third-angle projection with 17 symmetric Ø5.5 mm holes in a 400 × 450 × 15 mm sheet of plywood, made the DXF and DWG files myself, and had a workshop I knew cut it on their CNC. I paid a Naver Smart Store seller $17.60 to tap and drill wrench-access holes in the 1,000 mm and 600 mm extrusions. I also bought a Logitech C270 for the overhead view ($20.04) and JST-XH harnesses ($18.89).</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,390px)">
+                <div class="cell" style="--ar:0.7500"><img alt="The 15 mm plywood top plate, CNC-cut at a workshop I knew" class="m" decoding="async" height="1600" loading="lazy" src="../media/133-build.jpg" width="1200"/><figcaption>The 15 mm plywood top plate, CNC-cut at a workshop I knew</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1471px)">
+                <div class="cell" style="--ar:1.4147"><img alt="CNC top plate drawing (DXF, DWG, third-angle projection), 17 Ø5.5 mm holes, ±0.1 mm" class="m" decoding="async" height="1131" loading="lazy" src="../media/090-baseplate_drawing.png" width="1600"/><figcaption>CNC top plate drawing (DXF, DWG, third-angle projection), 17 Ø5.5 mm holes, ±0.1 mm</figcaption></div>
+                <div class="cell" style="--ar:1.4134"><img alt="Tapped and wrench-access hole drawing for the 2020 extrusion" class="m" decoding="async" height="1132" loading="lazy" src="../media/144-profile2020_drawing.png" width="1600"/><figcaption>Tapped and wrench-access hole drawing for the 2020 extrusion</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-09-26" id="d0926">
+            <p class="entry-meta"><time datetime="2026-09-26">Sep 26</time><span>Electronics &amp; hardware</span><span class="tag tag-next">I’ll buy it next year · Factory-made PCBs</span></p>
+            <h3><a href="#d0926">No PCB. Just me and a soldering iron at 1 a.m.</a></h3>
+            <p>The schematic and layout were done. I decided I’d save about $11 and ended up soldering perfboard into the small hours. Five two-layer 90 × 70 mm boards from JLCPCB would have cost the same $11 or so, even with shipping to Korea.</p>
+            <p>Once I was done, I had exactly one thought: I should’ve just paid the $11.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,616px)">
+                <div class="cell" style="--ar:1.1843"><img alt="1:21 a.m., soldering with KiCad open in front of me" class="m" decoding="async" height="1351" loading="lazy" src="../media/130-build.jpg" width="1600"/><figcaption>1:21 a.m., soldering with KiCad open in front of me</figcaption></div>
+              </div>
+              <div class="row" style="max-width:min(100%,1387px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Component side: RECOM buck converter, IMU, and JST connectors" class="m" decoding="async" height="1200" loading="lazy" src="../media/132-build.jpg" width="1600"/><figcaption>Component side: RECOM buck converter, IMU, and JST connectors</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="Enameled wire and star-ground wiring on the back" class="m" decoding="async" height="1200" loading="lazy" src="../media/131-build.jpg" width="1600"/><figcaption>Enameled wire and star-ground wiring on the back</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-09-27" id="d0927">
+            <p class="entry-meta"><time datetime="2026-09-27">Sep 27</time><span>Care platform</span><span class="tag tag-next">I’ll buy it next year · GPS/LTE module</span></p>
+            <h3><a href="#d0927">The app for older adults and the caregiver dashboard</a></h3>
+            <p>Getting a location during an outing would mean buying GPS and LTE hardware and paying for a data plan. I decided to use the location from the phone the person already had.</p>
+            <p>I kept the app rules simple: body text at least 20 sp, key text at least 28 sp, tiles at least 140 dp, and no English on screen except SOS. I tucked the fiddly parts, like registering places and setting up the connection, into the caregiver settings. On a Galaxy S26 Ultra, I measured SOS acknowledgments at 8.3–16.5 ms and reads of the cached location at 10–19 ms.</p>
+            <figure class="fig">
+              <div class="row n3" style="max-width:min(100%,1042px)">
+                <div class="cell" style="--ar:0.4750"><img alt="Home screen of the app for older adults" class="m" decoding="async" height="1200" loading="lazy" src="../media/092-home.png" width="570"/><figcaption>Home screen of the app for older adults</figcaption></div>
+                <div class="cell" style="--ar:0.4750"><img alt="Outing in progress" class="m" decoding="async" height="1200" loading="lazy" src="../media/w/094-trip-map.webp" width="570"/><figcaption>Outing in progress</figcaption></div>
+                <div class="cell" style="--ar:0.4750"><img alt="SOS sent" class="m" decoding="async" height="1200" loading="lazy" src="../media/093-sos_sent.png" width="570"/><figcaption>SOS sent</figcaption></div>
+                <div class="cell" style="--ar:0.8396"><img alt="SOS map in the caregiver dashboard" class="m" decoding="async" height="1191" loading="lazy" src="../media/w/091-dash_sos-map.webp" width="1000"/><figcaption>SOS map in the caregiver dashboard</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-10-28" id="d1028">
+            <p class="entry-meta"><time datetime="2026-10-28">Oct 28</time><span>Manipulator</span></p>
+            <h3><a href="#d1028">Bringing the arm and overhead camera mast together</a></h3>
+            <p>I mounted the SO-101 arm, one-meter L-shaped mast, C270 overhead camera, and power bank on the CNC-cut plywood top plate. I calibrated the C270 with 26 checkerboard images and got a reprojection error of 0.11 px. The arm takes 20 V over USB-C PD from a 100 W UGREEN power bank and steps it down to 12 V at 5 A. I reinforced the mast and top-plate brackets with a second MISUMI order ($33.57).</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1083px)">
+                <div class="cell" style="--ar:1.3333"><img alt="SO-101, 12 V power from USB-C PD, and the mast on the top plate" class="m" decoding="async" height="1200" loading="lazy" src="../media/134-build.jpg" width="1600"/><figcaption>SO-101, 12 V power from USB-C PD, and the mast on the top plate</figcaption></div>
+                <div class="cell" style="--ar:0.7500"><img alt="C270 overhead camera at the end of the one-meter L-shaped mast" class="m" decoding="async" height="1600" loading="lazy" src="../media/136-build.jpg" width="1200"/><figcaption>C270 overhead camera at the end of the one-meter L-shaped mast</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-10-31" id="d1031">
+            <p class="entry-meta"><time datetime="2026-10-31">Oct 31</time><span>Electronics &amp; hardware</span></p>
+            <h3><a href="#d1031">The robot that quit when I unplugged USB</a></h3>
+            <p>It only booted with ST-LINK USB plugged in. On battery power alone the MCU hung. It turned out to be the clock. On a standalone start, the clock from ST-LINK (MCO) came up more than 100 ms later, past the timeout for the external clock (HSE). I changed the startup code to give HSE up to three seconds. While testing power-up, I also found three missing jumpers and an intermittent short between enameled wires.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,560px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Lower electronics bay: Rev B board, NUCLEO, and Raspberry Pi 5" class="m" decoding="async" height="1200" loading="lazy" src="../media/137-build.jpg" width="1600"/><figcaption>Lower electronics bay: Rev B board, NUCLEO, and Raspberry Pi 5</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-11-04" id="d1104">
+            <p class="entry-meta"><time datetime="2026-11-04">November 4</time><span>Manipulator</span></p>
+            <h3><a href="#d1104">Gemini finds it. Code picks it up</a></h3>
+            <p>ACT fell apart when faced with something it hadn’t seen before. So I split the job in two. I left figuring out what an object was and where it was to the vision-language model. I left the precise calculations and safe motion to code. Here’s what happens when you say, “Bring me the pill case from the desk.”</p>
+            <ol class="flow">
+              <li><b>Measure the work surface.</b> The C270 overhead camera reads an 8 cm ArUco marker in seven frames and takes the median to estimate height and tilt.</li>
+              <li><b>Point out the object.</b> Gemini 4 returns JSON with just the object’s image coordinates and height and whether a person’s hand overlaps it. The error is 1–2 px.</li>
+              <li><b>Calculate and grasp.</b> GrabCut finds the object’s long axis so the gripper can line up. Six-axis inverse kinematics with 5–9 mm of sag compensation guides the grasp. If the gripper comes up empty, it goes 3 mm lower.</li>
+              <li><b>The state machine enforces the order.</b> Whatever the model says, the gripper can’t open without “hand it to me.”</li>
+            </ol>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,587px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Maknae picks up an unfamiliar soy milk carton in front of the fridge" class="m" decoding="async" height="1200" loading="lazy" src="../media/135-build.jpg" width="1600"/><figcaption>Maknae picks up an unfamiliar soy milk carton in front of the fridge</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-11-06" id="d1106">
+            <p class="entry-meta"><time datetime="2026-11-06">Nov 6</time><span>Sensor fusion &amp; SLAM</span></p>
+            <h3><a href="#d1106">I bought a 2D lidar</a></h3>
+            <p>I paid at 11:39 p.m. One SLAMTEC RPLIDAR C1, $74.16. That opened up all-around obstacle stops and SLAM, which I’d hit a wall on with just the camera and odometry.</p>
+            <p>I mounted it dead center on the middle shelf, 250 mm off the ground. I lined up four posts that crossed the scan plane to calibrate its position (12 mm RMS) and heading (177.5° yaw). That was the last purchase. Balance: <span class="money">−$372.31</span>.</p>
+            <figure class="receipt">
+              <div class="rc-head"><span>Naver Pay · Official SLAMTEC store</span><span>2026-11-06 23:39</span></div>
+              <ul class="rc-items">
+                <li><img alt="" height="44" loading="lazy" src="../media/066-lidar.png" width="44"/><span class="it"><b>SLAMTEC RPLIDAR C1</b><small>360° · 12 m · IP54 · 5 kHz scan rate</small></span><span class="pr">$74.16</span></li>
+              </ul>
+              <div class="rc-total"><span>Total</span><b>$74.16</b></div>
+              <ul class="rc-note">
+                <li>Last parts purchase in November</li>
+                <li>Balance after payment: <b><span class="money">−$372.31</span></b></li>
+              </ul>
+            </figure>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1152px)">
+                <div class="cell" style="--ar:0.7500"><img alt="The RPLIDAR C1 arrived on November 10" class="m" decoding="async" height="1600" loading="lazy" src="../media/138-build.jpg" width="1200"/><figcaption>The RPLIDAR C1 arrived on November 10</figcaption></div>
+                <div class="cell" style="--ar:1.4652"><img alt="Mounted dead center on the middle shelf" class="m" decoding="async" height="1092" loading="lazy" src="../media/139-build.jpg" width="1600"/><figcaption>Mounted dead center on the middle shelf</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-11-08" id="d1108">
+            <p class="entry-meta"><time datetime="2026-11-08">Nov 8</time><span>Electronics &amp; hardware</span></p>
+            <h3><a href="#d1108">Six points of contact, until a wheel lifts</a></h3>
+            <p>Three points define a plane. Give a robot six points to stand on and it only takes a little unevenness for one to lift. That’s a problem when it’s a drive wheel. In a two-meter reverse test, a caster swung around and the robot slipped about 100 mm (+5.4%).</p>
+            <p>I removed one front caster and moved the other to the middle. That got me down to five points of contact. With the two spring-loaded drive wheels always pressing against the floor, the robot tracked straight and the odometry settled down.</p>
+            <figure class="fig contain">
+              <div class="row" style="max-width:min(100%,1387px)">
+                <div class="cell" style="--ar:1.3333"><img alt="Before: six points of contact with two front casters" class="m" decoding="async" height="900" loading="lazy" src="../media/w/007-frame6_under.webp" width="1200"/><figcaption>Before: six points of contact with two front casters</figcaption></div>
+                <div class="cell" style="--ar:1.3333"><img alt="After: five points of contact with one front caster moved to the center" class="m" decoding="async" height="900" loading="lazy" src="../media/w/006-frame5_under.webp" width="1200"/><figcaption>After: five points of contact with one front caster moved to the center</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-11-10" id="d1110">
+            <p class="entry-meta"><time datetime="2026-11-10">Nov 10</time><span>Sensor fusion &amp; SLAM</span></p>
+            <h3><a href="#d1110">Getting rid of the 12.5% turning error</a></h3>
+            <p>I spun the robot around once on the same floor. The wheels said 315°. The gyro said 361°. With heading off by that much, the robot can go straight and still miss the spot it started from.</p>
+            <p>The raw gyro bias was +1.137°/s. Left sitting still, it would report 68° of rotation in a minute. I made it re-estimate the bias whenever the robot stood still for at least two seconds. In the 30 Hz EKF, I set the covariances to favor the wheels for forward speed and the gyro for rotation. Error over a 720° turn in place dropped from 90.3° to 3.7°. The real robot used the RPLIDAR C1 and slam_toolbox to build a map on a 5 cm grid. I verified Nav2 A* planning and RPP path following in Gazebo. Collision Monitor stops the robot if it detects an obstacle ahead.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,1617px)">
+                <div class="cell" style="--ar:1.7763">
+                  <video aria-label="Mapping indoors with the RPLIDAR C1 and EKF" class="m auto" data-src="../media/041-lidar_slam-public.mp4" height="608" loop="" muted="" playsinline="" poster="../media/040-lidar_slam-public.jpg" preload="none" width="1080"></video>
+                  <figcaption>Mapping indoors with the RPLIDAR C1 and EKF</figcaption>
+                </div>
+                <div class="cell" style="--ar:1.3333"><img alt="3D digital twin with live odometry and lidar" class="m" decoding="async" height="1200" loading="lazy" src="../media/140-build.jpg" width="1600"/><figcaption>3D digital twin with live odometry and lidar</figcaption></div>
+              </div>
+            </figure>
+          </article>
+          <article class="entry" data-d="2026-11-15" id="d1115">
+            <p class="entry-meta"><time datetime="2026-11-15">Nov 15</time><span>Manipulator</span></p>
+            <h3><a href="#d1115">Even clear tape on a knee</a></h3>
+            <p>“Maknae, can you bring me the clear tape?” Maknae found and picked up a transparent object it had never trained on, sitting on the uneven surface of a knee. When I said “hand it to me,” it put the tape in my hand. You can see that day’s clip under <a href="#demo-tape">Demos on the real robot</a> above.</p>
+          </article>
+          <article class="entry" data-d="2026-11-16" id="d1116">
+            <p class="entry-meta"><time datetime="2026-11-16">Nov 16</time><span>Care platform</span></p>
+            <h3><a href="#d1116">A 3D avatar, so there’s someone to talk to</a></h3>
+            <p>Once I had it working, I realized an older adult was expected to look at a cart or talk into thin air. A Korean study found that older adults rated more humanlike faces higher for trust and likability.<sup class="fn"><a aria-label="Note 5" href="#fn5" id="fnr5">5</a></sup> In a Georgia Tech study, around 60% of older adults chose a robot with a human face.<sup class="fn"><a aria-label="Note 6" href="#fn6" id="fnr6">6</a></sup> So I gave Maknae a 3D avatar with facial expressions.</p>
+            <p>Say, “Maknae, show us your talent,” and the avatar dances while the arm moves to the beat alongside it.</p>
+            <figure class="fig">
+              <div class="row" style="max-width:min(100%,292px)">
+                <div class="cell" style="--ar:0.5625">
+                  <video aria-label="“Maknae, show us your talent.” The avatar and SO-101 dance together." class="m" controls="" height="960" playsinline="" poster="../media/010-avatar_dance.jpg" preload="none" src="../media/011-avatar_dance.mp4" width="540"></video>
+                  <figcaption>“Maknae, show us your talent.” The avatar and SO-101 dance together.</figcaption>
+                </div>
+              </div>
+            </figure>
+          </article>
+        </div>
+        <aside aria-label="Day-by-day build calendar" class="rail" id="rail">
+          <div class="rail-in">
+            <div class="rail-bind"><i></i><span>NEXT YEAR ROBOTICS</span><i></i></div>
+            <div class="rail-page">
+              <div class="rail-date">
+                <b id="rDay">3</b>
+                <div><span id="rYm">June 2026</span><span id="rWd">Wednesday</span><span class="rail-dn" id="rDn">D+0</span></div>
+              </div>
+              <div class="rail-sec">
+                <p class="rail-lab">Wallet</p>
+                <p class="rail-bal" id="rBal">$749.12</p>
+                <svg aria-hidden="true" class="rail-chart" id="rChart" viewBox="0 0 300 96"></svg>
+                <ul class="rail-tx" id="rTx"></ul>
+              </div>
+              <div class="rail-sec">
+                <p class="rail-lab">Feature progress <b id="rLv">0%</b></p>
+                <ul class="rail-caps" id="rCaps"></ul>
+              </div>
+              <div class="rail-sec rail-stage">
+                <div class="rail-img"><img alt="" id="rImgA"/><img alt="" id="rImgB"/></div>
+                <p class="rail-st" id="rStage"></p>
+              </div>
+              <p class="rail-foot"><span>Media <b id="rRec">0</b></span><span>Late-night <b id="rNight">0</b></span><span>Repairs <b id="rAcc">$0.00</b></span></p>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
-
-  <section class="chapter" id="inside" aria-labelledby="inside-h">
+  <section aria-labelledby="inside-h" class="chapter" id="inside">
     <div class="wrap prose">
-      <h2 id="inside-h">Inside the robot</h2>
-      <p>Maknae has five layers, from the chassis and power at the bottom to the interfaces that the older adult and family use at the top.</p>
+      <h2 id="inside-h">A look inside</h2>
+      <p>Maknae has five layers. Above the chassis and power supply sit STM32 wheel control, ROS 2 on a Raspberry Pi 5, the perception and arm that find and grasp things, and finally the app, dashboard, and avatar that older adults and their caregivers interact with.</p>
       <figure class="fig wide stack">
         <ol>
-          <li><p class="ly-n">App, web, and avatar</p><p class="ly-r">The Kotlin and Compose app starts outings and requests SOS. The React dashboard reads telemetry and alerts through Firebase. The avatar uses three-vrm and ElevenLabs Agents for conversation.</p></li>
-          <li><p class="ly-n">Vision and arm</p><p class="ly-r">The C270 overhead camera, ArUco, and a Gemini vision-language model help locate objects. The SO-101 arm follows poses computed in code.</p></li>
-          <li><p class="ly-n">ROS 2 on Raspberry Pi 5</p><p class="ly-r">ROS 2 Jazzy runs the EKF, slam_toolbox, Nav2, twist_mux, and the outing and SOS state machine.</p></li>
-          <li><p class="ly-n">STM32 firmware</p><p class="ly-r">Static FreeRTOS handles wheel control, encoder and IMU sampling, battery sensing, and local motor stops.</p></li>
-          <li><p class="ly-n">Chassis and power</p><p class="ly-r">2020 aluminum extrusion, five-point suspension, a LiFePO₄ battery, and the KiCad Rev B interface board.</p></li>
+          <li><p class="ly-k">LAYER 5 · UX</p><p class="ly-n">Older adults, caregivers, and avatar</p><p class="ly-r">Large-tile outing/SOS app, read-only caregiver PWA, and a 3D avatar with a voice and facial expressions</p><p class="ly-c"><code class="">Kotlin 2.4 + Compose</code><code class="">Fused Location</code><code class="">Kakao Map</code><code class="">React 19 + TS + Tailwind</code><code class="">Firebase RTDB / Web Push</code><code class="">Three.js · three-vrm</code><code class="hot">ElevenLabs Agents</code></p></li>
+          <li><p class="ly-k">LAYER 4 · AI &amp; ARM</p><p class="ly-n">Perception, VLM, and manipulator</p><p class="ly-r">Automatic work-surface height measurement, zero-shot object localization, and deterministic, safety-checked grasping</p><p class="ly-c"><code class="hot">gemini-4-hydrogen</code><code class="">OpenCV ArUco PnP</code><code class="">GrabCut + minAreaRect</code><code class="">6-DOF IK + sag compensation</code><code class="">SO-ARM101 (USB servos)</code><code class="">C270 (RMS 0.11 px)</code></p></li>
+          <li><p class="ly-k">LAYER 3 · ROS 2</p><p class="ly-n">Driving, SLAM, Nav2, and bridges (RPi 5)</p><p class="ly-r">30 Hz EKF, 2D SLAM, Nav2 A* global planning and collision stops, velocity arbitration, and the outing/SOS state machine</p><p class="ly-c"><code class="">Ubuntu 24.04 · ROS 2 Jazzy</code><code class="">micro-ROS Agent</code><code class="">robot_localization EKF</code><code class="">slam_toolbox</code><code class="hot">Nav2 (A* · RPP · Costmap)</code><code class="">Collision Monitor</code><code class="">twist_mux</code><code class="">mr_mission / phone_bridge</code></p></li>
+          <li><p class="ly-k">LAYER 2 · MCU</p><p class="ly-n">Real-time control firmware (STM32)</p><p class="ly-r">Deterministic 10 ms wheel-speed control, 100 Hz gyro, battery voltage, and hardware safety stop</p><p class="ly-c"><code class="">STM32F446RE (84 MHz)</code><code class="hot">Static FreeRTOS (heap=0)</code><code class="">TIM6 100 Hz PI+FF</code><code class="">TIM1 18 kHz PWM</code><code class="">TIM2/3 ×4 Enc (IC1F=4)</code><code class="">SPI2 IMU · ADC+VREFINT</code><code class="hot">IWDG 300 ms</code></p></li>
+          <li><p class="ly-k">LAYER 1 · HW/EE</p><p class="ly-n">Mechanics, power, and interface board</p><p class="ly-r">Rigid three-tier, 9.8 kg chassis, separate high-current and signal paths, and a self-contained arm supply</p><p class="ly-c"><code class="">2020 extrusion (SolidWorks)</code><code class="">Five-point spring suspension</code><code class="">KiCad Rev B (Star GND)</code><code class="">LiFePO4 12.8V 9.9Ah</code><code class="">RECOM 5 V + PD 20-to-12 V buck</code><code class="">RPLIDAR C1 · C920</code></p></li>
         </ol>
       </figure>
-
       <h3>SolidWorks chassis and KiCad interface board</h3>
-      <p>I checked the fit of the SO-101 arm, one-meter overhead camera mast, and lidar in a 450 × 400 × 368 mm chassis. Two spring-loaded drive wheels and three casters support it. A 12.8 V LiFePO₄ pack powers the base, and a separate power bank supplies 20 V that a buck converter steps down to 12 V for the arm.</p>
-      <p>The Rev B interface board separates motor power from sensor wiring. I added a 5 A fuse, reverse-polarity protection, encoder pull-ups, and PWM pull-downs. The 90 × 70 mm perfboard uses a star ground and a 3.3 V bus. Different connectors help prevent the left and right encoders from being swapped.</p>
+      <p>I laid out two drive wheels and three casters on the 450 × 400 × 368 mm chassis. In SolidWorks I checked that the SO-101 arm, one-meter camera mast, and lidar on the middle shelf cleared each other. A 12.8 V LiFePO₄ battery runs the base. The arm has a separate supply: 20 V from a power bank, stepped down to 12 V.</p>
+      <p>The KiCad Rev B board separates motor power from sensor signals. I put a 5 A fuse and SR540 reverse-polarity protection at the input, pull-ups on the encoders, and pull-downs on PWM. The 90 × 70 mm perfboard has a star ground and 3.3 V bus. I used different connectors for the left and right encoders to make them harder to mix up.</p>
       <figure class="fig wide tech-fig contain">
         <div class="row" style="max-width:min(100%,522px)">
-          <div class="cell" style="--ar:1.0870">
-            <a href="../media/089-sw_assembly.png"><img class="m" src="../media/w/089-sw_assembly.webp" alt="SolidWorks assembly" width="1600" height="1472" loading="lazy" decoding="async"></a>
-            <figcaption><b>SolidWorks assembly</b> · Five-point suspension, lidar, arm, and camera mast.</figcaption>
-          </div>
+          <div class="cell" style="--ar:1.0870"><a href="../media/089-sw_assembly.png"><img alt="Final SolidWorks assembly with five-point suspension, lidar, SO-101, and L-shaped mast" class="m" decoding="async" height="1472" loading="lazy" src="../media/w/089-sw_assembly.webp" width="1600"/></a><figcaption><b>Final SolidWorks assembly</b> · Five-point suspension, lidar, SO-101, and L-shaped mast</figcaption></div>
         </div>
-        <div class="row">
-          <div class="cell" style="--ar:1.4337">
-            <a href="../media/088-kicad_schematic.png"><img class="m" src="../media/w/088-kicad_schematic.webp" alt="KiCad Rev B schematic" width="1600" height="1116" loading="lazy" decoding="async"></a>
-            <figcaption><b>KiCad Rev B schematic</b> · Power protection, battery sensing, and signal conditioning.</figcaption>
-          </div>
-          <div class="cell" style="--ar:1.2729">
-            <a href="../media/087-kicad_pcb.png"><img class="m" src="../media/w/087-kicad_pcb.webp" alt="Perfboard layout" width="1600" height="1257" loading="lazy" decoding="async"></a>
-            <figcaption><b>Perfboard layout</b> · Connectors, star ground, and 3.3 V wiring.</figcaption>
-          </div>
+        <div class="row" style="max-width:min(100%,1299px)">
+          <div class="cell" style="--ar:1.4337"><a href="../media/088-kicad_schematic.png"><img alt="KiCad Rev B schematic with power protection, battery voltage sensing, and signal interfaces" class="m" decoding="async" height="1116" loading="lazy" src="../media/w/088-kicad_schematic.webp" width="1600"/></a><figcaption><b>KiCad Rev B schematic</b> · Power protection, battery voltage sensing, and signal interfaces</figcaption></div>
+          <div class="cell" style="--ar:1.2729"><a href="../media/087-kicad_pcb.png"><img alt="KiCad perfboard layout with connectors, ground, and 3.3 V wiring" class="m" decoding="async" height="1257" loading="lazy" src="../media/w/087-kicad_pcb.webp" width="1600"/></a><figcaption><b>KiCad perfboard layout</b> · Connectors, ground, and 3.3 V wiring</figcaption></div>
         </div>
       </figure>
-
-      <h3>STM32 firmware and CubeMX</h3>
-      <p>TIM6 wakes the wheel control task in static FreeRTOS every 10 ms. TIM1 generates 18 kHz PWM, while TIM2 and TIM3 count the quadrature encoders in hardware. The Pi 5 exchanges velocity commands and telemetry with the MCU over micro-ROS at 921,600 bps.</p>
-      <p>The PLL takes the 8 MHz crystal up to 84 MHz for the system clock. The independent watchdog runs from a separate 32 kHz oscillator and resets the MCU after about 300 ms if the control loop stalls.</p>
+      <h3>STM32 firmware and CubeMX settings</h3>
+      <p>I run statically allocated FreeRTOS on the STM32F446RE. The TIM6 interrupt wakes the control task every 10 ms, TIM1 outputs 18 kHz PWM, and TIM2 and TIM3 count the wheels’ quadrature encoder signals in hardware. A 921,600 bps UART link runs micro-ROS to exchange velocity commands and sensor readings with the Pi 5.</p>
+      <p>In CubeMX I used the PLL to take the 8 MHz HSE up to 84 MHz. The independent watchdog runs from a separate 32 kHz LSI. Even if the main clock or firmware stops, the watchdog restarts the MCU after about 300 ms.</p>
       <div class="fig wide firmware-figures">
         <figure class="tech-fig firmware-diagram">
-          <a href="../media/freertos.en.svg"><img class="m" src="../media/freertos.en.svg" alt="Static FreeRTOS task and motor control diagram" width="820" height="620" loading="lazy" decoding="async"></a>
-          <figcaption><b>Static FreeRTOS</b> · From hardware interrupts to tasks and motor output.</figcaption>
+          <a href="../media/freertos.en.svg"><img alt="Static FreeRTOS control architecture" class="m" decoding="async" height="620" loading="lazy" src="../media/freertos.en.svg" width="820"/></a>
+          <figcaption><b>Static FreeRTOS control architecture</b> · From interrupts to tasks and motor output</figcaption>
         </figure>
         <div class="firmware-settings">
           <figure class="tech-fig">
-            <a href="../media/085-cubemx_configuration.png"><img class="m" src="../media/w/085-cubemx_configuration.webp" alt="Timer configuration" width="1600" height="817" loading="lazy" decoding="async"></a>
-            <figcaption><b>Timer configuration</b> · Four TIM1 PWM channels, ARR set to 4,666.</figcaption>
+            <a href="../media/085-cubemx_configuration.png"><img alt="Timer settings" class="m" decoding="async" height="817" loading="lazy" src="../media/w/085-cubemx_configuration.webp" width="1600"/></a>
+            <figcaption><b>Timer settings</b> · Four TIM1 PWM channels, ARR 4,666</figcaption>
           </figure>
           <figure class="tech-fig">
-            <a href="../media/084-cubemx_clock.png"><img class="m" src="../media/084-cubemx_clock.png" alt="Clock tree" width="1600" height="637" loading="lazy" decoding="async"></a>
-            <figcaption><b>Clock tree</b> · 8 MHz crystal, 84 MHz system clock, 32 kHz watchdog.</figcaption>
+            <a href="../media/084-cubemx_clock.png"><img alt="Clock tree" class="m" decoding="async" height="637" loading="lazy" src="../media/084-cubemx_clock.png" width="1600"/></a>
+            <figcaption><b>Clock tree</b> · 8 MHz HSE, 84 MHz system clock, and 32 kHz LSI</figcaption>
           </figure>
           <figure class="tech-fig firmware-pinout">
-            <a href="../media/086-cubemx_pinout.png"><img class="m" src="../media/w/086-cubemx_pinout.webp" alt="LQFP64 pinout" width="1600" height="1115" loading="lazy" decoding="async"></a>
-            <figcaption><b>LQFP64 pinout</b> · PWM, encoders, serial ports, IMU, and battery sensing.</figcaption>
+            <a href="../media/086-cubemx_pinout.png"><img alt="LQFP64 pinout" class="m" decoding="async" height="1115" loading="lazy" src="../media/w/086-cubemx_pinout.webp" width="1600"/></a>
+            <figcaption><b>LQFP64 pinout</b> · PWM, encoders, UART, IMU, and battery voltage input</figcaption>
           </figure>
         </div>
       </div>
-
-      <h3>ROS 2 navigation and four ways to stop</h3>
-      <p>A 30 Hz extended Kalman filter combines wheel odometry and gyro data. The physical robot built a 5 cm grid map using the RPLIDAR C1 and slam_toolbox. In Gazebo, Nav2 planned routes with A* and followed them with Regulated Pure Pursuit. The same navigation nodes consume the same ROS topics on both setups.</p>
+      <figure class="fig tbl">
+        <table>
+          <thead>
+            <tr><th>Peripheral</th><th>Pins</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><th><code>TIM1 CH1~4</code></th><td><code>PA8~PA11</code></td><td>18 kHz PWM (4,667 steps) and BDTR.MOE cutoff</td></tr>
+            <tr><th><code>TIM2 / TIM3</code></th><td><code>PA0·PA1 / PA6·PA7</code></td><td>Left and right ×4 quadrature encoders with digital filter IC1F=4</td></tr>
+            <tr><th><code>TIM6</code></th><td><code>Internal 100 Hz</code></td><td>Direct notification to ControlTask (P5), WCET 46.7 µs</td></tr>
+            <tr><th><code>USART1 / 2</code></th><td><code>PB6·PB7 / PA2·PA3</code></td><td>921,600 bps DMA for micro-ROS and 230,400 bps for debugging</td></tr>
+            <tr><th><code>SPI2 + EXTI0</code></th><td><code>PB12~15 / PB0</code></td><td>ICM-42688-P IMU at 100 Hz via DRDY, with DWT correction</td></tr>
+            <tr><th><code>ADC1 + IWDG</code></th><td><code>PA4 + internal VREFINT</code></td><td>Battery sensing with a 6.02:1 divider (+0.3%) and a 300.2 ms watchdog</td></tr>
+          </tbody>
+        </table>
+      </figure>
+      <h3>ROS 2 navigation and four layers of stopping</h3>
+      <p>A 30 Hz extended Kalman filter (EKF) combines the wheels and gyro to estimate pose. On the real robot I used the RPLIDAR C1 and slam_toolbox to build a map with a 5 cm grid. Nav2’s A* plans a path on the map and Regulated Pure Pursuit (RPP) issues the velocities to follow it. I verified route driving in Gazebo. The simulated sensors and wheels use the same ROS 2 topics, so I can reuse the higher-level navigation nodes.</p>
+      <figure class="fig wide diagram">
+        <svg aria-label="ROS 2 node graph and velocity command flow" class="arch-svg" font-family="Pretendard, sans-serif" role="img" viewBox="0 0 1680 650" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-k" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"></path></marker>
+            <marker id="arr-r" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"></path></marker>
+          </defs>
+          <rect fill="#F3EEE3" height="430" stroke="#1F1C19" stroke-dasharray="6 4" stroke-width="1.5" width="320" x="14" y="14"></rect>
+          <text fill="#D93A24" font-family="Paperlogy" font-size="14" font-weight="800" x="28" y="38">1. SENSORS &amp; PERCEPTION</text>
+          <rect fill="#F3EEE3" height="430" stroke="#1F1C19" stroke-dasharray="6 4" stroke-width="1.5" width="440" x="366" y="14"></rect>
+          <text fill="#D93A24" font-family="Paperlogy" font-size="14" font-weight="800" x="380" y="38">2. BEHAVIOR &amp; SAFETY ARBITRATION</text>
+          <rect fill="#F3EEE3" height="430" stroke="#1F1C19" stroke-dasharray="6 4" stroke-width="1.5" width="415" x="838" y="14"></rect>
+          <text fill="#D93A24" font-family="Paperlogy" font-size="14" font-weight="800" x="852" y="38">3. BASE &amp; SENSOR FUSION (EKF)</text>
+          <rect fill="#fff5f3" height="430" stroke="#D93A24" stroke-width="2" width="380" x="1285" y="14"></rect>
+          <text fill="#D93A24" font-family="Paperlogy" font-size="14" font-weight="800" x="1300" y="38">4. STM32F446RE (micro-ROS UART)</text>
+          <rect fill="#F3EEE3" height="166" stroke="#1F1C19" stroke-width="1.5" width="1651" x="14" y="470"></rect>
+          <text fill="#1F1C19" font-family="Paperlogy" font-size="14" font-weight="800" x="30" y="495">5. MISSION · CARE SERVICES · BOOTH BRIDGE (ROS 2 ↔ App / Cloud / Avatar)</text>
+          <g fill="#FBF8F1" stroke="#1F1C19" stroke-width="2">
+            <rect height="66" rx="3" width="290" x="30" y="56"></rect>
+            <rect height="66" rx="3" width="290" x="30" y="152"></rect>
+            <rect height="66" rx="3" width="290" x="30" y="248"></rect>
+            <rect height="66" rx="3" width="290" x="30" y="346"></rect>
+          </g>
+          <text fill="#1F1C19" font-size="17" font-weight="800" x="44" y="82">usb_cam (C920)</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="44" y="106">/camera/image_raw (720p30 SHM)</text>
+          <text fill="#1F1C19" font-size="16.5" font-weight="800" x="44" y="178">aruco_tracker → marker_track</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="44" y="202">/aruco_detections → /marker_track</text>
+          <text fill="#1F1C19" font-size="17" font-weight="800" x="44" y="274">sllidar_node (RPLIDAR C1)</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="44" y="298">/scan (360°, 12 m, laser_link)</text>
+          <text fill="#1F1C19" font-size="16.5" font-weight="800" x="44" y="372">joy_linux → teleop_twist_joy</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="44" y="396">Manual Xbox pad (prio 100 · LB/RB)</text>
+          <g fill="#FBF8F1" stroke="#1F1C19" stroke-width="2">
+            <rect fill="#fff5f3" height="58" rx="3" stroke="#D93A24" stroke-width="2.5" width="204" x="382" y="54"></rect>
+            <rect height="58" rx="3" width="204" x="382" y="130"></rect>
+            <rect height="64" rx="3" stroke="#D93A24" stroke-width="2" width="204" x="382" y="206"></rect>
+            <rect height="58" rx="3" width="204" x="382" y="288"></rect>
+            <rect height="58" rx="3" width="204" x="382" y="364"></rect>
+          </g>
+          <text fill="#D93A24" font-size="16" font-weight="800" x="396" y="79">/safety/lock (E-Stop)</text>
+          <text fill="#D93A24" font-family="monospace" font-size="12" x="396" y="100">prio 255 · top lock</text>
+          <text font-size="16" font-weight="800" x="396" y="155">align / errand_nav</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="396" y="176">prio 60 · align &amp; return</text>
+          <text fill="#D93A24" font-size="16" font-weight="800" x="396" y="232">Nav2 (A* · RPP · CM)</text>
+          <text fill="#58524a" font-family="monospace" font-size="11.5" x="396" y="253">prio 55 · /cmd_vel_nav</text>
+          <text font-size="16" font-weight="800" x="396" y="313">follow_node</text>
+          <text fill="#58524a" font-family="monospace" font-size="11.5" x="396" y="334">prio 50 · /cmd_vel_follow</text>
+          <text font-size="16" font-weight="800" x="396" y="389">slam_toolbox</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="396" y="410">/map · TF map → odom</text>
+          <rect fill="#1F1C19" height="278" rx="4" stroke="#D93A24" stroke-width="3" width="168" x="624" y="90"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="21" font-weight="800" text-anchor="middle" x="708" y="124">twist_mux</text>
+          <text fill="#FFD6CE" font-family="monospace" font-size="12.5" text-anchor="middle" x="708" y="146">use_stamped: true</text>
+          <line stroke="#58524a" stroke-dasharray="3 3" x1="638" x2="778" y1="162" y2="162"></line>
+          <text fill="#FF8C7A" font-size="13.5" font-weight="700" x="640" y="190">255  E-Stop Lock</text>
+          <text fill="#FBF8F1" font-size="13.5" font-weight="700" x="640" y="218">100  Xbox Teleop</text>
+          <text fill="#d8cfbf" font-size="13.5" x="640" y="246"> 60  Align / Marker</text>
+          <text fill="#FF9C8A" font-size="13.5" font-weight="700" x="640" y="274"> 55  Nav2 (A*·RPP)</text>
+          <text fill="#d8cfbf" font-size="13.5" x="640" y="302"> 50  ArUco Follow</text>
+          <text fill="#9a9286" font-size="12" text-anchor="middle" x="708" y="346">timeout 0.3–0.5 s → stop</text>
+          <g fill="#FBF8F1" stroke="#1F1C19" stroke-width="2">
+            <rect height="72" rx="3" stroke="#D93A24" stroke-width="2.5" width="380" x="856" y="60"></rect>
+            <rect height="76" rx="3" width="182" x="856" y="164"></rect>
+            <rect height="76" rx="3" width="182" x="1054" y="164"></rect>
+            <rect fill="#1F1C19" height="74" rx="3" width="380" x="856" y="278"></rect>
+            <rect height="52" rx="3" width="380" x="856" y="372"></rect>
+          </g>
+          <text fill="#D93A24" font-size="17.5" font-weight="800" x="872" y="88">micro_ros_agent (UART0)</text>
+          <text fill="#58524a" font-family="monospace" font-size="12.5" x="872" y="114">/dev/ttyAMA0 · 921,600 bps · RTT 2.54 ms</text>
+          <text font-size="16" font-weight="800" x="870" y="192">mr_base (odom)</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="870" y="214">50 Hz · /odom (vx)</text>
+          <text fill="#8d8579" font-size="11.5" x="870" y="230">r=49.8mm, L=309.1mm</text>
+          <text font-size="16" font-weight="800" x="1068" y="192">mr_imu</text>
+          <text fill="#58524a" font-family="monospace" font-size="12" x="1068" y="214">100 Hz · /imu/data</text>
+          <text fill="#8d8579" font-size="11.5" x="1068" y="230">covariance 6e-8 (vyaw)</text>
+          <text fill="#FBF8F1" font-size="17.5" font-weight="800" x="872" y="308">ekf_filter_node (robot_localization)</text>
+          <text fill="#FFD6CE" font-family="monospace" font-size="12" x="872" y="334">30 Hz /odometry/filtered · odom→base_footprint</text>
+          <text fill="#1F1C19" font-size="15" font-weight="800" x="872" y="396">robot_state_publisher</text>
+          <text fill="#58524a" font-family="monospace" font-size="11.5" x="872" y="414">URDF TF: base_link → cam / imu / laser</text>
+          <g fill="#FBF8F1" stroke="#1F1C19" stroke-width="2">
+            <rect height="76" rx="3" stroke="#D93A24" stroke-width="2.5" width="330" x="1310" y="64"></rect>
+            <rect height="70" rx="3" width="330" x="1310" y="168"></rect>
+            <rect height="64" rx="3" width="330" x="1310" y="264"></rect>
+            <rect height="70" rx="3" width="330" x="1310" y="352"></rect>
+          </g>
+          <text fill="#D93A24" font-size="18" font-weight="800" x="1326" y="92">ControlTask (100 Hz · TIM6)</text>
+          <text fill="#58524a" font-size="13.5" x="1326" y="118">PI + FF (0.137% error) → TIM1 18 kHz PWM</text>
+          <text font-size="17" font-weight="800" x="1326" y="196">TIM2/3 ×4 Encoders (IC1F=4)</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="1326" y="220">→ /joint_states (50 Hz)</text>
+          <text font-size="17" font-weight="800" x="1326" y="290">ICM-42688-P (SPI2 + EXTI0)</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="1326" y="313">→ /imu/data_raw (100 Hz)</text>
+          <text font-size="17" font-weight="800" x="1326" y="378">ADC1+VREFINT · IWDG</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="1326" y="402">→ /battery_voltage · 200ms cmd WD</text>
+          <g fill="#FBF8F1" stroke="#1F1C19" stroke-width="2">
+            <rect height="102" rx="3" width="340" x="38" y="514"></rect>
+            <rect height="102" rx="3" width="370" x="438" y="514"></rect>
+            <rect height="102" rx="3" width="360" x="868" y="514"></rect>
+            <rect height="102" rx="3" stroke="#D93A24" stroke-width="2.5" width="352" x="1288" y="514"></rect>
+          </g>
+          <text font-size="18" font-weight="800" x="56" y="544">mr_phone_bridge (WS :8765)</text>
+          <text fill="#58524a" font-size="14" x="56" y="570">Android app ↔ phone-bridge/1 JSON</text>
+          <text fill="#D93A24" font-family="monospace" font-size="13" x="56" y="594">Requests only · cannot publish /cmd_vel</text>
+          <text font-size="18" font-weight="800" x="456" y="544">mr_mission (Trip · SafetyMonitor)</text>
+          <text fill="#58524a" font-size="14" x="456" y="570">Outing state machine · marker lost for 10 s → SOS</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="456" y="594">/follow/enable · /care/sos_request</text>
+          <text font-size="18" font-weight="800" x="886" y="544">mr_care_telemetry (Outbox)</text>
+          <text fill="#58524a" font-size="14" x="886" y="570">Offline SQLite queue → Firebase RTDB</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="886" y="594">Caregiver PWA live status · web push</text>
+          <text fill="#D93A24" font-size="18" font-weight="800" x="1306" y="544">booth bridge (laptop · DDS)</text>
+          <text fill="#58524a" font-size="14" x="1306" y="570">BEST_EFFORT subscriptions → 3D twin · avatar</text>
+          <text fill="#58524a" font-family="monospace" font-size="13" x="1306" y="594">ElevenLabs tools → errand_nav + SO-101</text>
+          <g fill="none" marker-end="url(#arr-k)" stroke="#1F1C19" stroke-width="2.2">
+            <path d="M175,122 L175,148"></path>
+            <path d="M320,185 L378,178"></path>
+            <path d="M320,185 L350,185 L350,316 L378,316"></path>
+            <path d="M320,281 L344,281 L344,392 L378,392"></path>
+            <path d="M320,281 L362,281 L362,238 L378,238"></path>
+            <path d="M320,382 L354,382 L354,432 L708,432 L708,372"></path>
+            <path d="M586,159 L606,159 L606,242 L620,242"></path>
+            <path d="M586,238 L602,238 L602,270 L620,270"></path>
+            <path d="M586,316 L608,316 L608,298 L620,298"></path>
+            <path d="M947,132 L947,160"></path>
+            <path d="M1145,132 L1145,160"></path>
+            <path d="M947,240 L947,274"></path>
+            <path d="M1145,240 L1145,274"></path>
+            <path d="M378,565 L434,565"></path>
+            <path d="M808,565 L864,565"></path>
+            <path d="M1228,565 L1284,565"></path>
+          </g>
+          <g fill="none" marker-end="url(#arr-r)" stroke="#D93A24" stroke-width="3">
+            <path d="M586,88 L608,88 L608,204 L620,204"></path>
+            <path d="M790,192 L820,192 L820,96 L852,96"></path>
+            <path d="M1236,96 L1306,96"></path>
+          </g>
+          <text fill="#D93A24" font-family="monospace" font-size="12.5" font-weight="700" x="803" y="88">/cmd_vel</text>
+          <text fill="#D93A24" font-family="monospace" font-size="12.5" font-weight="700" x="1246" y="86">UART0</text>
+        </svg>
+      </figure>
       <figure class="fig wide tech-fig contain">
-        <div class="row">
-          <div class="cell" style="--ar:2.1138">
-            <a href="../media/ros-authority.en.svg"><img class="m" src="../media/ros-authority.en.svg" alt="ROS 2 authority and interfaces" width="1040" height="492" loading="lazy" decoding="async"></a>
-            <figcaption><b>ROS 2 authority and interfaces</b> · The physical robot and Gazebo use the same ROS topics for sensors and drive commands.</figcaption>
-          </div>
+        <div class="row" style="max-width:min(100%,1099px)">
+          <div class="cell" style="--ar:2.1138"><a href="../media/ros-authority.en.svg"><img alt="Who can issue commands from the app, web, and voice interface into ROS 2, and where topics cross into real hardware or Gazebo" class="m" decoding="async" height="492" loading="lazy" src="../media/ros-authority.en.svg" width="1040"/></a><figcaption>Who can issue commands from the app, web, and voice interface into ROS 2, and where topics cross into real hardware or Gazebo</figcaption></div>
         </div>
       </figure>
       <ol class="flow">
-        <li><b>State machines.</b> The app and voice layer make trip, stop, or errand requests. The caregiver dashboard reads status, and the motion nodes decide wheel speeds.</li>
-        <li><b>Command priority.</b> twist_mux gives the emergency stop lock priority 255, the gamepad 100, marker alignment 60, Nav2 55, and following 50.</li>
-        <li><b>Sensor checks.</b> Collision Monitor stops the base for obstacles ahead. Losing the bag marker stops following. If the marker stays out of view for ten seconds, the phone's location is shared in an SOS.</li>
-        <li><b>Local motor stop.</b> With no new velocity command for 200 ms, the STM32 stops the motors. Its independent watchdog can also reset a stalled controller.</li>
+        <li><b>State machine.</b> The app and voice tools can request starts, stops, and errands. The caregiver dashboard reads status. ROS 2 navigation nodes decide wheel speed.</li>
+        <li><b>Velocity arbitration.</b> twist_mux applies priority in this order: emergency stop (255), manual gamepad (100), marker alignment (60), Nav2 (55), and following (50).</li>
+        <li><b>Sensor monitoring.</b> Collision Monitor stops for an obstacle ahead. Losing the bag marker stops following. If it’s still missing ten seconds later, an SOS goes out with the phone’s GPS location.</li>
+        <li><b>On-board stop.</b> The STM32 stops the motors after 200 ms without a fresh velocity command. If the controller itself stalls, the independent watchdog restarts the MCU.</li>
       </ol>
-
-      <h3>How a pixel becomes a grasp</h3>
-      <p>The C270 overhead camera takes the median of seven readings of an 8 cm ArUco marker to estimate the work surface height. The vision model marks the item with a point and a box. The code uses GrabCut to isolate the outline, then projects a ray through the point and intersects it with the work surface to calculate the target. Inverse kinematics gives the joint angles, with another correction for 5–9 mm of arm sag.</p>
+      <h3>How the app, caregiver dashboard, and robot talk</h3>
+      <p>The Android app requests outings and SOS through phone-bridge. The caregiver dashboard shows the status and alerts posted by the robot, and displays the phone’s location when an SOS is active. The Pi 5 talks to the STM32 over serial. The laptop runs voice conversations, the avatar, VLM errands, and SO-101 control. The wheel-command timeout and watchdog run independently on the STM32.</p>
+      <figure class="fig wide diagram">
+        <svg aria-label="How the Android app, caregiver dashboard, Pi 5, STM32, and laptop communicate" class="arch-svg" font-family="Pretendard, sans-serif" role="img" viewBox="0 0 1680 650" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="ck" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"></path></marker>
+            <marker id="cr" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"></path></marker>
+          </defs>
+          <rect fill="#1F1C19" height="330" rx="6" stroke="#D93A24" stroke-width="3.5" width="430" x="570" y="150"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="24" font-weight="800" text-anchor="middle" x="785" y="192">Raspberry Pi 5 (robot hub)</text>
+          <text fill="#FFD6CE" font-family="monospace" font-size="12.5" text-anchor="middle" x="785" y="218">Ubuntu 24.04 · ROS 2 Jazzy · services start on boot</text>
+          <g fill="#2d2925" stroke="#58524a" stroke-width="1.2">
+            <rect height="48" rx="3" width="378" x="596" y="240"></rect>
+            <rect height="48" rx="3" width="378" x="596" y="298"></rect>
+            <rect height="48" rx="3" width="378" x="596" y="356"></rect>
+            <rect height="48" rx="3" width="378" x="596" y="414"></rect>
+          </g>
+          <text fill="#FBF8F1" font-size="15.5" x="612" y="270"><tspan fill="#FF8C7A" font-weight="800">mr_phone_bridge</tspan> WS server :8765 · mDNS NSD</text>
+          <text fill="#FBF8F1" font-size="15.5" x="612" y="328"><tspan fill="#FF8C7A" font-weight="800">mr_mission</tspan> Outing/SOS FSM · owns stops</text>
+          <text fill="#FBF8F1" font-size="15.5" x="612" y="386"><tspan fill="#FF8C7A" font-weight="800">mr_care_telemetry</tspan> SQLite offline outbox</text>
+          <text fill="#FBF8F1" font-size="15.5" x="612" y="444"><tspan fill="#FF8C7A" font-weight="800">twist_mux · EKF · SLAM · Nav2</tspan> A* · collision stop</text>
+          <rect fill="#FBF8F1" height="224" rx="5" stroke="#1F1C19" stroke-width="2.2" width="350" x="26" y="42"></rect>
+          <rect fill="#1F1C19" height="40" width="350" x="26" y="42"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="17" font-weight="800" x="42" y="68">① Android app (S26 Ultra)</text>
+          <text font-size="15.5" font-weight="700" x="42" y="110">Starts/stops outings · phone GPS · SOS</text>
+          <text fill="#58524a" font-size="14" x="42" y="138">• Plain ws:// only for private hotspot IP literals</text>
+          <text fill="#58524a" font-size="14" x="42" y="162">• JSON Schema + 28 shared CI fixtures</text>
+          <text fill="#58524a" font-size="14" x="42" y="186">• No exposed ROS libs or /cmd_vel publishing</text>
+          <text fill="#D93A24" font-size="13.5" font-weight="800" x="42" y="216">SOS ACK 8.3–16.5 ms · cached GPS 10–19 ms</text>
+          <text fill="#8d8579" font-family="monospace" font-size="13.5" x="42" y="244">Protocol: phone-bridge/1</text>
+          <rect fill="#fff5f3" height="224" rx="5" stroke="#D93A24" stroke-width="2.5" width="350" x="26" y="346"></rect>
+          <rect fill="#D93A24" height="40" width="350" x="26" y="346"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="17" font-weight="800" x="42" y="372">② STM32F446RE real-time controller</text>
+          <text font-size="15.5" font-weight="700" x="42" y="414">100 Hz wheel control · IMU · battery · IWDG</text>
+          <text fill="#58524a" font-size="14" x="42" y="442">• Direct 3-wire GPIO UART0 (no USB hub)</text>
+          <text fill="#58524a" font-size="14" x="42" y="466">• 200 ms stop even if the bridge or Wi-Fi dies</text>
+          <text fill="#58524a" font-size="14" x="42" y="490">• TIM1 BDTR.MOE hardware output cutoff</text>
+          <text fill="#D93A24" font-size="15" font-weight="800" x="42" y="520">921,600 bps · 0 lost in 600 s · RTT 2.54 ms</text>
+          <text fill="#8d8579" font-family="monospace" font-size="13.5" x="42" y="548">XRCE-DDS over USART1 Circular DMA</text>
+          <rect fill="#FBF8F1" height="224" rx="5" stroke="#1F1C19" stroke-width="2.2" width="430" x="1224" y="42"></rect>
+          <rect fill="#1F1C19" height="40" width="430" x="1224" y="42"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="17" font-weight="800" x="1240" y="68">③ Caregiver dashboard / PWA</text>
+          <text font-size="15.5" font-weight="700" x="1240" y="110">Check-in timeline · outing/SOS web push · map</text>
+          <text fill="#58524a" font-size="14" x="1240" y="138">• Firebase RTDB (Spark) with rule-based access control</text>
+          <text fill="#58524a" font-size="14" x="1240" y="162">• <tspan fill="#1F1C19" font-weight="800">Read-only</tspan>: no remote control from the dashboard</text>
+          <text fill="#58524a" font-size="14" x="1240" y="186">• 15 s online window · outbox retries after disconnect</text>
+          <text fill="#D93A24" font-size="15" font-weight="800" x="1240" y="216">Privacy: location only in active /sos/{id}, deleted on clear</text>
+          <text fill="#8d8579" font-family="monospace" font-size="13.5" x="1240" y="244">Protocol: care-telemetry/1 (React 19)</text>
+          <rect fill="#FBF8F1" height="224" rx="5" stroke="#1F1C19" stroke-width="2.2" width="430" x="1224" y="346"></rect>
+          <rect fill="#1F1C19" height="40" width="430" x="1224" y="346"></rect>
+          <text fill="#FBF8F1" font-family="Paperlogy" font-size="17" font-weight="800" x="1240" y="372">④ Laptop (3D avatar · VLM · SO-101 arm)</text>
+          <text font-size="15.5" font-weight="700" x="1240" y="414">Voice conversations · digital twin · zero-shot errands</text>
+          <text fill="#58524a" font-size="14" x="1240" y="442">• ROS 2 DDS BEST_EFFORT subscriptions keep Pi load low</text>
+          <text fill="#58524a" font-size="14" x="1240" y="466">• Browser WebSocket → Three.js / three-vrm at 30 fps</text>
+          <text fill="#58524a" font-size="14" x="1240" y="490">• ElevenLabs Agents tools → errand_nav and arm</text>
+          <text fill="#D93A24" font-size="14" font-weight="800" x="1240" y="520">Gemini 4 API · overhead C270 · USB servos (12 V PD buck)</text>
+          <text fill="#8d8579" font-family="monospace" font-size="13.5" x="1240" y="548">Avatar, digital twin, and arm bridge</text>
+          <g fill="none" stroke-width="3">
+            <path d="M376,160 L564,256" marker-end="url(#ck)" marker-start="url(#ck)" stroke="#1F1C19"></path>
+            <path d="M376,454 L564,380" marker-end="url(#cr)" marker-start="url(#cr)" stroke="#D93A24"></path>
+            <path d="M1006,280 L1218,160" marker-end="url(#ck)" stroke="#1F1C19"></path>
+            <path d="M1006,390 L1218,454" marker-end="url(#ck)" marker-start="url(#ck)" stroke="#1F1C19"></path>
+          </g>
+          <g font-size="13" font-weight="700" text-anchor="middle">
+            <rect fill="#FBF8F1" height="44" rx="3" stroke="#1F1C19" stroke-width="1.5" width="150" x="400" y="176"></rect>
+            <text fill="#1F1C19" x="475" y="195">Hotspot WS</text>
+            <text fill="#D93A24" font-family="monospace" x="475" y="212">phone-bridge/1</text>
+            <rect fill="#fff5f3" height="44" rx="3" stroke="#D93A24" stroke-width="1.5" width="158" x="396" y="410"></rect>
+            <text fill="#D93A24" x="475" y="429">Direct UART0 wiring</text>
+            <text fill="#1F1C19" font-family="monospace" x="475" y="446">921,600 bps</text>
+            <rect fill="#FBF8F1" height="44" rx="3" stroke="#1F1C19" stroke-width="1.5" width="164" x="1032" y="176"></rect>
+            <text fill="#1F1C19" x="1114" y="195">HTTPS / RTDB</text>
+            <text fill="#D93A24" font-family="monospace" x="1114" y="212">One-way · read-only</text>
+            <rect fill="#FBF8F1" height="44" rx="3" stroke="#1F1C19" stroke-width="1.5" width="164" x="1032" y="410"></rect>
+            <text fill="#1F1C19" x="1114" y="429">Wi-Fi ROS 2 DDS</text>
+            <text fill="#58524a" font-family="monospace" x="1114" y="446">BEST_EFFORT</text>
+          </g>
+          <rect fill="#F3EEE3" height="44" stroke="#1F1C19" stroke-width="1.5" width="1628" x="26" y="594"></rect>
+          <text fill="#1F1C19" font-size="16" x="44" y="622"><tspan fill="#D93A24" font-weight="800">Design rules:</tspan> ① One contract in mobile-robot, CI checks for drift · ② No direct <tspan font-family="monospace">/cmd_vel</tspan> from app/web · ③ Robot/MCU own the final stop</text>
+        </svg>
+      </figure>
+      <h3>From an overhead pixel to an arm coordinate</h3>
+      <p>The C270 webcam reads an 8 cm ArUco marker in seven frames and uses the median to measure the work-surface height. The vision-language model marks the object in the image with a point and a box. The code extracts its contour with GrabCut and sends the arm to where the ray through that image point meets the work-surface plane. Inverse kinematics solves for the joint angles, with another 5–9 mm to compensate for sag under the arm’s own weight.</p>
       <figure class="fig tech-fig contain">
         <div class="row" style="max-width:min(100%,419px)">
-          <div class="cell" style="--ar:1.1975">
-            <a href="../media/hand-ray.en.svg"><img class="m" src="../media/hand-ray.en.svg" alt="From camera pixel to arm target" width="388" height="324" loading="lazy" decoding="async"></a>
-            <figcaption><b>From camera pixel to arm target</b> · A ray through the pixel intersects the work surface at the height measured from the marker.</figcaption>
-          </div>
+          <div class="cell" style="--ar:1.1975"><a href="../media/hand-ray.en.svg"><img alt="Arm target calculated from a point in the overhead image and the work-surface height" class="m" decoding="async" height="324" loading="lazy" src="../media/hand-ray.en.svg" width="388"/></a><figcaption>Arm target calculated from a point in the overhead image and the work-surface height</figcaption></div>
         </div>
       </figure>
-      <p>The errand state machine opens the gripper for handover after it is holding an object and receives a release request. After a safety stop, the outing state machine waits for a new start request even if it sees the marker again.</p>
+      <p>The errand state machine opens the gripper when it’s holding an object and gets a request to hand it over. After a safety stop, the outing state machine keeps the robot stopped even if the marker comes back into view.</p>
+      <figure class="fig wide diagram fsm">
+        <div>
+          <svg aria-label="Outing and SOS state machine" font-family="Pretendard, sans-serif" role="img" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="fk1" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"></path></marker>
+              <marker id="fr1" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"></path></marker>
+            </defs>
+            <g stroke="#1F1C19" stroke-width="2">
+              <rect fill="#F3EEE3" height="58" rx="6" width="128" x="24" y="34"></rect>
+              <rect fill="#F3EEE3" height="58" rx="6" width="150" x="218" y="34"></rect>
+              <rect fill="#1F1C19" height="58" rx="6" width="156" x="444" y="34"></rect>
+              <rect fill="#F3EEE3" height="62" rx="6" width="156" x="444" y="176"></rect>
+              <rect fill="#F3EEE3" height="62" rx="6" width="150" x="218" y="176"></rect>
+              <rect fill="#fff5f3" height="62" rx="6" stroke="#D93A24" stroke-width="2.5" width="128" x="24" y="176"></rect>
+            </g>
+            <text font-size="19" font-weight="800" text-anchor="middle" x="88" y="69">idle</text>
+            <text font-size="19" font-weight="800" text-anchor="middle" x="293" y="69">starting</text>
+            <text fill="#FBF8F1" font-size="19" font-weight="800" text-anchor="middle" x="522" y="69">active</text>
+            <text font-size="18" font-weight="800" text-anchor="middle" x="522" y="204">cancelling</text>
+            <text fill="#58524a" font-size="12.5" text-anchor="middle" x="522" y="225">follow disable</text>
+            <text font-size="18" font-weight="800" text-anchor="middle" x="293" y="204">cancelled</text>
+            <text fill="#58524a" font-size="12.5" text-anchor="middle" x="293" y="225">3 s after stop confirmed</text>
+            <text fill="#D93A24" font-size="18" font-weight="800" text-anchor="middle" x="88" y="204">error</text>
+            <text fill="#D93A24" font-size="12.5" text-anchor="middle" x="88" y="225">No auto-resume</text>
+            <g fill="none" marker-end="url(#fk1)" stroke="#1F1C19" stroke-width="2">
+              <path d="M152,63 L214,63"></path>
+              <path d="M368,63 L440,63"></path>
+              <path d="M522,92 L522,172"></path>
+              <path d="M444,207 L372,207"></path>
+              <path d="M250,176 L112,96"></path>
+            </g>
+            <g fill="none" marker-end="url(#fr1)" stroke="#D93A24" stroke-dasharray="5 3" stroke-width="2.2">
+              <path d="M293,92 L293,134 L88,134 L88,172"></path>
+              <path d="M444,224 L406,258 L116,258 L100,240"></path>
+            </g>
+            <text font-size="12.5" font-weight="700" text-anchor="middle" x="183" y="53">Start</text>
+            <text font-size="12.5" font-weight="700" text-anchor="middle" x="404" y="53">enable OK</text>
+            <text font-size="12.5" font-weight="700" x="534" y="138">Stop / abort</text>
+            <text font-size="11.5" text-anchor="middle" x="408" y="198">|v|&lt;0.02 0.3s</text>
+            <text fill="#D93A24" font-size="11.5" x="180" y="126">3 s timeout</text>
+            <text fill="#D93A24" font-size="12" font-weight="700" text-anchor="middle" x="275" y="274">Safety abort · stop unconfirmed (5 s)</text>
+            <rect fill="#fff5f3" height="156" rx="5" stroke="#D93A24" stroke-width="2" width="712" x="24" y="298"></rect>
+            <text fill="#D93A24" font-family="Paperlogy" font-size="15" font-weight="800" x="42" y="324">Parallel safety checks — SafetyMonitor (D1–D7) + LinkWatch</text>
+            <rect fill="#FBF8F1" height="86" rx="4" stroke="#1F1C19" stroke-width="1.8" width="160" x="42" y="344"></rect>
+            <text font-size="16" font-weight="800" text-anchor="middle" x="122" y="374">ARMED</text>
+            <text fill="#58524a" font-size="12.5" text-anchor="middle" x="122" y="396">Marker seen once or more</text>
+            <text fill="#8d8579" font-size="12" text-anchor="middle" x="122" y="414">Inactive while searching</text>
+            <rect fill="#D93A24" height="86" rx="4" width="196" x="292" y="344"></rect>
+            <text fill="#FBF8F1" font-size="17" font-weight="800" text-anchor="middle" x="390" y="372">SOS OPEN</text>
+            <text fill="#FFD6CE" font-size="12.5" text-anchor="middle" x="390" y="394">Request phone GPS now + push</text>
+            <text fill="#FBF8F1" font-size="12" text-anchor="middle" x="390" y="414">Manual button allowed while idle</text>
+            <rect fill="#1F1C19" height="86" rx="4" width="158" x="560" y="344"></rect>
+            <text fill="#FF8C7A" font-size="16" font-weight="800" text-anchor="middle" x="639" y="374">SAFETY STOP</text>
+            <text fill="#FBF8F1" font-size="12.5" text-anchor="middle" x="639" y="396">Phone unresponsive (D4)</text>
+            <text fill="#d8cfbf" font-size="12" text-anchor="middle" x="639" y="414">Link down for 30 s (D6)</text>
+            <path d="M202,374 L288,374" fill="none" marker-end="url(#fr1)" stroke="#D93A24" stroke-width="2.2"></path>
+            <text fill="#D93A24" font-size="11.5" font-weight="700" text-anchor="middle" x="245" y="366">LOST 10 s</text>
+            <path d="M292,406 L206,406" fill="none" marker-end="url(#fk1)" stroke="#1F1C19" stroke-width="1.8"></path>
+            <text fill="#1F1C19" font-size="11.5" text-anchor="middle" x="245" y="424">5 s recovery / cancel</text>
+            <path d="M488,387 L556,387" fill="none" marker-end="url(#fr1)" stroke="#D93A24" stroke-width="2.2"></path>
+            <text fill="#D93A24" font-size="11.5" font-weight="700" text-anchor="middle" x="522" y="378">No ACK</text>
+          </svg>
+        </div>
+        <div>
+          <svg aria-label="Errand state machine" font-family="Pretendard, sans-serif" role="img" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="fk2" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#1F1C19"></path></marker>
+              <marker id="fr2" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M1,1 L9,5 L1,9 z" fill="#D93A24"></path></marker>
+            </defs>
+            <g stroke="#1F1C19" stroke-width="2">
+              <rect fill="#F3EEE3" height="66" rx="6" width="114" x="26" y="34"></rect>
+              <rect fill="#F3EEE3" height="66" rx="6" width="166" x="196" y="34"></rect>
+              <rect fill="#1F1C19" height="66" rx="6" width="174" x="420" y="34"></rect>
+              <rect fill="#D93A24" height="72" rx="6" stroke="#D93A24" width="174" x="420" y="170"></rect>
+              <rect fill="#F3EEE3" height="72" rx="6" width="166" x="196" y="170"></rect>
+            </g>
+            <text font-size="19" font-weight="800" text-anchor="middle" x="83" y="64">IDLE</text>
+            <text fill="#58524a" font-size="12" text-anchor="middle" x="83" y="86">Measure at 1 Hz</text>
+            <text font-size="18" font-weight="800" text-anchor="middle" x="279" y="62">LOOKING</text>
+            <text fill="#58524a" font-size="12" text-anchor="middle" x="279" y="84">ArUco PnP + Gemini 4</text>
+            <text fill="#FBF8F1" font-size="18" font-weight="800" text-anchor="middle" x="507" y="62">PICKING</text>
+            <text fill="#FFD6CE" font-size="12" text-anchor="middle" x="507" y="84">GrabCut · 6-DOF IK · sag fix</text>
+            <text fill="#FBF8F1" font-size="18" font-weight="800" text-anchor="middle" x="507" y="200">HOLDING</text>
+            <text fill="#FFD6CE" font-size="12" text-anchor="middle" x="507" y="222">Drop check: current &amp; gap</text>
+            <text font-size="18" font-weight="800" text-anchor="middle" x="279" y="200">RELEASING</text>
+            <text fill="#58524a" font-size="12" text-anchor="middle" x="279" y="222">Only give() / throw()</text>
+            <g fill="none" marker-end="url(#fk2)" stroke="#1F1C19" stroke-width="2">
+              <path d="M140,67 L192,67"></path>
+              <path d="M362,67 L416,67"></path>
+              <path d="M507,100 L507,166"></path>
+              <path d="M196,206 L83,206 L83,104"></path>
+            </g>
+            <path d="M420,206 L366,206" fill="none" marker-end="url(#fr2)" stroke="#D93A24" stroke-width="2.6"></path>
+            <path d="M594,54 L668,54 L668,94 L598,94" fill="none" marker-end="url(#fr2)" stroke="#D93A24" stroke-dasharray="4 3" stroke-width="2"></path>
+            <text fill="#D93A24" font-size="12" font-weight="700" x="676" y="70">Empty grip</text>
+            <text fill="#D93A24" font-size="12" x="676" y="87">+3 mm down</text>
+            <text font-size="12" font-weight="700" text-anchor="middle" x="166" y="57">fetch()</text>
+            <text font-size="11" font-weight="700" text-anchor="middle" x="389" y="57">Coords OK</text>
+            <text font-size="12" font-weight="700" x="520" y="140">Grip confirmed (≥120 mA / opening)</text>
+            <text fill="#D93A24" font-size="12" font-weight="800" text-anchor="middle" x="393" y="194">“Give it”</text>
+            <text font-size="12" text-anchor="middle" x="140" y="196">Return complete</text>
+            <rect fill="#F3EEE3" height="180" rx="5" stroke="#1F1C19" stroke-width="1.8" width="708" x="26" y="274"></rect>
+            <text fill="#D93A24" font-family="Paperlogy" font-size="15" font-weight="800" x="44" y="302">What the VLM can request and what the code can refuse</text>
+            <rect fill="#FBF8F1" height="120" rx="4" stroke="#1F1C19" stroke-width="1.5" width="320" x="44" y="318"></rect>
+            <text font-size="15.5" font-weight="800" x="60" y="344">What Gemini 4 and ElevenLabs do</text>
+            <text fill="#58524a" font-size="13.5" x="60" y="369">• Map spoken intent to a tool call</text>
+            <text fill="#58524a" font-size="13.5" x="60" y="391">• Overhead image: object pixel [y, x], height</text>
+            <text fill="#58524a" font-size="13.5" x="60" y="413">• grasp_clear (hand overlaps object?)</text>
+            <rect fill="#fff5f3" height="120" rx="4" stroke="#D93A24" stroke-width="1.8" width="328" x="388" y="318"></rect>
+            <text fill="#D93A24" font-size="15.5" font-weight="800" x="404" y="344">What the deterministic code enforces</text>
+            <text fill="#1F1C19" font-size="13.5" x="404" y="369">• Refused at once: beyond reach or joint limits</text>
+            <text fill="#1F1C19" font-size="13.5" x="404" y="391">• Recalibrate 5–9 mm sag from encoder readings</text>
+            <text fill="#D93A24" font-size="13.5" font-weight="700" x="404" y="413">• Block skipped states and unasked release</text>
+          </svg>
+        </div>
+      </figure>
     </div>
   </section>
-
-  <section class="chapter" id="ledger" aria-labelledby="ledger-h">
+  <section aria-labelledby="ledger-h" class="chapter" id="ledger">
     <div class="wrap prose">
-      <h2 id="ledger-h">What it cost</h2>
-      <p>One developer, six months, seven Git repositories, and 543 photos and videos. I counted the parts purchases from 26 purchase records and six MISUMI delivery notes. I reused the wire cart, ESP32, webcam, and power bank I already had.</p>
-      <figure class="fig tbl ledger">
+      <h2 id="ledger-h">Adding up the receipts</h2>
+      <p>Here’s what six months look like in numbers.</p>
+      <figure class="fig wide nums">
+        <div><p class="nv">1<small>person</small></p><p class="nl">Development team</p><p class="nd">Mechanical design, electronics, firmware, ROS 2, app, dashboard, VLM, and avatar</p></div>
+        <div><p class="nv">7</p><p class="nl">Git repositories</p><p class="nd">Proof of concept, main robot, ACT, pick-and-place, app, dashboard, and booth</p></div>
+        <div><p class="nv">543</p><p class="nl">Photos and videos</p><p class="nd">June 3 to November 17, 2026</p></div>
+        <div><p class="nv">80</p><p class="nl">Records between midnight and 6 a.m.</p><p class="nd">Aug 13: 17 frame assembly photos · Oct 30: 15 from integrating the arm</p></div>
+        <div><p class="nv">1,121.43<small>USD</small></p><p class="nl">Total on the receipts</p><p class="nd">About 150% of the $749.12 I started with</p></div>
+        <div><p class="nv">30.78<small>USD</small></p><p class="nl">Repairs after the accident</p><p class="nd">One MDD3A and two JGB37-520 motors lost to overcurrent</p></div>
+      </figure>
+      <p>I kept every receipt and went through 26 purchase screenshots and six MISUMI delivery notes covering 75 line items. The wire cart, ESP32, C920, and power bank were already at home, so they didn’t cost anything.</p>
+      <figure class="fig wide tbl ledger">
         <table>
-          <thead><tr><th scope="col">Date</th><th scope="col">Purchase</th><th scope="col" class="la">USD</th></tr></thead>
+          <thead>
+            <tr><th>Date</th><th>Where</th><th>What I bought</th><th>USD</th></tr>
+          </thead>
           <tbody>
-            <tr><td>Jun 4</td><td>Encoder motors, 5 V buck converter, emergency stop, and switch</td><td class="la">$38.37</td></tr>
-            <tr><td>Jun 5</td><td>Raspberry Pi 5, battery, charger, and driver</td><td class="la">$365.14</td></tr>
-            <tr><td>Jun 20</td><td>SO-ARM101 Pro, PD trigger, and 12 V buck converter</td><td class="la">$300.60</td></tr>
-            <tr><td>Jul 2</td><td>NUCLEO-F446RE</td><td class="la">$29.67</td></tr>
-            <tr><td>Jul 31</td><td>Wheels, hubs, hinges, and bolts</td><td class="la">$58.34</td></tr>
-            <tr><td>Aug 3</td><td>Extrusion, brackets, springs, and casters</td><td class="la">$108.54</td></tr>
-            <tr><td>Aug 20</td><td>IMU, MCU supply, fuses, and wire</td><td class="la">$25.72</td></tr>
-            <tr><td>Aug 30</td><td>Replacement driver and motors</td><td class="la">$30.78</td></tr>
-            <tr><td>Sep 22</td><td>Machined extrusion, JST cables, and overhead camera</td><td class="la">$56.54</td></tr>
-            <tr><td>Oct 1</td><td>Frame reinforcement hardware</td><td class="la">$33.57</td></tr>
-            <tr><td>Nov 6</td><td>RPLIDAR C1</td><td class="la">$74.16</td></tr>
+            <tr class="home"><td class="ld">Jun 3</td><td class="ls">Home</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/080-trolley.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/078-esp32.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/077-c920.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/079-pbank.png" width="28"/></span>Two-tier wire cart, ESP32-S3 TFT, C920, and power bank</td><td class="la">Already owned</td></tr>
+            <tr class=""><td class="ld">Jun 4</td><td class="ls">AliExpress</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/070-motor.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/064-estop.png" width="28"/></span>Two encoder motors, 5 V buck converter, E-stop, and switch</td><td class="la">$38.37</td></tr>
+            <tr class=""><td class="ld">Jun 5</td><td class="ls">Devicemart</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/074-pi5.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/061-batt.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/068-mdd.png" width="28"/></span>RPi 5 8 GB, LiFePO₄ battery, charger, and MDD3A</td><td class="la">$365.14</td></tr>
+            <tr class=""><td class="ld">Jun 20</td><td class="ls">AliExpress</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/060-arm.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/073-pd.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/062-buck.png" width="28"/></span>SO-ARM101 Pro, PD trigger, and 12 V buck converter</td><td class="la">$300.60</td></tr>
+            <tr class=""><td class="ld">Jul 2</td><td class="ls">Naver</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/072-nucleo.png" width="28"/></span>NUCLEO-F446RE</td><td class="la">$29.67</td></tr>
+            <tr class=""><td class="ld">Jul 31</td><td class="ls">Devicemart</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/076-wheel.png" width="28"/></span>Pololu wheels, hubs, hinges, and bolts</td><td class="la">$58.34</td></tr>
+            <tr class=""><td class="ld">Aug 3</td><td class="ls">MISUMI</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/075-profile.png" width="28"/></span>First frame order: extrusion, 68 brackets, springs, and casters</td><td class="la">$108.54</td></tr>
+            <tr class=""><td class="ld">Aug 20</td><td class="ls">AliExpress</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/065-imu.png" width="28"/></span>IMU, MCU buck converter, fuses, and wire</td><td class="la">$25.72</td></tr>
+            <tr class="acc"><td class="ld">Aug 30</td><td class="ls">Naver · AliExpress</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/069-mdd2.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/071-motor2.png" width="28"/></span>Overcurrent repairs: MDD3A and two motors</td><td class="la">$30.78</td></tr>
+            <tr class=""><td class="ld">Sep 22</td><td class="ls">Naver</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/067-mast.png" width="28"/><img alt="" height="28" loading="lazy" src="../media/063-c270.png" width="28"/></span>Extrusion machining, JST cables, and C270</td><td class="la">$56.54</td></tr>
+            <tr class=""><td class="ld">Oct 1</td><td class="ls">MISUMI</td><td class="li"><span class="th"></span>Second frame order: reinforcement bolts and brackets</td><td class="la">$33.57</td></tr>
+            <tr class=""><td class="ld">Nov 6</td><td class="ls">Naver</td><td class="li"><span class="th"><img alt="" height="28" loading="lazy" src="../media/066-lidar.png" width="28"/></span>RPLIDAR C1</td><td class="la">$74.16</td></tr>
           </tbody>
           <tfoot>
-            <tr class="sum"><td colspan="2">Total spent on parts</td><td class="la">$1,121.43</td></tr>
-            <tr class="sum"><td colspan="2">Balance from $749.12</td><td class="la minus">−$372.31</td></tr>
+            <tr class="sum"><td colspan="3">Total spent on parts</td><td class="la">$1,121.43</td></tr>
+            <tr class="sum"><td colspan="3">Balance from a starting budget of $749.12</td><td class="la minus"><span class="money">−$372.31</span></td></tr>
           </tfoot>
         </table>
       </figure>
       <p>USD estimates use the November 27, 2026 ECB reference rates, about 1,334.90 Korean won per US dollar. <a href="https://data-api.ecb.europa.eu/service/data/EXR/D.USD+KRW.EUR.SP00.A?startPeriod=2026-11-27&amp;endPeriod=2026-11-27&amp;format=csvdata">ECB rate data</a></p>
-      <p>For scale, Hello Robot lists its Stretch 4 research platform at $29,950. Maknae’s parts spending was about one twenty-seventh of that list price. <a href="https://hello-robot.com/purchase/">Hello Robot pricing</a></p>
+      <p>The $1,121.43 I spent on parts is about one twenty-seventh of the $29,950 list price for Hello Robot’s Stretch 4 research mobile manipulator. <a href="https://hello-robot.com/purchase/">Hello Robot pricing</a></p>
     </div>
   </section>
-
-  <section class="chapter" id="next" aria-labelledby="next-h">
+  <section aria-labelledby="next-h" class="chapter" id="next">
     <div class="wrap prose">
-      <h2 id="next-h">Next year</h2>
-      <p>Three purchases are still on my list. An RGB-D camera would simplify the marker-based geometry. A fabricated PCB would replace a long night of hand soldering. A GPS and LTE module would give the robot an independent connection when it needs one.</p>
-      <h3 id="gazebo">Picking up a remote in Gazebo</h3>
-      <p>I typed a request for the remote on the desk. The physical robot’s ROS 2 nodes ran the route, aligned to the marker, found the object using the simulated overhead camera, and controlled the arm on the way out and back. Gazebo supplies the home, sensors, and actuators. A simulated joint holds the object once it is between the gripper fingers.</p>
-      <figure class="fig wide">
-        <video class="m" style="--ar:16/9" src="../media/gazebo_errand.mp4" poster="../media/gazebo_errand.jpg" controls playsinline preload="none" aria-label="Gazebo simulation of a full remote-control pickup and handover">
-          <track kind="captions" src="../media/gazebo_errand.en.vtt" srclang="en" label="English" default>
-        </video>
-        <figcaption>Recorded ROS 2 and Gazebo run, from the typed request to handover.</figcaption>
+      <h2 id="next-h">I’ll buy it next year</h2>
+      <p>Here’s what I used when the budget wouldn’t stretch. All three were roundabout ways of getting something working.</p>
+      <figure class="fig wide tbl nextyear">
+        <table>
+          <thead>
+            <tr><th></th><th>What I wanted to buy</th><th>What I used this time</th><th>Cost</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="ic"><img alt="" height="72" loading="lazy" src="../media/053-depth_cam-512.webp" width="72"/></td><th>Depth camera (RealSense or similar)</th><td>The C920 I already had, a paper ArUco marker, and PnP with the C270</td><td class="cost">$0 for the C920 (about $20 for the C270)</td></tr>
+            <tr><td class="ic"><img alt="" height="72" loading="lazy" src="../media/058-pcb-512.webp" width="72"/></td><th>Factory-made PCBs (five from JLCPCB)</th><td>KiCad design, then hand-soldering perfboard in the early hours</td><td class="cost">Saved about $11 and stayed up all night</td></tr>
+            <tr><td class="ic"><img alt="" height="72" loading="lazy" src="../media/055-gps_lte-512.webp" width="72"/></td><th>GPS/LTE module and data plan</th><td>Reused Fused Location on the older adult’s phone</td><td class="cost">$0.00</td></tr>
+          </tbody>
+        </table>
       </figure>
+      <h3 id="gazebo">A demo in Gazebo</h3>
+      <p>I typed a request for the remote on the desk. The same ROS 2 nodes as on the real robot drive there with Nav2, line up with the ArUco marker, find the remote with the overhead camera, pick it up, then return to where they started and hand it over.</p>
+      <p>Gazebo stands in for the house, sensors, wheels, and arm joints. Once the remote is between the gripper fingers, a simulated joint holds it there.</p>
+      <figure class="fig wide">
+        <div class="row" style="max-width:min(100%,996px)">
+          <div class="cell" style="--ar:1.7778">
+            <video aria-label="A recording from the remote-control request through driving, grasping, returning, and handing it over" class="m" controls="" height="900" playsinline="" poster="../media/gazebo_errand.jpg" preload="none" src="../media/gazebo_errand.mp4" width="1600">
+              <track default="" kind="captions" label="English" src="../media/gazebo_errand.en.vtt" srclang="en"/>
+            </video>
+            <figcaption>A recording from the remote-control request through driving, grasping, returning, and handing it over</figcaption>
+          </div>
+        </div>
+      </figure>
+      <p>And conquering robotics? Next year, too.</p>
     </div>
   </section>
 </main>
 <footer class="end">
   <div class="wrap">
-    <img class="end-mark" src="../media/005-last_calendar_page.svg" alt="" width="120" height="122">
-    <p class="end-line">See you next year.</p>
-    <p class="end-links"><a href="../../">Next Year Robotics</a><a href="https://github.com/next-year-robotics/mobile-robot">Maknae source code</a><a href="../" lang="ko" hreflang="ko">한국어</a></p>
+    <img alt="" class="end-mark" height="122" src="../media/005-last_calendar_page.svg" width="120"/>
+    <p class="end-line">Next year, for real.</p>
+    <p class="end-links"><a href="../../">Next Year Robotics</a><a href="https://github.com/next-year-robotics/mobile-robot">Maknae source code</a><a href="../" hreflang="ko" lang="ko">한국어</a></p>
+    <section aria-labelledby="notes-h" class="notes">
+      <h2 id="notes-h">Notes</h2>
+      <ol>
+        <li id="fn1">Bodyfriend’s “Checking In” ad. <a href="https://www.youtube.com/watch?v=x4zO26CslVc">Video 1</a>, <a href="https://www.youtube.com/watch?v=skBjC-dPRA0">Video 2</a>. <a aria-label="Back to the text" href="#fnr1">↩</a></li>
+        <li id="fn2"><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156655081">Ministry of Health and Welfare, 2023 Survey of Older Persons</a> <a aria-label="Back to the text" href="#fnr2">↩</a></li>
+        <li id="fn3"><a href="https://www.kdca.go.kr/bbs/kdca/41/312311/artclView.do">Korea Disease Control and Prevention Agency, 2025 Statistics on Injury Types and Causes</a> <a aria-label="Back to the text" href="#fnr3">↩</a></li>
+        <li id="fn4"><a href="https://www.index.go.kr/unity/potal/eNara/sub/showStblGams3.do?freq=Y&amp;idx_cd=1610&amp;period=N&amp;stts_cd=161001">Korean National Police Agency missing-person reports</a> <a aria-label="Back to the text" href="#fnr4">↩</a></li>
+        <li id="fn5">Songju Oh (2018), “Age Effects on Preference for AI Speakers with Faces.” <a href="https://koreascience.or.kr/article/JAKO201820765437764.page">KoreaScience</a>. <a aria-label="Back to the text" href="#fnr5">↩</a></li>
+        <li id="fn6">Akanksha Prakash, Wendy A. Rogers(Georgia Tech). <a href="https://www.scientificamerican.com/article/what-should-a-robot-look-like/">What Should a Robot Look Like?</a>, Scientific American. <a aria-label="Back to the text" href="#fnr6">↩</a></li>
+      </ol>
+    </section>
   </div>
 </footer>
 </body>

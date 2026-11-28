@@ -55,9 +55,20 @@
   const days = data.days;
 
   const day = s => new Date(s + 'T00:00:00');
+  const inDollars = data.currency === 'USD';
+  const dollars = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  const monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' });
+  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' });
+  const monthShort = new Intl.DateTimeFormat('en-US', { month: 'short' });
+  const dateShort = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
   const won = n => Math.round(Math.abs(n)).toLocaleString('ko-KR');
-  const signed = n => (n < 0 ? '−' : '') + won(n) + '원';
-  const man = n => (n < 0 ? '−' : '') + (Math.abs(n) / 1e4).toFixed(1).replace(/\.0$/, '') + '만 원';
+  const amount = n => inDollars ? dollars.format(Math.abs(n) / data.krwPerUsd) : won(n);
+  const signed = n => (n < 0 ? '−' : '') + amount(n) + (inDollars ? '' : '원');
+  const compact = n => inDollars ? signed(n) : (n < 0 ? '−' : '') + (Math.abs(n) / 1e4).toFixed(1).replace(/\.0$/, '') + '만 원';
+  const zero = inDollars ? '$0' : '0원';
+  const repair = inDollars ? ' · repair' : ' · 사고';
+  const noSpending = inDollars ? 'No spending that day' : '이날은 쓴 돈이 없다';
+  const noStage = inDollars ? 'Nothing built yet' : '아직 아무것도 없음';
   const WD = ['일', '월', '화', '수', '목', '금', '토'];
 
   // 그래프: 잔고(먹)와 기능 완성도(주홍)를 계단선으로
@@ -83,12 +94,13 @@
     return d + `H${X1}`;
   };
   for (let m = 6; m <= 11; m++) {
-    const x = cx(`2026-${String(m).padStart(2, '0')}-01`);
+    const date = `2026-${String(m).padStart(2, '0')}-01`;
+    const x = cx(date);
     mk('line', { x1: x, x2: x, y1: YT - 2, y2: YB, stroke: '#EEE8DC' });
-    mk('text', { x: x + 2, y: YB + 13 }).textContent = `${m}월`;
+    mk('text', { x: x + 2, y: YB + 13 }).textContent = inDollars ? monthShort.format(day(date)) : `${m}월`;
   }
   mk('line', { x1: X0, x2: X1, y1: yBal(0), y2: yBal(0), stroke: '#D93A24', 'stroke-dasharray': '2 3', 'stroke-width': 1 });
-  mk('text', { x: X1, y: yBal(0) - 3, 'text-anchor': 'end', style: 'fill:#D93A24' }).textContent = '0원';
+  mk('text', { x: X1, y: yBal(0) - 3, 'text-anchor': 'end', style: 'fill:#D93A24' }).textContent = zero;
   const balPath = step(s => yBal(s.bal), yBal(0));
   const lvPath = step(s => yLv(s.level), yLv(0));
   mk('path', { d: balPath, fill: 'none', stroke: '#E2DBCD', 'stroke-width': 1.5 });
@@ -107,21 +119,40 @@
   const imgs = [$('rImgA'), $('rImgB')];
   let front = 0, shownImg = null;
 
+  function showStageImage(src) {
+    if (src === shownImg || !rail.offsetParent) return;
+    shownImg = src;
+    if (!src) {
+      imgs.forEach(img => img.classList.remove('on'));
+      return;
+    }
+    const next = imgs[1 - front], current = imgs[front];
+    next.onload = () => {
+      if (src !== shownImg) return;
+      next.classList.add('on');
+      current.classList.remove('on');
+      front = 1 - front;
+    };
+    next.src = src;
+  }
+
   let current = null;
   function render(d) {
+    const s = days[d];
+    showStageImage(s.img);
     if (d === current) return;
     current = d;
-    const s = days[d], dt = day(d);
+    const dt = day(d);
     $('rDay').textContent = dt.getDate();
     $('rDay').className = dt.getDay() === 0 ? 'sun' : dt.getDay() === 6 ? 'sat' : '';
-    $('rYm').textContent = `${dt.getFullYear()}년 ${dt.getMonth() + 1}월`;
-    $('rWd').textContent = `${WD[dt.getDay()]}요일`;
+    $('rYm').textContent = inDollars ? monthYear.format(dt) : `${dt.getFullYear()}년 ${dt.getMonth() + 1}월`;
+    $('rWd').textContent = inDollars ? weekday.format(dt) : `${WD[dt.getDay()]}요일`;
     $('rDn').textContent = `D+${Math.round((dt - day(data.seedDate)) / 864e5)}`;
     $('rBal').textContent = signed(s.bal);
     $('rBal').classList.toggle('neg', s.bal < 0);
     $('rTx').innerHTML = s.tx.length
-      ? s.tx.map(([a, it, k]) => `<li><span class="${a < 0 ? 'm' : 'p'}">${a < 0 ? '−' : '+'}${won(a)}</span> ${it}${k === 'acc' ? ' · 사고' : ''}</li>`).join('')
-      : '<li class="none">이날은 쓴 돈이 없다</li>';
+      ? s.tx.map(([a, it, k]) => `<li><span class="${a < 0 ? 'm' : 'p'}">${a < 0 ? '−' : '+'}${amount(a)}</span> ${it}${k === 'acc' ? repair : ''}</li>`).join('')
+      : `<li class="none">${noSpending}</li>`;
     const x = cx(d);
     clip.setAttribute('width', x + 1);
     clip.style.width = `${x + 1}px`;
@@ -129,21 +160,12 @@
     dotLv.style.transform = `translate(${x}px,${yLv(s.level)}px)`;
     $('rLv').textContent = `${Math.round(s.level * 100)}%`;
     s.cap.forEach((v, i) => { capBars[i].style.width = `${v * 100}%`; });
-    if (s.img !== shownImg && rail.offsetParent) {
-      shownImg = s.img;
-      const next = imgs[1 - front], cur = imgs[front];
-      if (s.img) {
-        next.onload = () => { next.classList.add('on'); cur.classList.remove('on'); };
-        next.src = s.img;
-        front = 1 - front;
-      } else imgs.forEach(i => i.classList.remove('on'));
-    }
-    $('rStage').textContent = s.stage || '아직 아무것도 없음';
+    $('rStage').textContent = s.stage || noStage;
     $('rRec').textContent = s.rec;
     $('rNight').textContent = s.night;
-    $('rAcc').textContent = s.acc ? man(s.acc) : '0원';
-    $('bDate').textContent = `${dt.getMonth() + 1}월 ${dt.getDate()}일`;
-    $('bBal').textContent = man(s.bal);
+    $('rAcc').textContent = s.acc ? compact(s.acc) : (inDollars ? signed(0) : zero);
+    $('bDate').textContent = inDollars ? dateShort.format(dt) : `${dt.getMonth() + 1}월 ${dt.getDate()}일`;
+    $('bBal').textContent = compact(s.bal);
     $('bBal').classList.toggle('neg', s.bal < 0);
     $('bStage').textContent = s.stage;
     $('bLv').style.width = `${s.level * 100}%`;

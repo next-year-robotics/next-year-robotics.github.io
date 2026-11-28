@@ -19,6 +19,7 @@ img,video,svg{max-width:100%}
 .prose>*{max-width:var(--text)}
 .prose>.fig.wide,.prose>.fig.diagram{max-width:none}
 p{margin:0 0 1.15em}
+.money{white-space:nowrap}
 i[lang=en]{font-style:italic}
 
 /* ── 머리 ── */
@@ -188,8 +189,10 @@ code.hot{background:#FBE5DF;color:#B8301C}
 .rail-tx .m{font:700 12px var(--mono);color:var(--red)}
 .rail-tx .p{font:700 12px var(--mono);color:var(--blue)}
 .rail-tx .none{color:var(--mute)}
+:lang(en) .rail-tx li{white-space:normal}
 .rail-caps{list-style:none;padding:0;margin:5px 0 0}
 .rail-caps li{display:grid;grid-template-columns:20px 92px 1fr;align-items:center;gap:8px;font:500 12.5px/1.75 var(--sans);color:var(--ink2)}
+:lang(en) .rail-caps li{grid-template-columns:20px 150px 1fr}
 .rail-caps img{width:20px;height:20px;object-fit:contain}
 .rail-caps i{display:block;height:6px;background:var(--soft);border-radius:3px;overflow:hidden}
 .rail-caps i b{display:block;height:100%;width:0;background:var(--red);border-radius:3px;transition:width .7s cubic-bezier(.2,.7,.2,1)}

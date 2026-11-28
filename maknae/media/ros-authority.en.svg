@@ -12,38 +12,38 @@
 
     <g font-size="16" font-weight="800" fill="#1F1C19">
       <rect x="134" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
-      <text x="148" y="50">Android app</text><text x="148" y="73" font-size="13.5" font-weight="500" fill="#58524a">Start trip · stop · SOS</text>
+      <text x="148" y="50">App for older adults</text><text x="148" y="73" font-size="13.5" font-weight="500" fill="#58524a">Start, stop, and SOS</text>
 
       <rect x="336" y="23" width="186" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
-      <text x="350" y="50">Caregiver web</text><text x="350" y="73" font-size="13.5" font-weight="500" fill="#58524a">Read-only telemetry</text>
+      <text x="350" y="50">Caregiver dashboard</text><text x="350" y="73" font-size="13.5" font-weight="500" fill="#58524a">Read-only check-ins / GPS</text>
 
       <rect x="538" y="23" width="208" height="64" fill="#F3EEE3" stroke="#d8cfbf" stroke-width="1.4"/>
-      <text x="552" y="50">Voice and VLM (Gemini)</text><text x="552" y="73" font-size="13.5" font-weight="500" fill="#58524a">Errand tool calls</text>
+      <text x="552" y="50">Voice · VLM (Gemini)</text><text x="552" y="73" font-size="13.5" font-weight="500" fill="#58524a">Calls the errand tool</text>
     </g>
 
     <rect x="764" y="23" width="258" height="64" fill="#1F1C19"/>
-    <text x="893" y="49" text-anchor="middle" font-size="15.5" font-weight="800" fill="#FF8C7A" font-family="monospace">No direct /cmd_vel</text>
-    <text x="893" y="73" text-anchor="middle" font-size="13.5" fill="#F3EEE3">Request destinations or stops</text>
+    <text x="893" y="49" text-anchor="middle" font-size="15.5" font-weight="800" fill="#FF8C7A" font-family="monospace">No /cmd_vel publishing</text>
+    <text x="893" y="73" text-anchor="middle" font-size="13.5" fill="#F3EEE3">Passes destination and stop requests</text>
 
     <path d="M520,100 V132" fill="none" stroke="#1F1C19" stroke-width="2.2" marker-end="url(#rsk)"/>
-    <text x="534" y="122" font-size="14" font-weight="700" fill="#58524a">Trip, stop and errand requests</text>
+    <text x="534" y="122" font-size="14" font-weight="700" fill="#58524a">Intent and status requests (no direct wheel control)</text>
 
     <rect x="0" y="138" width="1040" height="162" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2.2"/>
     <rect x="0" y="138" width="1040" height="34" fill="#1F1C19"/>
-    <text x="16" y="161" font-size="15.5" font-weight="800" fill="#FBF8F1" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">ROS 2 nodes shared by the physical robot and simulation</text>
+    <text x="16" y="161" font-size="15.5" font-weight="800" fill="#FBF8F1" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Shared ROS 2 nodes — same code on the real robot and in simulation</text>
     <g font-size="13.5" fill="#F3EEE3">
-      <rect x="752" y="149" width="12" height="12" fill="#D93A24"/><text x="771" y="160">Custom</text>
-      <rect x="854" y="149" width="12" height="12" fill="#8d8579"/><text x="873" y="160">Standard ROS 2</text>
+      <rect x="752" y="149" width="12" height="12" fill="#D93A24"/><text x="771" y="160">Custom code</text>
+      <rect x="854" y="149" width="12" height="12" fill="#8d8579"/><text x="873" y="160">Standard ROS 2 package</text>
     </g>
 
     <g font-size="16" font-weight="800" fill="#1F1C19">
       <rect x="18" y="198" width="176" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
       <rect x="18" y="198" width="176" height="6" fill="#D93A24"/>
-      <text x="30" y="231" font-family="monospace">mr_mission</text><text x="30" y="255" font-size="13.5" font-weight="500" fill="#58524a">Trip and SOS states</text>
+      <text x="30" y="231" font-family="monospace">mr_mission</text><text x="30" y="255" font-size="13.5" font-weight="500" fill="#58524a">Trip/SOS state machine</text>
 
       <rect x="216" y="198" width="178" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
       <rect x="216" y="198" width="178" height="6" fill="#D93A24"/>
-      <text x="228" y="231" font-family="monospace">mr_aruco</text><text x="228" y="255" font-size="13.5" font-weight="500" fill="#58524a">Follow and align</text>
+      <text x="228" y="231" font-family="monospace">mr_aruco</text><text x="228" y="255" font-size="13.5" font-weight="500" fill="#58524a">Follow and align squarely</text>
 
       <rect x="418" y="198" width="172" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
       <rect x="418" y="198" width="172" height="6" fill="#8d8579"/>
@@ -51,10 +51,10 @@
 
       <rect x="614" y="198" width="184" height="74" fill="#F3EEE3" stroke="#1F1C19" stroke-width="1.5"/>
       <rect x="614" y="198" width="184" height="6" fill="#8d8579"/>
-      <text x="626" y="231">Nav2</text><text x="626" y="255" font-size="13.5" font-weight="500" fill="#58524a">A* and collision checks</text>
+      <text x="626" y="231">Nav2</text><text x="626" y="255" font-size="13.5" font-weight="500" fill="#58524a">A* and collision monitoring</text>
 
       <rect x="844" y="198" width="178" height="74" fill="#D93A24"/>
-      <text x="860" y="231" fill="#FBF8F1" font-family="monospace">twist_mux</text><text x="860" y="255" font-size="13.5" font-weight="700" fill="#FFD6CE">Highest priority wins</text>
+      <text x="860" y="231" fill="#FBF8F1" font-family="monospace">twist_mux</text><text x="860" y="255" font-size="13.5" font-weight="700" fill="#FFD6CE">Only top priority passes</text>
     </g>
 
     <g fill="none" stroke="#1F1C19" stroke-width="1.8" marker-end="url(#rsk)">
@@ -78,18 +78,18 @@
 
     <rect x="0" y="378" width="474" height="106" fill="#FBF8F1" stroke="#1F1C19" stroke-width="2"/>
     <rect x="16" y="394" width="88" height="26" fill="#1F1C19"/>
-    <text x="60" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">REAL</text>
+    <text x="60" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">REAL RUN</text>
     <text x="116" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Physical robot hardware</text>
-    <text x="16" y="444" font-size="15" fill="#58524a">STM32 (100 Hz) · RPLIDAR C1 · C920 camera · IMU</text>
-    <text x="16" y="468" font-size="14" fill="#8d8579" font-family="monospace">921,600 bps UART · 9.8 kg chassis</text>
+    <text x="16" y="444" font-size="15" fill="#58524a">STM32 (100 Hz) · RPLIDAR C1 · front C920 camera · IMU</text>
+    <text x="16" y="468" font-size="14" fill="#8d8579" font-family="monospace">Direct UART, 921,600 bps · 9.8 kg chassis</text>
 
     <text x="520" y="428" text-anchor="middle" font-size="30" font-weight="800" fill="#D93A24">⇄</text>
-    <text x="520" y="452" text-anchor="middle" font-size="13.5" font-weight="700" fill="#58524a">Swap</text>
+    <text x="520" y="452" text-anchor="middle" font-size="13.5" font-weight="700" fill="#58524a">Swap here</text>
 
     <rect x="566" y="378" width="474" height="106" fill="#fff5f3" stroke="#D93A24" stroke-width="2" stroke-dasharray="7 5"/>
     <rect x="582" y="394" width="114" height="26" fill="#D93A24"/>
-    <text x="639" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">SIMULATION</text>
-    <text x="708" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Simulation (SIL)</text>
-    <text x="582" y="444" font-size="15" fill="#58524a">Simulated sensors and wheels publish the same topics</text>
-    <text x="582" y="468" font-size="14" fill="#8d8579" font-family="monospace">Software-in-the-loop validation</text>
+    <text x="639" y="412" text-anchor="middle" font-size="14" font-weight="700" fill="#FBF8F1">SIM / TEST</text>
+    <text x="708" y="413" font-size="18" font-weight="800" fill="#1F1C19" font-family="Paperlogy, Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">Simulator (SIL)</text>
+    <text x="582" y="444" font-size="13.5" fill="#58524a">Same topics from nav2_sim_robot / Gazebo sensors and wheels</text>
+    <text x="582" y="468" font-size="14" fill="#8d8579" font-family="monospace">Software-in-the-loop verification</text>
   </svg>
